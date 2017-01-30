@@ -1,7 +1,9 @@
 {
-  "stack": "sugilite-trusty",
   "packer_templates_diff_url": "https://github.com/travis-ci/packer-templates/compare/0f241c1...294c7d9",
   "travis_cookbooks_diff_url": "https://github.com/travis-ci/travis-cookbooks/compare/998099c...9ac3e46",
+  "current_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-sugilite/googlecompute/image-metadata-travis-ci-sugilite-trusty-1480960799.tar.bz2",
+  "next_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-sugilite/googlecompute/image-metadata-travis-ci-sugilite-trusty-1485370656.tar.bz2",
+  "stack": "sugilite-trusty",
   "output_files": [
     "current-image.env",
     "env.diff",

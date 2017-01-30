@@ -1,10 +1,12 @@
 # php-precise promotion report
 
-- [packer-templates diff](https://github.com/travis-ci/packer-templates/compare/10d938a...294c7d9)
-- [travis-cookbooks diff](https://github.com/travis-ci/travis-cookbooks/compare/9c6cd11...479d954)
-
+- [packer templates diff](https://github.com/travis-ci/packer-templates/compare/10d938a...294c7d9)
+- [travis cookbooks diff](https://github.com/travis-ci/travis-cookbooks/compare/9c6cd11...479d954)
+- [current image metadata tarball](https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-php/googlecompute/image-metadata-travis-ci-php-precise-1480652621.tar.bz2)
+- [next image metadata tarball](https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-php/googlecompute/image-metadata-travis-ci-php-precise-1485379390.tar.bz2)
 
 ## output files
+
 - [current-image.env](./current-image.env)
 - [env.diff](./env.diff)
 - [job-board-register.yml.diff](./job-board-register.yml.diff)

@@ -1,7 +1,9 @@
 {
-  "stack": "php-precise",
   "packer_templates_diff_url": "https://github.com/travis-ci/packer-templates/compare/10d938a...294c7d9",
   "travis_cookbooks_diff_url": "https://github.com/travis-ci/travis-cookbooks/compare/9c6cd11...479d954",
+  "current_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-php/googlecompute/image-metadata-travis-ci-php-precise-1480652621.tar.bz2",
+  "next_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-php/googlecompute/image-metadata-travis-ci-php-precise-1485379390.tar.bz2",
+  "stack": "php-precise",
   "output_files": [
     "current-image.env",
     "env.diff",
