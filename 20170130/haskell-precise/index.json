@@ -1,0 +1,13 @@
+{
+  "stack": "haskell-precise",
+  "packer_templates_diff_url": "https://github.com/travis-ci/packer-templates/compare/10d938a...294c7d9",
+  "travis_cookbooks_diff_url": "https://github.com/travis-ci/travis-cookbooks/compare/9c6cd11...479d954",
+  "output_files": [
+    "current-image.env",
+    "env.diff",
+    "job-board-register.yml.diff",
+    "next-image.env",
+    "node-attributes.yml.diff",
+    "travis_packer_templates_rspec.json.diff"
+  ]
+}

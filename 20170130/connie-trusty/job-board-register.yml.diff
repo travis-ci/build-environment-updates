@@ -1,0 +1,17 @@
+--- travis-ci-connie-trusty-1480957854/job-board-register.yml
++++ travis-ci-connie-trusty-1485370628/job-board-register.yml
+@@ -20,7 +20,7 @@
+ tags:
+   dist: trusty
+   os: ubuntu
+-  packer_chef_time: 20161205T171229Z
++  packer_chef_time: 20170125T185829Z
+   language___connie__: true
+   language_bash: true
+   language_generic: true
+@@ -36,4 +36,4 @@
+   feature_perlbrew: true
+   feature_python_interpreter: true
+   feature_ruby_interpreter: true
+-tags_string: dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20161205T171229Z
++tags_string: dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20170125T185829Z

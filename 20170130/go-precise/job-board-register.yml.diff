@@ -1,0 +1,17 @@
+--- travis-ci-go-precise-1480652642/job-board-register.yml
++++ travis-ci-go-precise-1485379378/job-board-register.yml
+@@ -20,7 +20,7 @@
+ tags:
+   dist: precise
+   os: ubuntu
+-  packer_chef_time: 20161202T042525Z
++  packer_chef_time: 20170125T212516Z
+   language_go: true
+   feature_basic: true
+   feature_chromium: true
+@@ -36,4 +36,4 @@
+   feature_sphinxsearch: true
+   feature_sqlite: true
+   feature_xserver: true
+-tags_string: dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20161202T042525Z
++tags_string: dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20170125T212516Z
