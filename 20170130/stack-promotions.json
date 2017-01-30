@@ -70,7 +70,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_jdk:true,feature_memcached:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_postgresql:true,feature_python_interpreter:true,feature_redis:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20161205T170918Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_jdk:true,feature_memcached:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_postgresql:true,feature_python_interpreter:true,feature_redis:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20161205T170918Z",
+    "name": "travis-ci-amethyst-trusty-1480957664",
+    "successor_name": "travis-ci-amethyst-trusty-1485370625"
   },
   {
     "languages": [
@@ -165,7 +167,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haskell:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20170125T185828Z\""
+    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haskell:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20170125T185828Z",
+    "name": "travis-ci-amethyst-trusty-1485370625"
   },
   {
     "languages": [
@@ -210,7 +213,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20161205T171229Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20161205T171229Z",
+    "name": "travis-ci-connie-trusty-1480957854",
+    "successor_name": "travis-ci-connie-trusty-1485370628"
   },
   {
     "languages": [
@@ -255,7 +260,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20170125T185829Z\""
+    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_python_interpreter:true,feature_ruby_interpreter:true,language___connie__:true,language_bash:true,language_generic:true,language_minimal:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20170125T185829Z",
+    "name": "travis-ci-connie-trusty-1485370628"
   },
   {
     "languages": [
@@ -348,7 +354,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_chromium:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___garnet__:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_default:true,language_go:true,language_groovy:true,language_java:true,language_node_js:true,language_php:true,language_pure_java:true,language_python:true,language_ruby:true,language_scala:true,os:ubuntu,packer_chef_time:20161205T171229Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_chromium:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___garnet__:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_default:true,language_go:true,language_groovy:true,language_java:true,language_node_js:true,language_php:true,language_pure_java:true,language_python:true,language_ruby:true,language_scala:true,os:ubuntu,packer_chef_time:20161205T171229Z",
+    "name": "travis-ci-garnet-trusty-1480957852",
+    "successor_name": "travis-ci-garnet-trusty-1485379108"
   },
   {
     "languages": [
@@ -449,7 +457,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___garnet__:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_default:true,language_go:true,language_groovy:true,language_java:true,language_node_js:true,language_php:true,language_pure_java:true,language_python:true,language_ruby:true,language_scala:true,os:ubuntu,packer_chef_time:20170125T212017Z\""
+    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___garnet__:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_default:true,language_go:true,language_groovy:true,language_java:true,language_node_js:true,language_php:true,language_pure_java:true,language_python:true,language_ruby:true,language_scala:true,os:ubuntu,packer_chef_time:20170125T212017Z",
+    "name": "travis-ci-garnet-trusty-1485379108"
   },
   {
     "languages": [
@@ -580,7 +589,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_chromium:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language___sugilite__:true,language_android:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_elixir:true,language_erlang:true,language_go:true,language_groovy:true,language_haskell:true,language_haxe:true,language_hhvm:true,language_java:true,language_julia:true,language_legacy:true,language_mega:true,language_node_js:true,language_perl:true,language_perl6:true,language_php:true,language_pure_java:true,language_python:true,language_r:true,language_ruby:true,language_rust:true,language_scala:true,language_universe:true,os:ubuntu,packer_chef_time:20161205T180117Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:trusty,feature_basic:true,feature_chromium:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language___sugilite__:true,language_android:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_elixir:true,language_erlang:true,language_go:true,language_groovy:true,language_haskell:true,language_haxe:true,language_hhvm:true,language_java:true,language_julia:true,language_legacy:true,language_mega:true,language_node_js:true,language_perl:true,language_perl6:true,language_php:true,language_pure_java:true,language_python:true,language_r:true,language_ruby:true,language_rust:true,language_scala:true,language_universe:true,os:ubuntu,packer_chef_time:20161205T180117Z",
+    "name": "travis-ci-sugilite-trusty-1480960799",
+    "successor_name": "travis-ci-sugilite-trusty-1485370656"
   },
   {
     "languages": [
@@ -719,7 +730,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language___sugilite__:true,language_android:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_elixir:true,language_erlang:true,language_go:true,language_groovy:true,language_haskell:true,language_haxe:true,language_hhvm:true,language_java:true,language_julia:true,language_legacy:true,language_mega:true,language_node_js:true,language_perl:true,language_perl6:true,language_php:true,language_pure_java:true,language_python:true,language_r:true,language_ruby:true,language_rust:true,language_scala:true,language_universe:true,os:ubuntu,packer_chef_time:20170125T185858Z\""
+    "tags_string": "group:stable,group_stable:true,dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language___sugilite__:true,language_android:true,language_c:true,language_c++:true,language_clojure:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_elixir:true,language_erlang:true,language_go:true,language_groovy:true,language_haskell:true,language_haxe:true,language_hhvm:true,language_java:true,language_julia:true,language_legacy:true,language_mega:true,language_node_js:true,language_perl:true,language_perl6:true,language_php:true,language_pure_java:true,language_python:true,language_r:true,language_ruby:true,language_rust:true,language_scala:true,language_universe:true,os:ubuntu,packer_chef_time:20170125T185858Z",
+    "name": "travis-ci-sugilite-trusty-1485370656"
   },
   {
     "languages": [
@@ -766,7 +778,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_elixir:true,language_erlang:true,os:ubuntu,packer_chef_time:20161202T041857Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_elixir:true,language_erlang:true,os:ubuntu,packer_chef_time:20161202T041857Z",
+    "name": "travis-ci-erlang-precise-1480652255",
+    "successor_name": "travis-ci-erlang-precise-1485379376"
   },
   {
     "languages": [
@@ -813,7 +827,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_elixir:true,language_erlang:true,os:ubuntu,packer_chef_time:20170125T212514Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_elixir:true,language_erlang:true,os:ubuntu,packer_chef_time:20170125T212514Z",
+    "name": "travis-ci-erlang-precise-1485379376"
   },
   {
     "languages": [
@@ -858,7 +873,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20161202T042525Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20161202T042525Z",
+    "name": "travis-ci-go-precise-1480652642",
+    "successor_name": "travis-ci-go-precise-1485379378"
   },
   {
     "languages": [
@@ -903,7 +920,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20170125T212516Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_go:true,os:ubuntu,packer_chef_time:20170125T212516Z",
+    "name": "travis-ci-go-precise-1485379378"
   },
   {
     "languages": [
@@ -948,7 +966,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_haskell:true,os:ubuntu,packer_chef_time:20161202T042521Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_haskell:true,os:ubuntu,packer_chef_time:20161202T042521Z",
+    "name": "travis-ci-haskell-precise-1480652635",
+    "successor_name": "travis-ci-haskell-precise-1485379375"
   },
   {
     "languages": [
@@ -993,7 +1013,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_haskell:true,os:ubuntu,packer_chef_time:20170125T212520Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_haskell:true,os:ubuntu,packer_chef_time:20170125T212520Z",
+    "name": "travis-ci-haskell-precise-1485379375"
   },
   {
     "languages": [
@@ -1048,7 +1069,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_clojure:true,language_groovy:true,language_java:true,language_pure_java:true,language_scala:true,os:ubuntu,packer_chef_time:20161202T042524Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_clojure:true,language_groovy:true,language_java:true,language_pure_java:true,language_scala:true,os:ubuntu,packer_chef_time:20161202T042524Z",
+    "name": "travis-ci-jvm-precise-1480652643",
+    "successor_name": "travis-ci-jvm-precise-1485379388"
   },
   {
     "languages": [
@@ -1103,7 +1126,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_clojure:true,language_groovy:true,language_java:true,language_pure_java:true,language_scala:true,os:ubuntu,packer_chef_time:20170125T212517Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_clojure:true,language_groovy:true,language_java:true,language_pure_java:true,language_scala:true,os:ubuntu,packer_chef_time:20170125T212517Z",
+    "name": "travis-ci-jvm-precise-1485379388"
   },
   {
     "languages": [
@@ -1148,7 +1172,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_node_js:true,os:ubuntu,packer_chef_time:20161202T042528Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_node_js:true,os:ubuntu,packer_chef_time:20161202T042528Z",
+    "name": "travis-ci-nodejs-precise-1480652647",
+    "successor_name": "travis-ci-nodejs-precise-1485379379"
   },
   {
     "languages": [
@@ -1193,7 +1219,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_node_js:true,os:ubuntu,packer_chef_time:20170125T212524Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_node_js:true,os:ubuntu,packer_chef_time:20170125T212524Z",
+    "name": "travis-ci-nodejs-precise-1485379379"
   },
   {
     "languages": [
@@ -1240,7 +1267,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_perl:true,language_perl6:true,os:ubuntu,packer_chef_time:20161202T042550Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_perl:true,language_perl6:true,os:ubuntu,packer_chef_time:20161202T042550Z",
+    "name": "travis-ci-perl-precise-1480652647",
+    "successor_name": "travis-ci-perl-precise-1485379383"
   },
   {
     "languages": [
@@ -1287,7 +1316,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_perl:true,language_perl6:true,os:ubuntu,packer_chef_time:20170125T212524Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_perl:true,language_perl6:true,os:ubuntu,packer_chef_time:20170125T212524Z",
+    "name": "travis-ci-perl-precise-1485379383"
   },
   {
     "languages": [
@@ -1332,7 +1362,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_php:true,os:ubuntu,packer_chef_time:20161202T042524Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_php:true,os:ubuntu,packer_chef_time:20161202T042524Z",
+    "name": "travis-ci-php-precise-1480652621",
+    "successor_name": "travis-ci-php-precise-1485379390"
   },
   {
     "languages": [
@@ -1377,7 +1409,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_php:true,os:ubuntu,packer_chef_time:20170125T212520Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_php:true,os:ubuntu,packer_chef_time:20170125T212520Z",
+    "name": "travis-ci-php-precise-1485379390"
   },
   {
     "languages": [
@@ -1422,7 +1455,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_python:true,os:ubuntu,packer_chef_time:20161202T042503Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_python:true,os:ubuntu,packer_chef_time:20161202T042503Z",
+    "name": "travis-ci-python-precise-1480652621",
+    "successor_name": "travis-ci-python-precise-1485374228"
   },
   {
     "languages": [
@@ -1467,7 +1502,8 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_python:true,os:ubuntu,packer_chef_time:20170125T195906Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_phantomjs:true,feature_postgresql:true,feature_rabbitmq:true,feature_redis:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_python:true,os:ubuntu,packer_chef_time:20170125T195906Z",
+    "name": "travis-ci-python-precise-1485374228"
   },
   {
     "languages": [
@@ -1556,7 +1592,9 @@
       "group": "deprecated",
       "group_deprecated": true
     },
-    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_bash:true,language_c:true,language_c++:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_generic:true,language_haxe:true,language_julia:true,language_r:true,language_ruby:true,language_rust:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20161202T042518Z\""
+    "tags_string": "group:deprecated,group_deprecated:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_bash:true,language_c:true,language_c++:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_generic:true,language_haxe:true,language_julia:true,language_r:true,language_ruby:true,language_rust:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20161202T042518Z",
+    "name": "travis-ci-ruby-precise-1480652642",
+    "successor_name": "travis-ci-ruby-precise-1485379397"
   },
   {
     "languages": [
@@ -1645,6 +1683,7 @@
       "group": "stable",
       "group_stable": true
     },
-    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_bash:true,language_c:true,language_c++:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_generic:true,language_haxe:true,language_julia:true,language_r:true,language_ruby:true,language_rust:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20170125T212516Z\""
+    "tags_string": "group:stable,group_stable:true,dist:precise,feature_basic:true,feature_chromium:true,feature_firefox:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_ruby_interpreter:true,feature_sphinxsearch:true,feature_sqlite:true,feature_xserver:true,language_bash:true,language_c:true,language_c++:true,language_cplusplus:true,language_cpp:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_default:true,language_generic:true,language_haxe:true,language_julia:true,language_r:true,language_ruby:true,language_rust:true,language_sh:true,language_shell:true,os:ubuntu,packer_chef_time:20170125T212516Z",
+    "name": "travis-ci-ruby-precise-1485379397"
   }
 ]
