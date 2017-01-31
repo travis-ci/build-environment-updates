@@ -11,5 +11,33 @@
     "next-image.env",
     "node-attributes.yml.diff",
     "travis_packer_templates_rspec.json.diff"
+  ],
+  "current_image_name": "travis-ci-amethyst-trusty-1480957664",
+  "next_image_name": "travis-ci-amethyst-trusty-1485370625",
+  "current_tarball_files": [
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/PACKER_BUILD_NAME",
+    "env/PACKER_BUILDER_TYPE",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "env/TRAVIS_COOKBOOKS_SHA",
+    "travis_packer_templates_rspec.json",
+    "node-attributes.yml",
+    "job-board-register.yml"
+  ],
+  "next_tarball_files": [
+    "system_info.json",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "env/TRAVIS_COOKBOOKS_SHA",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/PACKER_BUILD_NAME",
+    "env/PACKER_BUILDER_TYPE",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "travis_packer_templates_rspec.json",
+    "job-board-register.yml",
+    "node-attributes.yml",
+    "dpkg-manifest.json"
   ]
 }

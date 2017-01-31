@@ -11,5 +11,35 @@
     "next-image.env",
     "node-attributes.yml.diff",
     "travis_packer_templates_rspec.json.diff"
+  ],
+  "current_image_name": "travis-ci-ruby-precise-1480652642",
+  "next_image_name": "travis-ci-ruby-precise-1485379397",
+  "current_tarball_files": [
+    "job-board-register.yml",
+    "node-attributes.yml",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/PACKER_BUILD_NAME",
+    "env/PACKER_BUILDER_TYPE",
+    "env/TRAVIS_COOKBOOKS_SHA",
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/TRAVIS_COOKBOOKS_EDGE_BRANCH",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "travis_packer_templates_rspec.json"
+  ],
+  "next_tarball_files": [
+    "travis_packer_templates_rspec.json",
+    "system_info.json",
+    "dpkg-manifest.json",
+    "node-attributes.yml",
+    "job-board-register.yml",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "env/PACKER_BUILDER_TYPE",
+    "env/TRAVIS_COOKBOOKS_EDGE_BRANCH",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/PACKER_BUILD_NAME",
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "env/TRAVIS_COOKBOOKS_SHA"
   ]
 }
