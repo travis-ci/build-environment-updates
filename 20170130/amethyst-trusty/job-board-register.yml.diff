@@ -1,0 +1,88 @@
+--- travis-ci-amethyst-trusty-1480957664/job-board-register.yml
++++ travis-ci-amethyst-trusty-1485370625/job-board-register.yml
+@@ -7,6 +7,7 @@
+ - dart
+ - elixir
+ - erlang
++- haskell
+ - haxe
+ - julia
+ - perl
+@@ -14,19 +15,29 @@
+ - rust
+ features:
+ - basic
++- cassandra
++- chromium
++- couchdb
+ - disabled-ipv6
+ - docker
+ - docker-compose
++- elasticsearch
++- firefox
+ - go-toolchain
++- google-chrome
+ - jdk
+ - memcached
++- mongodb
+ - mysql
+ - nodejs_interpreter
+ - perl_interpreter
+ - perlbrew
++- phantomjs
+ - postgresql
+ - python_interpreter
++- rabbitmq
+ - redis
++- riak
+ - ruby_interpreter
+ - sqlite
+ - xserver
+@@ -34,7 +45,7 @@
+ tags:
+   dist: trusty
+   os: ubuntu
+-  packer_chef_time: 20161205T170918Z
++  packer_chef_time: 20170125T185828Z
+   language___amethyst__: true
+   language_crystal: true
+   language_csharp: true
+@@ -42,26 +53,37 @@
+   language_dart: true
+   language_elixir: true
+   language_erlang: true
++  language_haskell: true
+   language_haxe: true
+   language_julia: true
+   language_perl: true
+   language_r: true
+   language_rust: true
+   feature_basic: true
++  feature_cassandra: true
++  feature_chromium: true
++  feature_couchdb: true
+   feature_disabled-ipv6: true
+   feature_docker: true
+   feature_docker-compose: true
++  feature_elasticsearch: true
++  feature_firefox: true
+   feature_go-toolchain: true
++  feature_google-chrome: true
+   feature_jdk: true
+   feature_memcached: true
++  feature_mongodb: true
+   feature_mysql: true
+   feature_nodejs_interpreter: true
+   feature_perl_interpreter: true
+   feature_perlbrew: true
++  feature_phantomjs: true
+   feature_postgresql: true
+   feature_python_interpreter: true
++  feature_rabbitmq: true
+   feature_redis: true
++  feature_riak: true
+   feature_ruby_interpreter: true
+   feature_sqlite: true
+   feature_xserver: true
+-tags_string: dist:trusty,feature_basic:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_go-toolchain:true,feature_jdk:true,feature_memcached:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_postgresql:true,feature_python_interpreter:true,feature_redis:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20161205T170918Z
++tags_string: dist:trusty,feature_basic:true,feature_cassandra:true,feature_chromium:true,feature_couchdb:true,feature_disabled-ipv6:true,feature_docker:true,feature_docker-compose:true,feature_elasticsearch:true,feature_firefox:true,feature_go-toolchain:true,feature_google-chrome:true,feature_jdk:true,feature_memcached:true,feature_mongodb:true,feature_mysql:true,feature_nodejs_interpreter:true,feature_perl_interpreter:true,feature_perlbrew:true,feature_phantomjs:true,feature_postgresql:true,feature_python_interpreter:true,feature_rabbitmq:true,feature_redis:true,feature_riak:true,feature_ruby_interpreter:true,feature_sqlite:true,feature_xserver:true,language___amethyst__:true,language_crystal:true,language_csharp:true,language_d:true,language_dart:true,language_elixir:true,language_erlang:true,language_haskell:true,language_haxe:true,language_julia:true,language_perl:true,language_r:true,language_rust:true,os:ubuntu,packer_chef_time:20170125T185828Z

@@ -1,0 +1,2941 @@
+--- travis-ci-haskell-precise-1480652635/node-attributes.yml
++++ travis-ci-haskell-precise-1485379375/node-attributes.yml
+@@ -31,6 +31,35 @@
+   packages:
+   - bash
+   - ca-certificates
++ramfs:
++  dir: "/var/ramfs"
++  size: 768m
++postgresql:
++  default_version: '9.1'
++  alternate_versions:
++  - '9.2'
++  - '9.3'
++  - '9.4'
++  - '9.5'
++  enabled: true
++  port: 5432
++  ssl: true
++  max_connections: 255
++  fsync: false
++  full_page_writes: false
++  client_min_messages: error
++  data_on_ramfs: true
++  data_dir: "/var/ramfs/postgresql"
++  contrib_modules: true
++  client_packages:
++  - postgresql-client
++  - libpq-dev
++  postgis_version: '2.2'
++  superusers:
++  - travis
++  - rails
++sysctl:
++  kernel_shmmax: 45794432
+ tz: UTC
+ java:
+   arch: amd64
+@@ -172,9 +201,9 @@
+ gimme:
+   url: https://raw.githubusercontent.com/travis-ci/gimme/v1.0.0/gimme
+   sha256sum: 7283e248184bada52442e01608e107fb27fd3ecfc691d6e632fc2b5dc6e255ce
+-  default_version: 1.4.2
++  default_version: 1.7.4
+   versions:
+-  - 1.4.2
++  - 1.7.4
+   install_user: travis
+   install_user_home: "/home/travis"
+   debug: false
+@@ -260,9 +289,6 @@
+     host: localhost
+     port: 27019
+   installed_from: apt
+-ramfs:
+-  dir: "/var/ramfs"
+-  size: 768m
+ mysql:
+   arch: amd64
+   enabled: true
+@@ -351,30 +377,6 @@
+   arch: x86_64
+   tarball:
+     url: https://s3.amazonaws.com/travis-phantomjs/binaries/ubuntu/12.04/x86_64/phantomjs-1.9.8.tar.bz2
+-postgresql:
+-  default_version: '9.1'
+-  alternate_versions:
+-  - '9.2'
+-  - '9.3'
+-  - '9.4'
+-  - '9.5'
+-  enabled: true
+-  port: 5432
+-  ssl: true
+-  max_connections: 255
+-  fsync: false
+-  full_page_writes: false
+-  client_min_messages: error
+-  data_on_ramfs: true
+-  data_dir: "/var/ramfs/postgresql"
+-  contrib_modules: true
+-  client_packages:
+-  - postgresql-client
+-  - libpq-dev
+-  postgis_version: '2.2'
+-  superusers:
+-  - travis
+-  - rails
+ rabbitmq:
+   nodename: rabbit@localhost
+   address: 
+@@ -407,9 +409,9 @@
+   - pkg-config
+   - libffi-dev
+   rubies:
+-  - name: 2.2.5
++  - name: 2.2.6
+     arguments: "--binary --fuzzy"
+-  default: 2.2.5
++  default: 2.2.6
+   aliases: {}
+   latest_minor: false
+   gems:
+@@ -420,17 +422,15 @@
+     2.1.9-release: "/usr/local/sphinx-2.1.9"
+     2.0.10-release: "/usr/local/sphinx-2.0.10"
+   linked: 2.2.6
+-sysctl:
+-  kernel_shmmax: 45794432
+ travis_packer_templates:
+   env:
+     PACKER_BUILDER_TYPE: googlecompute
+     PACKER_BUILD_NAME: googlecompute
+     PACKER_TEMPLATES_BRANCH: master
+-    PACKER_TEMPLATES_SHA: 10d938a
++    PACKER_TEMPLATES_SHA: 294c7d9
+     TRAVIS_COOKBOOKS_BRANCH: ''
+     TRAVIS_COOKBOOKS_DIR: "/tmp/chef-stuff/travis-cookbooks"
+-    TRAVIS_COOKBOOKS_SHA: 9c6cd11
++    TRAVIS_COOKBOOKS_SHA: 479d954
+     TRAVIS_COOKBOOKS_EDGE_BRANCH: precise-stable
+   job_board:
+     languages:
+@@ -497,7 +497,13 @@
+   - libgcc1
+   - libgdbm-dev
+   - libgdk-pixbuf2.0-0
++  - libgl1-mesa-dev
++  - libgl1-mesa-dri
++  - libgl1-mesa-glx
++  - libglapi-mesa
+   - libglib2.0-0
++  - libglu1-mesa
++  - libglu1-mesa-dev
+   - libgtk2.0-0
+   - libicu-dev
+   - libldap-2.4-2
+@@ -521,6 +527,11 @@
+   - libstdc++6
+   - libtool
+   - libx11-6
++  - libx11-data
++  - libx11-dev
++  - libx11-doc
++  - libx11-xcb1
++  - libxcb-glx0
+   - libxext6
+   - libxml2-dev
+   - libxrender1
+@@ -533,6 +544,7 @@
+   - make
+   - md5deep
+   - mercurial
++  - mesa-common-dev
+   - mingw32
+   - netcat-openbsd
+   - openjdk-6-jdk
+@@ -556,8 +568,24 @@
+   - vim
+   - wamerican
+   - wget
++  - x11-common
+   - x11-utils
++  - x11-xkb-utils
++  - x11-xserver-utils
++  - x11proto-composite-dev
++  - x11proto-core-dev
++  - x11proto-damage-dev
++  - x11proto-fixes-dev
++  - x11proto-input-dev
++  - x11proto-kb-dev
++  - x11proto-randr-dev
++  - x11proto-render-dev
++  - x11proto-scrnsaver-dev
++  - x11proto-xext-dev
++  - x11proto-xinerama-dev
++  - xserver-common
+   - xserver-xorg-core
++  - xserver-xorg-video-all
+   - xvfb
+   - zip
+   - zlib1g-dev
+@@ -566,13 +594,13 @@
+   job_board_register_yml: "/.job-board-register.yml"
+   node_attributes_yml: "/.node-attributes.yml"
+ travis_system_info:
+-  commands_file: ''
++  commands_file: "/var/tmp/system-info-commands.yml"
+   defaults_file: "/etc/default/travis-system-info"
+   dest_dir: "/usr/share/travis"
+   gem_url: https://s3.amazonaws.com/travis-system-info/system-info-2.0.3.gem
+   gem_sha256sum: 9d9b7bb90a05610bdda8aee1e8371f24d76e8bc9a75243a0f13cee1e6c7e4058
+   travis_cookbooks_sha: fffffff
+-  cookbooks_sha: 9c6cd11
++  cookbooks_sha: 479d954
+ vim:
+   extra_packages: []
+ travis_ci_standard:
+@@ -583,12 +611,33 @@
+   chpst_bin: "/usr/bin/chpst"
+   service_dir: "/etc/service"
+   sv_dir: "/etc/sv"
+-virtualization:
+-  systems: {}
++languages:
++  ruby:
++    platform: x86_64-linux
++    version: 2.1.8
++    release_date: '2015-12-16'
++    target: x86_64-pc-linux-gnu
++    target_cpu: x86_64
++    target_vendor: pc
++    target_os: linux
++    host: x86_64-pc-linux-gnu
++    host_cpu: x86_64
++    host_os: linux-gnu
++    host_vendor: pc
++    bin_dir: "/opt/chef/embedded/bin"
++    ruby_bin: "/opt/chef/embedded/bin/ruby"
++    gems_dir: "/opt/chef/embedded/lib/ruby/gems/2.1.0"
++    gem_bin: "/opt/chef/embedded/bin/gem"
++  perl:
++    version: 5.14.2
++    archname: x86_64-linux-gnu-thread-multi
++  python:
++    version: 2.7.3
++    builddate: Oct 26 2016, 21:01:49
+ kernel:
+   name: Linux
+-  release: 3.13.0-103-generic
+-  version: "#150~precise1-Ubuntu SMP Thu Nov 24 11:05:34 UTC 2016"
++  release: 3.13.0-107-generic
++  version: "#154~precise1-Ubuntu SMP Tue Dec 20 10:36:28 UTC 2016"
+   machine: x86_64
+   processor: x86_64
+   os: GNU/Linux
+@@ -614,82 +663,195 @@
+     crc32_pclmul:
+       size: '13160'
+       refcount: '0'
+-    dm_multipath:
+-      size: '27401'
+-      refcount: '0'
+-    scsi_dh:
+-      size: '14873'
+-      refcount: '1'
+     ghash_clmulni_intel:
+       size: '13302'
+       refcount: '0'
+-    aesni_intel:
+-      size: '55720'
++    dm_multipath:
++      size: '27401'
+       refcount: '0'
+     psmouse:
+       size: '113413'
+       refcount: '0'
++    aesni_intel:
++      size: '55720'
++      refcount: '0'
++    scsi_dh:
++      size: '14873'
++      refcount: '1'
+     ablk_helper:
+       size: '13597'
+       refcount: '1'
+     cryptd:
+       size: '20530'
+       refcount: '3'
+-    pvpanic:
+-      size: '12801'
+-      refcount: '0'
+     lrw:
+       size: '13323'
+       refcount: '1'
++    serio_raw:
++      size: '13462'
++      refcount: '0'
++    pvpanic:
++      size: '12801'
++      refcount: '0'
+     gf128mul:
+       size: '14951'
+       refcount: '1'
+     glue_helper:
+       size: '14095'
+       refcount: '1'
+-    serio_raw:
+-      size: '13462'
+-      refcount: '0'
+-    aes_x86_64:
+-      size: '17131'
+-      refcount: '1'
+     i2c_piix4:
+       size: '22299'
+       refcount: '0'
+     mac_hid:
+       size: '13253'
+       refcount: '0'
++    aes_x86_64:
++      size: '17131'
++      refcount: '1'
+     virtio_scsi:
+       size: '18390'
+       refcount: '1'
+-os: linux
+-os_version: 3.13.0-103-generic
+ memory:
+   swap:
+     cached: 0kB
+     total: 0kB
+     free: 0kB
+   total: 15401784kB
+-  free: 14447440kB
+-  buffers: 28768kB
+-  cached: 608124kB
+-  active: 448104kB
+-  inactive: 304608kB
+-  dirty: 182248kB
++  free: 14451180kB
++  buffers: 28860kB
++  cached: 609488kB
++  active: 451904kB
++  inactive: 303724kB
++  dirty: 183080kB
+   writeback: 0kB
+-  anon_pages: 115952kB
+-  mapped: 12956kB
+-  slab: 74824kB
+-  slab_reclaimable: 61652kB
+-  slab_unreclaim: 13172kB
+-  page_tables: 2820kB
++  anon_pages: 117360kB
++  mapped: 12816kB
++  slab: 74788kB
++  slab_reclaimable: 61528kB
++  slab_unreclaim: 13260kB
++  page_tables: 2920kB
+   nfs_unstable: 0kB
+   bounce: 0kB
+   commit_limit: 7700892kB
+-  committed_as: 220800kB
++  committed_as: 225228kB
+   vmalloc_total: 34359738367kB
+   vmalloc_used: 30024kB
+-  vmalloc_chunk: 34359705188kB
++  vmalloc_chunk: 34359705624kB
++lsb:
++  id: Ubuntu
++  release: '12.04'
++  codename: precise
++  description: Ubuntu 12.04.5 LTS
++os: linux
++os_version: 3.13.0-107-generic
++platform: ubuntu
++platform_version: '12.04'
++platform_family: debian
++virtualization:
++  systems: {}
++filesystem:
++  "/dev/sda1":
++    kb_size: '20608636'
++    kb_used: '1319980'
++    kb_available: '18328668'
++    percent_used: 7%
++    mount: "/"
++    total_inodes: '1310720'
++    inodes_used: '61389'
++    inodes_available: '1249331'
++    inodes_percent_used: 5%
++    fs_type: ext4
++    mount_options:
++    - rw
++    uuid: 1ae54dc3-6478-4029-9d47-8dc028980461
++    label: cloudimg-rootfs
++  udev:
++    kb_size: '7692844'
++    kb_used: '4'
++    kb_available: '7692840'
++    percent_used: 1%
++    mount: "/dev"
++    total_inodes: '1923211'
++    inodes_used: '395'
++    inodes_available: '1922816'
++    inodes_percent_used: 1%
++    fs_type: devtmpfs
++    mount_options:
++    - rw
++    - mode=0755
++  tmpfs:
++    kb_size: '1540180'
++    kb_used: '224'
++    kb_available: '1539956'
++    percent_used: 1%
++    mount: "/run"
++    total_inodes: '1925223'
++    inodes_used: '278'
++    inodes_available: '1924945'
++    inodes_percent_used: 1%
++    fs_type: tmpfs
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - size=10%
++    - mode=0755
++  none:
++    kb_size: '7700892'
++    kb_used: '0'
++    kb_available: '7700892'
++    percent_used: 0%
++    mount: "/run/shm"
++    total_inodes: '1925223'
++    inodes_used: '1'
++    inodes_available: '1925222'
++    inodes_percent_used: 1%
++    fs_type: tmpfs
++    mount_options:
++    - rw
++    - nosuid
++    - nodev
++  proc:
++    mount: "/proc"
++    fs_type: proc
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - nodev
++  sysfs:
++    mount: "/sys"
++    fs_type: sysfs
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - nodev
++  devpts:
++    mount: "/dev/pts"
++    fs_type: devpts
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - gid=5
++    - mode=0620
++  rootfs:
++    mount: "/"
++    fs_type: rootfs
++    mount_options:
++    - rw
++  "/dev/disk/by-uuid/1ae54dc3-6478-4029-9d47-8dc028980461":
++    mount: "/"
++    fs_type: ext4
++    mount_options:
++    - rw
++    - relatime
++    - data=ordered
++uptime_seconds: 117
++uptime: 1 minutes 57 seconds
++idletime_seconds: 428
++idletime: 7 minutes 08 seconds
+ cpu:
+   '0':
+     vendor_id: GenuineIntel
+@@ -697,7 +859,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '0'
+@@ -759,7 +921,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '0'
+@@ -821,7 +983,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '1'
+@@ -883,7 +1045,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '1'
+@@ -942,14 +1104,6 @@
+   total: 4
+   real: 1
+   cores: 2
+-lsb:
+-  id: Ubuntu
+-  release: '12.04'
+-  codename: precise
+-  description: Ubuntu 12.04.5 LTS
+-platform: ubuntu
+-platform_version: '12.04'
+-platform_family: debian
+ network:
+   interfaces:
+     lo:
+@@ -977,13 +1131,13 @@
+       - LOWER_UP
+       encapsulation: Ethernet
+       addresses:
+-        42:01:0A:F0:00:2B:
++        42:01:0A:F0:00:11:
+           family: lladdr
+-        10.240.0.43:
++        10.240.0.17:
+           family: inet
+           prefixlen: '32'
+           netmask: 255.255.255.255
+-          broadcast: 10.240.0.43
++          broadcast: 10.240.0.17
+           scope: Global
+       state: up
+       arp:
+@@ -1021,1167 +1175,356 @@
+       eth0:
+         tx:
+           queuelen: '1000'
+-          bytes: '616576'
+-          packets: '7169'
++          bytes: '681332'
++          packets: '8150'
+           errors: '0'
+           drop: '0'
+           carrier: '0'
+           collisions: '0'
+         rx:
+-          bytes: '181035795'
+-          packets: '9521'
++          bytes: '181982546'
++          packets: '12764'
+           errors: '0'
+           drop: '0'
+           overrun: '0'
+-ipaddress: 10.240.0.43
+-macaddress: 42:01:0A:F0:00:2B
+-filesystem:
+-  "/dev/sda1":
+-    kb_size: '20608636'
+-    kb_used: '1318828'
+-    kb_available: '18329820'
+-    percent_used: 7%
+-    mount: "/"
+-    total_inodes: '1310720'
+-    inodes_used: '61409'
+-    inodes_available: '1249311'
+-    inodes_percent_used: 5%
+-    fs_type: ext4
+-    mount_options:
+-    - rw
+-    uuid: 48503327-a926-4e09-a7d2-d0de2e9ca388
+-    label: cloudimg-rootfs
+-  udev:
+-    kb_size: '7692856'
+-    kb_used: '4'
+-    kb_available: '7692852'
+-    percent_used: 1%
+-    mount: "/dev"
+-    total_inodes: '1923214'
+-    inodes_used: '395'
+-    inodes_available: '1922819'
+-    inodes_percent_used: 1%
+-    fs_type: devtmpfs
+-    mount_options:
+-    - rw
+-    - mode=0755
+-  tmpfs:
+-    kb_size: '1540180'
+-    kb_used: '224'
+-    kb_available: '1539956'
+-    percent_used: 1%
+-    mount: "/run"
+-    total_inodes: '1925223'
+-    inodes_used: '278'
+-    inodes_available: '1924945'
+-    inodes_percent_used: 1%
+-    fs_type: tmpfs
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - size=10%
+-    - mode=0755
+-  none:
+-    kb_size: '7700892'
+-    kb_used: '0'
+-    kb_available: '7700892'
+-    percent_used: 0%
+-    mount: "/run/shm"
+-    total_inodes: '1925223'
+-    inodes_used: '1'
+-    inodes_available: '1925222'
+-    inodes_percent_used: 1%
+-    fs_type: tmpfs
+-    mount_options:
+-    - rw
+-    - nosuid
+-    - nodev
+-  proc:
+-    mount: "/proc"
+-    fs_type: proc
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - nodev
+-  sysfs:
+-    mount: "/sys"
+-    fs_type: sysfs
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - nodev
+-  devpts:
+-    mount: "/dev/pts"
+-    fs_type: devpts
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - gid=5
+-    - mode=0620
+-  rootfs:
+-    mount: "/"
+-    fs_type: rootfs
+-    mount_options:
+-    - rw
+-  "/dev/disk/by-uuid/48503327-a926-4e09-a7d2-d0de2e9ca388":
+-    mount: "/"
+-    fs_type: ext4
+-    mount_options:
+-    - rw
+-    - relatime
+-    - data=ordered
+-uptime_seconds: 66
+-uptime: 1 minutes 06 seconds
+-idletime_seconds: 223
+-idletime: 3 minutes 43 seconds
+-languages:
+-  perl:
+-    version: 5.14.2
+-    archname: x86_64-linux-gnu-thread-multi
+-  ruby:
+-    platform: x86_64-linux
+-    version: 2.1.8
+-    release_date: '2015-12-16'
+-    target: x86_64-pc-linux-gnu
+-    target_cpu: x86_64
+-    target_vendor: pc
+-    target_os: linux
+-    host: x86_64-pc-linux-gnu
+-    host_cpu: x86_64
+-    host_os: linux-gnu
+-    host_vendor: pc
+-    bin_dir: "/opt/chef/embedded/bin"
+-    ruby_bin: "/opt/chef/embedded/bin/ruby"
+-    gems_dir: "/opt/chef/embedded/lib/ruby/gems/2.1.0"
+-    gem_bin: "/opt/chef/embedded/bin/gem"
+-  python:
+-    version: 2.7.3
+-    builddate: Oct 26 2016, 21:01:49
+-command:
+-  ps: ps -ef
+-dmi:
+-  dmidecode_version: '2.11'
+-  smbios_version: '2.4'
+-  structures:
+-    count: '16'
+-    size: '550'
+-  bios:
+-    all_records:
+-    - record_id: '0x0000'
+-      size: '0'
+-      application_identifier: BIOS Information
+-      Vendor: Google
+-      Version: Google
+-      Release Date: 01/01/2011
+-      Address: '0xE8000'
+-      Runtime Size: 96 kB
+-      ROM Size: 64 kB
+-      Characteristics:
+-        BIOS characteristics not supported: 
+-        Targeted content distribution is supported: 
+-      BIOS Revision: '1.0'
+-    vendor: Google
+-    version: Google
+-    release_date: 01/01/2011
+-    address: '0xE8000'
+-    runtime_size: 96 kB
+-    rom_size: 64 kB
+-    bios_revision: '1.0'
+-  system:
+-    all_records:
+-    - record_id: '0x0100'
+-      size: '1'
+-      application_identifier: System Information
+-      Manufacturer: Google
+-      Product Name: Google Compute Engine
+-      Version: Not Specified
+-      Serial Number: GoogleCloud-42098F4CC33A37AECB2AF22A74701441
+-      UUID: 42098F4C-C33A-37AE-CB2A-F22A74701441
+-      Wake-up Type: Power Switch
+-      SKU Number: Not Specified
+-      Family: Not Specified
+-    manufacturer: Google
+-    product_name: Google Compute Engine
+-    version: Not Specified
+-    serial_number: GoogleCloud-42098F4CC33A37AECB2AF22A74701441
+-    uuid: 42098F4C-C33A-37AE-CB2A-F22A74701441
+-    wake_up_type: Power Switch
+-    sku_number: Not Specified
+-    family: Not Specified
+-  base_board:
+-    all_records:
+-    - record_id: '0x0200'
+-      size: '2'
+-      application_identifier: Base Board Information
+-      Manufacturer: Google
+-      Product Name: Google Compute Engine
+-      Version: Not Specified
+-      Serial Number: Not Specified
+-      Asset Tag: Not Specified
+-      Features:
+-        Board is a hosting board: 
+-      Location In Chassis: Not Specified
+-      Chassis Handle: '0x0300'
+-      Type: Motherboard
+-      Contained Object Handles: '0'
+-    manufacturer: Google
+-    product_name: Google Compute Engine
+-    version: Not Specified
+-    serial_number: Not Specified
+-    asset_tag: Not Specified
+-    location_in_chassis: Not Specified
+-    chassis_handle: '0x0300'
+-    type: Motherboard
+-    contained_object_handles: '0'
+-  chassis:
+-    all_records:
+-    - record_id: '0x0300'
+-      size: '3'
+-      application_identifier: Chassis Information
+-      Manufacturer: Google
+-      Type: Other
+-      Lock: Not Present
+-      Version: Not Specified
+-      Serial Number: Not Specified
+-      Asset Tag: Not Specified
+-      Boot-up State: Safe
+-      Power Supply State: Safe
+-      Thermal State: Safe
+-      Security Status: Unknown
+-      OEM Information: '0x00000000'
+-      Height: Unspecified
+-      Number Of Power Cords: Unspecified
+-    manufacturer: Google
+-    type: Other
+-    lock: Not Present
+-    version: Not Specified
+-    serial_number: Not Specified
+-    asset_tag: Not Specified
+-    boot_up_state: Safe
+-    power_supply_state: Safe
+-    thermal_state: Safe
+-    security_status: Unknown
+-    oem_information: '0x00000000'
+-    height: Unspecified
+-    number_of_power_cords: Unspecified
+-  processor:
+-    all_records:
+-    - record_id: '0x0401'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 1
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0402'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 2
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0403'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 3
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0404'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 4
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    type: Central Processor
+-    family: Other
+-    manufacturer: Google
+-    id: D7 06 02 00 FF FB 8B 1F
+-    version: Not Specified
+-    voltage: Unknown
+-    external_clock: Unknown
+-    max_speed: 2000 MHz
+-    current_speed: 2000 MHz
+-    status: Populated, Enabled
+-    upgrade: Other
+-    l1_cache_handle: Not Provided
+-    l2_cache_handle: Not Provided
+-    l3_cache_handle: Not Provided
+-init_package: init
+-etc:
+-  passwd:
+-    root:
+-      dir: "/root"
+-      gid: 0
+-      uid: 0
+-      shell: "/bin/bash"
+-      gecos: root
+-    daemon:
+-      dir: "/usr/sbin"
+-      gid: 1
+-      uid: 1
+-      shell: "/bin/sh"
+-      gecos: daemon
+-    bin:
+-      dir: "/bin"
+-      gid: 2
+-      uid: 2
+-      shell: "/bin/sh"
+-      gecos: bin
+-    sys:
+-      dir: "/dev"
+-      gid: 3
+-      uid: 3
+-      shell: "/bin/sh"
+-      gecos: sys
+-    sync:
+-      dir: "/bin"
+-      gid: 65534
+-      uid: 4
+-      shell: "/bin/sync"
+-      gecos: sync
+-    games:
+-      dir: "/usr/games"
+-      gid: 60
+-      uid: 5
+-      shell: "/bin/sh"
+-      gecos: games
+-    man:
+-      dir: "/var/cache/man"
+-      gid: 12
+-      uid: 6
+-      shell: "/bin/sh"
+-      gecos: man
+-    lp:
+-      dir: "/var/spool/lpd"
+-      gid: 7
+-      uid: 7
+-      shell: "/bin/sh"
+-      gecos: lp
+-    mail:
+-      dir: "/var/mail"
+-      gid: 8
+-      uid: 8
+-      shell: "/bin/sh"
+-      gecos: mail
+-    news:
+-      dir: "/var/spool/news"
+-      gid: 9
+-      uid: 9
+-      shell: "/bin/sh"
+-      gecos: news
+-    uucp:
+-      dir: "/var/spool/uucp"
+-      gid: 10
+-      uid: 10
+-      shell: "/bin/sh"
+-      gecos: uucp
+-    proxy:
+-      dir: "/bin"
+-      gid: 13
+-      uid: 13
+-      shell: "/bin/sh"
+-      gecos: proxy
+-    www-data:
+-      dir: "/var/www"
+-      gid: 33
+-      uid: 33
+-      shell: "/bin/sh"
+-      gecos: www-data
+-    backup:
+-      dir: "/var/backups"
+-      gid: 34
+-      uid: 34
+-      shell: "/bin/sh"
+-      gecos: backup
+-    list:
+-      dir: "/var/list"
+-      gid: 38
+-      uid: 38
+-      shell: "/bin/sh"
+-      gecos: Mailing List Manager
+-    irc:
+-      dir: "/var/run/ircd"
+-      gid: 39
+-      uid: 39
+-      shell: "/bin/sh"
+-      gecos: ircd
+-    gnats:
+-      dir: "/var/lib/gnats"
+-      gid: 41
+-      uid: 41
+-      shell: "/bin/sh"
+-      gecos: Gnats Bug-Reporting System (admin)
+-    nobody:
+-      dir: "/nonexistent"
+-      gid: 65534
+-      uid: 65534
+-      shell: "/bin/sh"
+-      gecos: nobody
+-    libuuid:
+-      dir: "/var/lib/libuuid"
+-      gid: 101
+-      uid: 100
+-      shell: "/bin/sh"
+-      gecos: ''
+-    syslog:
+-      dir: "/home/syslog"
+-      gid: 103
+-      uid: 101
+-      shell: "/bin/false"
+-      gecos: ''
+-    messagebus:
+-      dir: "/var/run/dbus"
+-      gid: 105
+-      uid: 102
+-      shell: "/bin/false"
+-      gecos: ''
+-    whoopsie:
+-      dir: "/nonexistent"
+-      gid: 106
+-      uid: 103
+-      shell: "/bin/false"
+-      gecos: ''
+-    landscape:
+-      dir: "/var/lib/landscape"
+-      gid: 109
+-      uid: 104
+-      shell: "/bin/false"
+-      gecos: ''
+-    sshd:
+-      dir: "/var/run/sshd"
+-      gid: 65534
+-      uid: 105
+-      shell: "/usr/sbin/nologin"
+-      gecos: ''
+-    ntp:
+-      dir: "/home/ntp"
+-      gid: 112
+-      uid: 106
+-      shell: "/bin/false"
+-      gecos: ''
+-    travis:
+-      dir: "/home/travis"
+-      gid: 1000
+-      uid: 1000
+-      shell: "/bin/bash"
+-      gecos: ''
+-  group:
+-    root:
+-      gid: 0
+-      members: []
+-    daemon:
+-      gid: 1
+-      members: []
+-    bin:
+-      gid: 2
+-      members: []
+-    sys:
+-      gid: 3
+-      members: []
+-    adm:
+-      gid: 4
+-      members: []
+-    tty:
+-      gid: 5
+-      members: []
+-    disk:
+-      gid: 6
+-      members: []
+-    lp:
+-      gid: 7
+-      members: []
+-    mail:
+-      gid: 8
+-      members: []
+-    news:
+-      gid: 9
+-      members: []
+-    uucp:
+-      gid: 10
+-      members: []
+-    man:
+-      gid: 12
+-      members: []
+-    proxy:
+-      gid: 13
+-      members: []
+-    kmem:
+-      gid: 15
+-      members: []
+-    dialout:
+-      gid: 20
+-      members: []
+-    fax:
+-      gid: 21
+-      members: []
+-    voice:
+-      gid: 22
+-      members: []
+-    cdrom:
+-      gid: 24
+-      members: []
+-    floppy:
+-      gid: 25
+-      members: []
+-    tape:
+-      gid: 26
+-      members: []
+-    sudo:
+-      gid: 27
+-      members: []
+-    audio:
+-      gid: 29
+-      members: []
+-    dip:
+-      gid: 30
+-      members: []
+-    www-data:
+-      gid: 33
+-      members: []
+-    backup:
+-      gid: 34
+-      members: []
+-    operator:
+-      gid: 37
+-      members: []
+-    list:
+-      gid: 38
+-      members: []
+-    irc:
+-      gid: 39
+-      members: []
+-    src:
+-      gid: 40
+-      members: []
+-    gnats:
+-      gid: 41
+-      members: []
+-    shadow:
+-      gid: 42
+-      members: []
+-    utmp:
+-      gid: 43
+-      members: []
+-    video:
+-      gid: 44
+-      members: []
+-    sasl:
+-      gid: 45
+-      members: []
+-    plugdev:
+-      gid: 46
+-      members: []
+-    staff:
+-      gid: 50
+-      members: []
+-    games:
+-      gid: 60
+-      members: []
+-    users:
+-      gid: 100
+-      members: []
+-    nogroup:
+-      gid: 65534
+-      members: []
+-    libuuid:
+-      gid: 101
+-      members: []
+-    crontab:
+-      gid: 102
+-      members: []
+-    syslog:
+-      gid: 103
+-      members: []
+-    fuse:
+-      gid: 104
+-      members: []
+-    messagebus:
+-      gid: 105
+-      members: []
+-    whoopsie:
+-      gid: 106
+-      members: []
+-    mlocate:
+-      gid: 107
+-      members: []
+-    ssh:
+-      gid: 108
+-      members: []
+-    landscape:
+-      gid: 109
+-      members: []
+-    netdev:
+-      gid: 110
+-      members: []
+-    admin:
+-      gid: 111
+-      members: []
+-    ntp:
+-      gid: 112
+-      members: []
+-    travis:
+-      gid: 1000
+-      members: []
+-current_user: root
+-ohai_time: 1480652720.470735
+-filesystem2:
+-  by_device:
+-    "/dev/sda1":
+-      kb_size: '20608636'
+-      kb_used: '1318828'
+-      kb_available: '18329820'
+-      percent_used: 7%
+-      total_inodes: '1310720'
+-      inodes_used: '61409'
+-      inodes_available: '1249311'
+-      inodes_percent_used: 5%
+-      fs_type: ext4
+-      mount_options:
+-      - rw
+-      uuid: 48503327-a926-4e09-a7d2-d0de2e9ca388
+-      label: cloudimg-rootfs
+-      mounts:
+-      - "/"
+-    udev:
+-      kb_size: '7692856'
+-      kb_used: '4'
+-      kb_available: '7692852'
+-      percent_used: 1%
+-      total_inodes: '1923214'
+-      inodes_used: '395'
+-      inodes_available: '1922819'
+-      inodes_percent_used: 1%
+-      fs_type: devtmpfs
+-      mount_options:
+-      - rw
+-      - mode=0755
+-      mounts:
+-      - "/dev"
+-    tmpfs:
+-      kb_size: '1540180'
+-      kb_used: '224'
+-      kb_available: '1539956'
+-      percent_used: 1%
+-      total_inodes: '1925223'
+-      inodes_used: '278'
+-      inodes_available: '1924945'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - size=10%
+-      - mode=0755
+-      mounts:
+-      - "/run"
+-    none:
+-      kb_size: '7700892'
+-      kb_used: '0'
+-      kb_available: '7700892'
+-      percent_used: 0%
+-      total_inodes: '1925223'
+-      inodes_used: '1'
+-      inodes_available: '1925222'
+-      inodes_percent_used: 1%
+-      fs_type: securityfs
+-      mount_options:
+-      - rw
+-      mounts:
+-      - "/run/lock"
+-      - "/run/shm"
+-      - "/sys/fs/fuse/connections"
+-      - "/sys/kernel/debug"
+-      - "/sys/kernel/security"
+-    proc:
+-      fs_type: proc
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      mounts:
+-      - "/proc"
+-    sysfs:
+-      fs_type: sysfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      mounts:
+-      - "/sys"
+-    devpts:
+-      fs_type: devpts
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - gid=5
+-      - mode=0620
+-      mounts:
+-      - "/dev/pts"
+-    "/dev/sda": {}
+-    rootfs:
+-      fs_type: rootfs
+-      mount_options:
+-      - rw
+-      mounts:
+-      - "/"
+-    "/dev/disk/by-uuid/48503327-a926-4e09-a7d2-d0de2e9ca388":
+-      fs_type: ext4
+-      mount_options:
+-      - rw
+-      - relatime
+-      - data=ordered
+-      mounts:
+-      - "/"
+-  by_mountpoint:
+-    "/":
+-      kb_size: '20608636'
+-      kb_used: '1318828'
+-      kb_available: '18329820'
+-      percent_used: 7%
+-      total_inodes: '1310720'
+-      inodes_used: '61409'
+-      inodes_available: '1249311'
+-      inodes_percent_used: 5%
+-      fs_type: ext4
+-      mount_options:
+-      - rw
+-      - relatime
+-      - data=ordered
+-      uuid: 48503327-a926-4e09-a7d2-d0de2e9ca388
+-      label: cloudimg-rootfs
+-      devices:
+-      - "/dev/sda1"
+-      - rootfs
+-      - "/dev/disk/by-uuid/48503327-a926-4e09-a7d2-d0de2e9ca388"
+-    "/dev":
+-      kb_size: '7692856'
+-      kb_used: '4'
+-      kb_available: '7692852'
+-      percent_used: 1%
+-      total_inodes: '1923214'
+-      inodes_used: '395'
+-      inodes_available: '1922819'
+-      inodes_percent_used: 1%
+-      fs_type: devtmpfs
+-      mount_options:
+-      - rw
+-      - mode=0755
+-      devices:
+-      - udev
+-    "/run":
+-      kb_size: '1540180'
+-      kb_used: '224'
+-      kb_available: '1539956'
+-      percent_used: 1%
+-      total_inodes: '1925223'
+-      inodes_used: '278'
+-      inodes_available: '1924945'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - size=10%
+-      - mode=0755
+-      devices:
+-      - tmpfs
+-    "/run/lock":
+-      kb_size: '5120'
+-      kb_used: '0'
+-      kb_available: '5120'
+-      percent_used: 0%
+-      total_inodes: '1925223'
+-      inodes_used: '5'
+-      inodes_available: '1925218'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      - size=5242880
+-      devices:
+-      - none
+-    "/run/shm":
+-      kb_size: '7700892'
+-      kb_used: '0'
+-      kb_available: '7700892'
+-      percent_used: 0%
+-      total_inodes: '1925223'
+-      inodes_used: '1'
+-      inodes_available: '1925222'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - nosuid
+-      - nodev
+-      devices:
+-      - none
+-    "/proc":
+-      fs_type: proc
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      devices:
+-      - proc
+-    "/sys":
+-      fs_type: sysfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      devices:
+-      - sysfs
+-    "/sys/fs/fuse/connections":
+-      fs_type: fusectl
+-      mount_options:
+-      - rw
+-      devices:
+-      - none
+-    "/sys/kernel/debug":
+-      fs_type: debugfs
+-      mount_options:
+-      - rw
+-      devices:
+-      - none
+-    "/sys/kernel/security":
+-      fs_type: securityfs
+-      mount_options:
+-      - rw
+-      devices:
+-      - none
+-    "/dev/pts":
+-      fs_type: devpts
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - gid=5
+-      - mode=0620
+-      devices:
+-      - devpts
+-  by_pair:
+-    "/dev/sda1,/":
+-      device: "/dev/sda1"
+-      kb_size: '20608636'
+-      kb_used: '1318828'
+-      kb_available: '18329820'
+-      percent_used: 7%
+-      mount: "/"
+-      total_inodes: '1310720'
+-      inodes_used: '61409'
+-      inodes_available: '1249311'
+-      inodes_percent_used: 5%
+-      fs_type: ext4
+-      mount_options:
+-      - rw
+-      uuid: 48503327-a926-4e09-a7d2-d0de2e9ca388
+-      label: cloudimg-rootfs
+-    udev,/dev:
+-      device: udev
+-      kb_size: '7692856'
+-      kb_used: '4'
+-      kb_available: '7692852'
+-      percent_used: 1%
+-      mount: "/dev"
+-      total_inodes: '1923214'
+-      inodes_used: '395'
+-      inodes_available: '1922819'
+-      inodes_percent_used: 1%
+-      fs_type: devtmpfs
+-      mount_options:
+-      - rw
+-      - mode=0755
+-    tmpfs,/run:
+-      device: tmpfs
+-      kb_size: '1540180'
+-      kb_used: '224'
+-      kb_available: '1539956'
+-      percent_used: 1%
+-      mount: "/run"
+-      total_inodes: '1925223'
+-      inodes_used: '278'
+-      inodes_available: '1924945'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - size=10%
+-      - mode=0755
+-    none,/run/lock:
+-      device: none
+-      kb_size: '5120'
+-      kb_used: '0'
+-      kb_available: '5120'
+-      percent_used: 0%
+-      mount: "/run/lock"
+-      total_inodes: '1925223'
+-      inodes_used: '5'
+-      inodes_available: '1925218'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-      - size=5242880
+-    none,/run/shm:
+-      device: none
+-      kb_size: '7700892'
+-      kb_used: '0'
+-      kb_available: '7700892'
+-      percent_used: 0%
+-      mount: "/run/shm"
+-      total_inodes: '1925223'
+-      inodes_used: '1'
+-      inodes_available: '1925222'
+-      inodes_percent_used: 1%
+-      fs_type: tmpfs
+-      mount_options:
+-      - rw
+-      - nosuid
+-      - nodev
+-    proc,/proc:
+-      device: proc
+-      mount: "/proc"
+-      fs_type: proc
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-    sysfs,/sys:
+-      device: sysfs
+-      mount: "/sys"
+-      fs_type: sysfs
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - nodev
+-    none,/sys/fs/fuse/connections:
+-      device: none
+-      mount: "/sys/fs/fuse/connections"
+-      fs_type: fusectl
+-      mount_options:
+-      - rw
+-    none,/sys/kernel/debug:
+-      device: none
+-      mount: "/sys/kernel/debug"
+-      fs_type: debugfs
+-      mount_options:
+-      - rw
+-    none,/sys/kernel/security:
+-      device: none
+-      mount: "/sys/kernel/security"
+-      fs_type: securityfs
+-      mount_options:
+-      - rw
+-    devpts,/dev/pts:
+-      device: devpts
+-      mount: "/dev/pts"
+-      fs_type: devpts
+-      mount_options:
+-      - rw
+-      - noexec
+-      - nosuid
+-      - gid=5
+-      - mode=0620
+-    "/dev/sda,":
+-      device: "/dev/sda"
+-    rootfs,/:
+-      device: rootfs
+-      mount: "/"
+-      fs_type: rootfs
+-      mount_options:
+-      - rw
+-    "/dev/disk/by-uuid/48503327-a926-4e09-a7d2-d0de2e9ca388,/":
+-      device: "/dev/disk/by-uuid/48503327-a926-4e09-a7d2-d0de2e9ca388"
+-      mount: "/"
+-      fs_type: ext4
+-      mount_options:
+-      - rw
+-      - relatime
+-      - data=ordered
+-block_device:
+-  sda:
+-    size: '41943040'
+-    removable: '0'
+-    model: PersistentDisk
+-    rev: '1'
+-    state: running
+-    timeout: '30'
+-    vendor: Google
+-    queue_depth: '256'
+-    rotational: '1'
+-  ram0:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram1:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram2:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram3:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram4:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram5:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram6:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram7:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram8:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram9:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  loop0:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop1:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop2:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop3:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop4:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop5:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop6:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  loop7:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-  ram10:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram11:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram12:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram13:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram14:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-  ram15:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-hostname: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a
+-machinename: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a
+-fqdn: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a.c.eco-emissary-99515.internal
+-domain: c.eco-emissary-99515.internal
++ipaddress: 10.240.0.17
++macaddress: 42:01:0A:F0:00:11
++etc:
++  passwd:
++    root:
++      dir: "/root"
++      gid: 0
++      uid: 0
++      shell: "/bin/bash"
++      gecos: root
++    daemon:
++      dir: "/usr/sbin"
++      gid: 1
++      uid: 1
++      shell: "/bin/sh"
++      gecos: daemon
++    bin:
++      dir: "/bin"
++      gid: 2
++      uid: 2
++      shell: "/bin/sh"
++      gecos: bin
++    sys:
++      dir: "/dev"
++      gid: 3
++      uid: 3
++      shell: "/bin/sh"
++      gecos: sys
++    sync:
++      dir: "/bin"
++      gid: 65534
++      uid: 4
++      shell: "/bin/sync"
++      gecos: sync
++    games:
++      dir: "/usr/games"
++      gid: 60
++      uid: 5
++      shell: "/bin/sh"
++      gecos: games
++    man:
++      dir: "/var/cache/man"
++      gid: 12
++      uid: 6
++      shell: "/bin/sh"
++      gecos: man
++    lp:
++      dir: "/var/spool/lpd"
++      gid: 7
++      uid: 7
++      shell: "/bin/sh"
++      gecos: lp
++    mail:
++      dir: "/var/mail"
++      gid: 8
++      uid: 8
++      shell: "/bin/sh"
++      gecos: mail
++    news:
++      dir: "/var/spool/news"
++      gid: 9
++      uid: 9
++      shell: "/bin/sh"
++      gecos: news
++    uucp:
++      dir: "/var/spool/uucp"
++      gid: 10
++      uid: 10
++      shell: "/bin/sh"
++      gecos: uucp
++    proxy:
++      dir: "/bin"
++      gid: 13
++      uid: 13
++      shell: "/bin/sh"
++      gecos: proxy
++    www-data:
++      dir: "/var/www"
++      gid: 33
++      uid: 33
++      shell: "/bin/sh"
++      gecos: www-data
++    backup:
++      dir: "/var/backups"
++      gid: 34
++      uid: 34
++      shell: "/bin/sh"
++      gecos: backup
++    list:
++      dir: "/var/list"
++      gid: 38
++      uid: 38
++      shell: "/bin/sh"
++      gecos: Mailing List Manager
++    irc:
++      dir: "/var/run/ircd"
++      gid: 39
++      uid: 39
++      shell: "/bin/sh"
++      gecos: ircd
++    gnats:
++      dir: "/var/lib/gnats"
++      gid: 41
++      uid: 41
++      shell: "/bin/sh"
++      gecos: Gnats Bug-Reporting System (admin)
++    nobody:
++      dir: "/nonexistent"
++      gid: 65534
++      uid: 65534
++      shell: "/bin/sh"
++      gecos: nobody
++    libuuid:
++      dir: "/var/lib/libuuid"
++      gid: 101
++      uid: 100
++      shell: "/bin/sh"
++      gecos: ''
++    syslog:
++      dir: "/home/syslog"
++      gid: 103
++      uid: 101
++      shell: "/bin/false"
++      gecos: ''
++    messagebus:
++      dir: "/var/run/dbus"
++      gid: 105
++      uid: 102
++      shell: "/bin/false"
++      gecos: ''
++    whoopsie:
++      dir: "/nonexistent"
++      gid: 106
++      uid: 103
++      shell: "/bin/false"
++      gecos: ''
++    landscape:
++      dir: "/var/lib/landscape"
++      gid: 109
++      uid: 104
++      shell: "/bin/false"
++      gecos: ''
++    sshd:
++      dir: "/var/run/sshd"
++      gid: 65534
++      uid: 105
++      shell: "/usr/sbin/nologin"
++      gecos: ''
++    ntp:
++      dir: "/home/ntp"
++      gid: 112
++      uid: 106
++      shell: "/bin/false"
++      gecos: ''
++    travis:
++      dir: "/home/travis"
++      gid: 1000
++      uid: 1000
++      shell: "/bin/bash"
++      gecos: ''
++  group:
++    root:
++      gid: 0
++      members: []
++    daemon:
++      gid: 1
++      members: []
++    bin:
++      gid: 2
++      members: []
++    sys:
++      gid: 3
++      members: []
++    adm:
++      gid: 4
++      members: []
++    tty:
++      gid: 5
++      members: []
++    disk:
++      gid: 6
++      members: []
++    lp:
++      gid: 7
++      members: []
++    mail:
++      gid: 8
++      members: []
++    news:
++      gid: 9
++      members: []
++    uucp:
++      gid: 10
++      members: []
++    man:
++      gid: 12
++      members: []
++    proxy:
++      gid: 13
++      members: []
++    kmem:
++      gid: 15
++      members: []
++    dialout:
++      gid: 20
++      members: []
++    fax:
++      gid: 21
++      members: []
++    voice:
++      gid: 22
++      members: []
++    cdrom:
++      gid: 24
++      members: []
++    floppy:
++      gid: 25
++      members: []
++    tape:
++      gid: 26
++      members: []
++    sudo:
++      gid: 27
++      members: []
++    audio:
++      gid: 29
++      members: []
++    dip:
++      gid: 30
++      members: []
++    www-data:
++      gid: 33
++      members: []
++    backup:
++      gid: 34
++      members: []
++    operator:
++      gid: 37
++      members: []
++    list:
++      gid: 38
++      members: []
++    irc:
++      gid: 39
++      members: []
++    src:
++      gid: 40
++      members: []
++    gnats:
++      gid: 41
++      members: []
++    shadow:
++      gid: 42
++      members: []
++    utmp:
++      gid: 43
++      members: []
++    video:
++      gid: 44
++      members: []
++    sasl:
++      gid: 45
++      members: []
++    plugdev:
++      gid: 46
++      members: []
++    staff:
++      gid: 50
++      members: []
++    games:
++      gid: 60
++      members: []
++    users:
++      gid: 100
++      members: []
++    nogroup:
++      gid: 65534
++      members: []
++    libuuid:
++      gid: 101
++      members: []
++    crontab:
++      gid: 102
++      members: []
++    syslog:
++      gid: 103
++      members: []
++    fuse:
++      gid: 104
++      members: []
++    messagebus:
++      gid: 105
++      members: []
++    whoopsie:
++      gid: 106
++      members: []
++    mlocate:
++      gid: 107
++      members: []
++    ssh:
++      gid: 108
++      members: []
++    landscape:
++      gid: 109
++      members: []
++    netdev:
++      gid: 110
++      members: []
++    admin:
++      gid: 111
++      members: []
++    ntp:
++      gid: 112
++      members: []
++    travis:
++      gid: 1000
++      members: []
++current_user: root
++keys:
++  ssh:
++    host_rsa_public: AAAAB3NzaC1yc2EAAAADAQABAAABAQCk/wZCa8O3XQmTbxfEKbHLxVWYHmzkXPtbxovHv/rzizOTuzqinrs75dKX3X42At3V7NMfJkc0PYDstVTR4d1RoptQqGOtFO6v4HSW5HH6lx0xvunUvUtKZy5b5/qVHB/5NRykKjEKPA0G6WYrMzNEEn/XY2hQSmRD/+VCct5D0k9P1JGqjwQeJ8YDSDLUsfUdn4Pl/qAn90XyU2bkT9JXksYfcNrCg0BLfFTuUJVGdjrZhm00fettAxEXsPYzZUW1ekTW04i+PyNaJDaEOG+sInaPOtfqu0KcyFf/kCHD6PnWsOuf/iX/dbkVdv6/GudveLAuPrUSjsSIaJ8EbbEV
++    host_dsa_public: AAAAB3NzaC1kc3MAAACBAKj3GyqTZuJoTyfCxsmWdhsrcV0967/HlXGg8+L5iB3AaWoxYZy04AcdoX8jfdjrAfHXVcuLSh2wd59ItyCCa+ZxMKMmYFPHe086THj5wjuOJkxENwiAbeWE4fGPZ8IbFpriQyko31N1w28At6oU/4nAAc2+o0HoaU2cOMiYD9PrAAAAFQDXqzHOOynezFu05tcoqg2lo7Y0mQAAAIBvjYNbGUqGwZg7K5v4o7AUTD1asLa/lTv+y8G60qNSu9+opRsOot5zStZ4Ie80s/oiuS2vH5Gop1YUPA5bTXg6QsR3BEeoErgXVu+/z1VOV2iNUPA/mMzv7LT73eds/x9m+8UFeh+oErq1X4auneT94jww61J/87y922/9UdzlewAAAIBP0UQZL5ppsx4FkZOcZ6DMK5JarrizE7GoLuoQgt8JT/Pj9fKpje2nJGZSfVpq7dWIFhpJ/OWxGiIamFp8Pe057qstSs+5SwxkCM0+Qh6gS8qVAjpLGOTqylHuUZVqo6Ae1VEp+uMbVxdL+1/cnYfM5VtVjY3zTsC3CrkeQGQt3A==
++    host_ecdsa_public: AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI66k3WCQRYRPhPF9NF8fAn0LxE5dq88i48ODgL3eryymuJtICnAtOJgb0Rws/gioRBCDvIh8lpcMFOUZT3xg+U=
++    host_ecdsa_type: ecdsa-sha2-nistp256
++command:
++  ps: ps -ef
++chef_packages:
++  ohai:
++    version: 8.14.0
++    ohai_root: "/opt/chef/embedded/lib/ruby/gems/2.1.0/gems/ohai-8.14.0/lib/ohai"
++  chef:
++    version: 12.9.41
++    chef_root: "/opt/chef/embedded/lib/ruby/gems/2.1.0/gems/chef-12.9.41/lib"
+ gce:
+   instance:
+     attributes:
+       sshKeys: |
+-        root:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDdiwsMcwEiQTziLHgjzC1NwXOQmXa83NJlsvvHx5nJWJDS8OClp12TIeo/DPPuArND0vcP0Y2gXkJJ6wIuLBxxbCY9psTS9n4DXTXkSFLWkwOz84CZfOu7xehRBIwnrR074AJJ/lseOJTxgfzfNSMjjHKY7F7xyl3VvUPVLMxwrN0f4LcnNpqAqzCi9KZU2AqREsCxUDj07uQ0Z7FoQxObk1vHthE0lpZz4YBNS9J9PjNBouK66ITbk+p/OGw2WgjqkTZWoz24tbD3d17YnRCR0SLjbw5coU8HsGqgCmAWOXRMQkz7LqRThji0aMMm59xTJdiVDkOKy8oFo0r4+NOr
++        root:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnLqCcoczwYdc87Gs/bmZWnS1Q5U4guU2Fkh29CCRj2L1ge6U4FzfW8IGLmQZf7ODyedgm4gOaBCvTZIPYi4MIubLpCyTI+VJ04Lp5GmyQSfOn51csVrQzFbGEByB0Jhzj5vNUW2ISlqL1sDef4BewmiSfnAWBZNopnzNRz7FlQjPxqDkLb9DHSgoJZ+L2OHkB66DDIEqPA7QkpyWAsKvHKgBm5xscFzne4EZ0BHX+CT+teYdeA9BRojgngqPor6VnQVqgM+DQyWXD0v+lOv+ekXakaPw77ByRbS7XWsDYSgEH+oUIMrN4PlWz+Ese03Ah/n7sUSW9kLvs2fmhlasF
+     cpuPlatform: Intel Sandy Bridge
+     description: New instance created by Packer
+     disks:
+@@ -2189,8 +1532,8 @@
+       index: 0
+       mode: READ_WRITE
+       type: PERSISTENT
+-    hostname: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a.c.eco-emissary-99515.internal
+-    id: 6153631725800737202
++    hostname: packer-5889172f-e84a-34c1-ca0c-478ae54fc110.c.eco-emissary-99515.internal
++    id: 2496573901965142494
+     image: ''
+     licenses:
+     - id: '1000009'
+@@ -2198,12 +1541,12 @@
+     maintenanceEvent: NONE
+     networkInterfaces:
+     - accessConfigs:
+-      - externalIp: 104.198.230.71
++      - externalIp: 35.184.89.202
+         type: ONE_TO_ONE_NAT
+       forwardedIps: []
+-      ip: 10.240.0.43
++      ip: 10.240.0.17
+       ipAliases: []
+-      mac: 42:01:0a:f0:00:2b
++      mac: 42:01:0a:f0:00:11
+       network: projects/539774316296/networks/default
+     scheduling:
+       automaticRestart: 'TRUE'
+@@ -2237,9 +1580,10 @@
+     attributes:
+       google-compute-default-region: us-central1
+       google-compute-default-zone: us-central1-f
+-      sshKeys: |
+-        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCNF/YUEIHVsB5agctX8E5Z0GUgPaL2Pk7ZGvonHxtE6euL9WDOL3RAjVplKDaxQH/untYBq9xfv46ZSDpBhXETizVjuwZwJIfNGKbpXq2efC72+ZcrxD8qEEU4AZ++4Wi8rT4XCYX4At8HwgwyFOtFRvdoHSDlN2LhgV1gfAWBlRIR6YCRdGhTMTWPN5uQNc6p6vBGoou5FAMecAZdMTFSr9cRvVADaun4EpXvyAdTdKfSmTIl5zc9/91R/G729fz/wsvab8QaU+FQD1M0HIbRVF0glYE85A0n6ebUpcbj3Yn7QmxC1F8wH2Ye95O/iN0hWNHU3M6pcV27/Zvi5Loz google-ssh {"userName":"igor@travis-ci.org","expireOn":"2016-11-07T16:56:12+0000"}
+-        igor:ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGlI+PaGQ8SiLJXDiZhjug4/6dB7mdnOCSnFN/8R3ZQGNTcAH/n4l3TUYoE0OMFIVYshjauLXZ6l6Y/S37rbL60= google-ssh {"userName":"igor@travis-ci.org","expireOn":"2016-11-07T16:56:07+0000"}
++      sshKeys: |-
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAF4gdLdhw2gmjo+A6D1cXUkDv29+S7ozcxAC0ncwzwR2tUktzWxTk1ZF9oDiw/keH8VaZuPs2htetdU8Yd1qSeiXrNunwpNr9ZsswTuhfjIRDEFidnkCWfW/IcgP8bYRoUPlRGcSEF0vtqn/zfer9RDvHZ5gAR1vzZLLhRNIx19LfUtunYdMiNRGLPYD18XQ6d+NE+pkoeugEo4LIeZYEyI1OcjEvKUz94DDk0HC/XiioEcCAe9xfwMOoplYcHp2y7iRWsAHpO9eUYdcBzqig2L6nZ+vwTLF0LDHlFxWwGfOdrAKX2dhrhQ6a8WEw9z0LfBFkZbnOz0lK8Mp46xxAn0= google-ssh {"userName":"henrik@travis-ci.org","expireOn":"2016-12-08T21:57:52+0000"}
++        henrik:ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEji5UN56xNgKjNqWnEdJJEQKMuoB8w+wy+suTOf79vXsgMVbPkk4KjbBi0QYtszt39DrCCevrb+5voE607anmw= google-ssh {"userName":"henrik@travis-ci.org","expireOn":"2016-12-08T21:57:48+0000"}
++        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOQSqaH5vTw5+fLccsIzoZ1A+viIDdc1EsN4X37AzAAUxGpMgbFMleP4uEc99solxcgHgSqomAzPKrWwPAuo2D0/eMC1G0oBwKjW1DfSaMxgsVS4cscUuU4aUjaxSsVQgVr/27HVqwRVI9j8T8bk5YiQzZaZ9yn2aHglDMbBi/cGAM4iMF6owVWZh3ywX1YqFgA8uZ3Ap0pgrnm9sNomDTmKbgEMlRhoJmDXyBs6E/Ldx69CxCdFeNel35zEjQW7MUO+ohPaZi7WB3s2s3ZRaQGVJks0FRpN6BRhE4AIAfhnXkBIZaOujQ/busMmBbmyZ+RP03J/ymUXcIMdHwhpr9 igor@ig-pro+travis
+         me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyEerYBAUgrvmwfc3602oo3WVQbnEIam4vig6ah8YXUfpp1aatedEibcdvQCd5DYHrLFPDDeULF2IsJNh+hVTh1Pxj2Z4W1H+U/tXZt2eMeTX+MgAfREecL4dNcbRgDR1SuitfbsKv8zc5a+SZUYBaIAZvBIC5MJs2DMhYr3GQksIW8C2rROpowKP1Lj38IwSkvLZRvjIpT7diSctpJbiQV6Oh3MG949KUOdsb6RhjO1P+PIS03xds8+F8CfFLdw37bfAXNVEaijQcgG19a0tRivPpXFcem6Z9/PJF7ccjY1uJ7pQNkeLGI2Kx91rA/msAakulm40CQVg+aVn3oNU1 meatballhat
+         me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZlA6FbXCWI2Fo34RsbbHgqzt7Me0mmLEVr4VInaQHbDt6mEelKHH46J3hin/WQTEhZ/sSuLZb0YML+ebHL390wHRkzqCIJvh1vORlbxlmDivvALF61NsAJuDo38GbLi2Zri/4NrCFmajwr9ofwrDNIar7xixEjX0/adqSFl7eqDl+kj+YB/qKMmpv52rSekcBwUBC1kLwNaRAGQNUkML4WpzM3P2/5NARkFel+hawYCDazWKo38ew4NITo39NYyrOefZ5eyo/3RLKGyrYh8Wl+XDxRmjvCWo6Fh1JFmyz9OovuzEj+bMaYYDCLIR280P7HYnLVuSLWyLClZhe+ISt me@failb0wl.local
+         solarce:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyNDg0uxFwrQ3NF64oFKKZfXvEOnVxmU0RMdYPI3FjEEyOinAUoe8cfSbo71vf8oFa0H7ECcBuZjiJbqctctGjiNHV/29P3Smo0niReeqEXK4Hy4LZumCx9jV2hceKyyS3zFDfTwcQ4M3gv6n71IKAtRw7T136mLcb2YsT001Mvho2XqL7C+1+Gsi24sTvKOeKPvcx/bD7tH5EJAJAgKggtcLe35S9efd3ZLhYNOl1fD0uEd2FFBfQ/7z0SlMPcg58FP5iJDEyDrlXKRJ+flVJr0OCuQrGqJ+DWBCkIluIr0dliW//FuGWNyyOLQjdOPAmWslCe/oIq7gKbBUaPk2d solarce@dirge.local
+@@ -2252,20 +1596,12 @@
+         carmen:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGODoXKQ3+dEvzGoNCmG6Mw9tfkT4/UZhI5PdXpJpSkSQAFVk8LaIDBk9cT/+E3qaATuhMABvaCyeRUGDqL/pRkVzAOVbLrbu8vT3laES8RaPugQ3zem7+/b31OyxZ7nPrUndJmY4D1STBrCZ14fGrGN7RC++q9b8UavxTS3ex/ZvYgdkMxVa5Uwf1BVbK6wMIkSfie5xzcChYC1DhDDAv4r9WKtcmYFnN5+Uh58b3ceVeWg414PhyMeHdcfNr0PctBRALgaDdyR/Qqn4Kap08pWX/kJWfVUqSACRRwOwmeaoWJSHu/QDD90C5bV9mHlMJ5+tEdwP9P3uPATieDEx carmen@elita1
+         konstantinhaase:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
+         konstantin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
++        carmen:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWqCBMHatDQtvGS/YO5d+531vbwZxZgtV57sU3Vy8nRWz7s2ckPgRAUhi+61ExVGGmfO3jZgEc6C10K1fdbRnbgGnOeHvHSPT0mcB9oJLSSHTzqcdyhKPFdZBeI6raGw+qHjltGX+MP5yzbUG82gPY5D+Xp61KcXyzjhlclzU/td99wnYsmagBkJzt1PBpKulboyTli6IPQ1UDBY09jz+mfQJZyAXfdmmI1m7m5r26C2DdrSS7fu/UEJmDkJ8GKTW44XWm90mH5JyXgOV8WkZTElcvAJVthqVV+gdh4ASj34UPIQ3qtdKtvbB+mqBtmm0sko8ipuO5r50MNKM2TbF/ carmen@cs-6365-devshell-vm-992b4627-0c92-40c6-8d7b-0d08fadd6a53-247
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDsUwOMyf1Tux1iwbLGTCqdRkKZhpfNq5M7f7C/PtfMZJ0qJvvFrHcGCO0QbsgyacOBnYZ+SaU3rMqHL4GWp+etv3VdNOMc0l8j8vp0vE7yicyYtHOUJgZeWy9b5VSFxS7XmWa6dZDdD3lXayQ5ysXbfVKgLlUHHg9VCizbFKcDr+vZmTLhTt//SNxwrxfrAzg4BtXI7Topxf9TZNe+CvWOyhMMHpsFARgh/eyJtU5RvuPxja/Fkj/m2uf8a9oAJGjICr/O8hjXoEKiEo0fIrrWT9u2Ee6c3o+5rBDLjMu2vnAhtrDjuh13nk3zoq6++PVBe71RHTcVZRz/HuQMj1Fl henrik@citation
++        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2wcUE4bi1Y5VUnXL/z2j1CjmK6RK1zh3s0OFijTzy7Q9dgveumKOvbV/6taj1YJOg+YcH+tGS7Y9Mh6/a3CIgT2gALFGS+ZcQ9cdqMGak4ntCZtyGyFT3fDYiuzv8Oyyn3gjNDBcOqsCQbvNK9vn35ecVe3HRglF/Qf5Ir8nbhFhPq3LXfAzkOFu3KqaQur6E51tqAGPl32hqQUhxJeh/XaM+EhkXS8SXj2CJZTKa5awUWALgf6IctX7ncNAi+cFbQ+osMuH4obVjPFJBPlnXP3AaAH4hDXpLvzMC4ytLZYQx0qe6aa6FupPXRe+RPEqTzjGonL0I2I3eTitLgrzJ igor@ig-pro.local
+     numericProjectId: 539774316296
+     projectId: eco-emissary-99515
+-cloud:
+-  public_ips:
+-  - 104.198.230.71
+-  private_ips:
+-  - 10.240.0.43
+-  public_ipv4:
+-  - 104.198.230.71
+-  local_ipv4:
+-  - 10.240.0.43
+-  public_hostname: 
+-  local_hostname: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a.c.eco-emissary-99515.internal
+-  provider: gce
++init_package: init
+ packages:
+   accountsservice:
+     version: 0.6.15-2ubuntu9.7
+@@ -2276,7 +1612,7 @@
+   apparmor:
+     version: 2.7.102-0ubuntu3.10
+   apport:
+-    version: 2.0.1-0ubuntu17.13
++    version: 2.0.1-0ubuntu17.15
+   apport-symptoms:
+     version: 0.16.1
+   apt:
+@@ -2769,10 +2105,10 @@
+     version: 0.1.4-2ubuntu0.12.04.4
+   linux-firmware:
+     version: 1.79.18
+-  linux-image-3.13.0-103-generic:
+-    version: 3.13.0-103.150~precise1
++  linux-image-3.13.0-107-generic:
++    version: 3.13.0-107.154~precise1
+   linux-image-generic-lts-trusty:
+-    version: 3.13.0.103.94
++    version: 3.13.0.107.98
+   locales:
+     version: 2.13+git20120306-3
+   lockfile-progs:
+@@ -2876,7 +2212,7 @@
+   python:
+     version: 2.7.3-0ubuntu2.2
+   python-apport:
+-    version: 2.0.1-0ubuntu17.13
++    version: 2.0.1-0ubuntu17.15
+   python-apt:
+     version: 0.8.3ubuntu7.3
+   python-apt-common:
+@@ -2930,7 +2266,7 @@
+   python-pkg-resources:
+     version: 0.6.24-1ubuntu1
+   python-problem-report:
+-    version: 2.0.1-0ubuntu17.13
++    version: 2.0.1-0ubuntu17.15
+   python-pycurl:
+     version: 7.19.0-4ubuntu3
+   python-serial:
+@@ -3002,7 +2338,7 @@
+   tmux:
+     version: 1.6-1ubuntu1
+   tzdata:
+-    version: 2016h-0ubuntu0.12.04
++    version: 2016j-0ubuntu0.12.04
+   ubuntu-keyring:
+     version: 2011.11.21.1
+   ubuntu-minimal:
+@@ -3018,7 +2354,7 @@
+   unattended-upgrades:
+     version: 0.76ubuntu1.2
+   update-manager-core:
+-    version: 1:0.156.14.20
++    version: 1:0.156.14.21
+   update-notifier-common:
+     version: 0.119ubuntu8.7
+   upstart:
+@@ -3063,37 +2399,733 @@
+     version: 5.1.1alpha+20110809-3
+   zlib1g:
+     version: 1:1.2.3.4.dfsg-3ubuntu4
+-chef_packages:
+-  ohai:
+-    version: 8.14.0
+-    ohai_root: "/opt/chef/embedded/lib/ruby/gems/2.1.0/gems/ohai-8.14.0/lib/ohai"
+-  chef:
+-    version: 12.9.41
+-    chef_root: "/opt/chef/embedded/lib/ruby/gems/2.1.0/gems/chef-12.9.41/lib"
+-keys:
+-  ssh:
+-    host_rsa_public: AAAAB3NzaC1yc2EAAAADAQABAAABAQCvjH/q3YyekrjBMISQb/LRCC7bW1OQWHJWTGG9K9ntl4KS4QWJuJ3VvvyAEQOvAl0BRPFcqm6yT8XgvWe5xUdP2UhcMA8XV0ht+4QXTAmYYtA6P9VzyHxZze51hp0epFvlES6Q3ObI4nwAjz9/+BZ3Lta5g8yD+v2WW+q2CfCqeiP0ywC1KJbkVZVM+F8ydqmsrqOqb4kWI0QkkWEU7CZvT1ryisYilpNWwbY4xcegjXCT8DxrOIEZwXUfUKMu/nxr3leQ0ydUr+mMMD7+dX8m32BhFZZA7thq65wDosPev8XTYNPj+/G1bMvE61vMXS4pzad9X5j64h9XLAAw+iLP
+-    host_dsa_public: AAAAB3NzaC1kc3MAAACBAJOmRe7hZIClM5PKOOGMz3BN2jyzi8/GYZcIJsL719WWruERvoadiKwCl6taHSI/Edz4ly/YZv31te1l9n0lvlNdBBLRYGvuou89+zML2TLKlGRYLcEE1WH7SeNGFEHJEW1dRIsO3kFetMjmA4jk/BzWXmNB8b1WJndjZgOADganAAAAFQDnZLddItfbv65JQdP1MLzxbJ9qbQAAAIBihXg2LKZZSl/K8nsBtYyZkCOPP0DsO6uusBwtRIl0hz+3FwcFodd4m5y/yWpvsueJ0VTcds6FdOcObGV/rnFZqBbipjV2wgP977HOUDq6oKUnHdMR6XapvjauokvXjQTmJlzlc6AuQTzundo4fFuKYtj9F53kvt7mqn5qd6+oFAAAAIAw+9qosXNas0KrK8bMwWo5W60RlV8At11EsUjmyIO/tlrthiga2b1AZmkrwksseCc86JmUDLTXHLwYsPlA0U+U0VGrIFknCyN9f5dDqytiP7Zdrt/XcSUF4RTFzRZKJrWLrZT7AO6JiEyIOpJYYVlV328O4Wga2iiW59i+7lzL2g==
+-    host_ecdsa_public: AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPOVHyD+292wTRePHAVwDqBeGrAEtMmdO1EJB6kbRX7dZ908T3LBVCGfc9jKSGD/l2dsXGvjsR+DaYqFdiq+qtc=
+-    host_ecdsa_type: ecdsa-sha2-nistp256
++block_device:
++  sda:
++    size: '41943040'
++    removable: '0'
++    model: PersistentDisk
++    rev: '1'
++    state: running
++    timeout: '30'
++    vendor: Google
++    queue_depth: '256'
++    rotational: '1'
++  ram0:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram1:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram2:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram3:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram4:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram5:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram6:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram7:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram8:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram9:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  loop0:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop1:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop2:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop3:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop4:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop5:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop6:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  loop7:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++  ram10:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram11:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram12:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram13:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram14:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++  ram15:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++filesystem2:
++  by_device:
++    "/dev/sda1":
++      kb_size: '20608636'
++      kb_used: '1319980'
++      kb_available: '18328668'
++      percent_used: 7%
++      total_inodes: '1310720'
++      inodes_used: '61389'
++      inodes_available: '1249331'
++      inodes_percent_used: 5%
++      fs_type: ext4
++      mount_options:
++      - rw
++      uuid: 1ae54dc3-6478-4029-9d47-8dc028980461
++      label: cloudimg-rootfs
++      mounts:
++      - "/"
++    udev:
++      kb_size: '7692844'
++      kb_used: '4'
++      kb_available: '7692840'
++      percent_used: 1%
++      total_inodes: '1923211'
++      inodes_used: '395'
++      inodes_available: '1922816'
++      inodes_percent_used: 1%
++      fs_type: devtmpfs
++      mount_options:
++      - rw
++      - mode=0755
++      mounts:
++      - "/dev"
++    tmpfs:
++      kb_size: '1540180'
++      kb_used: '224'
++      kb_available: '1539956'
++      percent_used: 1%
++      total_inodes: '1925223'
++      inodes_used: '278'
++      inodes_available: '1924945'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - size=10%
++      - mode=0755
++      mounts:
++      - "/run"
++    none:
++      kb_size: '7700892'
++      kb_used: '0'
++      kb_available: '7700892'
++      percent_used: 0%
++      total_inodes: '1925223'
++      inodes_used: '1'
++      inodes_available: '1925222'
++      inodes_percent_used: 1%
++      fs_type: securityfs
++      mount_options:
++      - rw
++      mounts:
++      - "/run/lock"
++      - "/run/shm"
++      - "/sys/fs/fuse/connections"
++      - "/sys/kernel/debug"
++      - "/sys/kernel/security"
++    proc:
++      fs_type: proc
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      mounts:
++      - "/proc"
++    sysfs:
++      fs_type: sysfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      mounts:
++      - "/sys"
++    devpts:
++      fs_type: devpts
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - gid=5
++      - mode=0620
++      mounts:
++      - "/dev/pts"
++    "/dev/sda": {}
++    rootfs:
++      fs_type: rootfs
++      mount_options:
++      - rw
++      mounts:
++      - "/"
++    "/dev/disk/by-uuid/1ae54dc3-6478-4029-9d47-8dc028980461":
++      fs_type: ext4
++      mount_options:
++      - rw
++      - relatime
++      - data=ordered
++      mounts:
++      - "/"
++  by_mountpoint:
++    "/":
++      kb_size: '20608636'
++      kb_used: '1319980'
++      kb_available: '18328668'
++      percent_used: 7%
++      total_inodes: '1310720'
++      inodes_used: '61389'
++      inodes_available: '1249331'
++      inodes_percent_used: 5%
++      fs_type: ext4
++      mount_options:
++      - rw
++      - relatime
++      - data=ordered
++      uuid: 1ae54dc3-6478-4029-9d47-8dc028980461
++      label: cloudimg-rootfs
++      devices:
++      - "/dev/sda1"
++      - rootfs
++      - "/dev/disk/by-uuid/1ae54dc3-6478-4029-9d47-8dc028980461"
++    "/dev":
++      kb_size: '7692844'
++      kb_used: '4'
++      kb_available: '7692840'
++      percent_used: 1%
++      total_inodes: '1923211'
++      inodes_used: '395'
++      inodes_available: '1922816'
++      inodes_percent_used: 1%
++      fs_type: devtmpfs
++      mount_options:
++      - rw
++      - mode=0755
++      devices:
++      - udev
++    "/run":
++      kb_size: '1540180'
++      kb_used: '224'
++      kb_available: '1539956'
++      percent_used: 1%
++      total_inodes: '1925223'
++      inodes_used: '278'
++      inodes_available: '1924945'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - size=10%
++      - mode=0755
++      devices:
++      - tmpfs
++    "/run/lock":
++      kb_size: '5120'
++      kb_used: '0'
++      kb_available: '5120'
++      percent_used: 0%
++      total_inodes: '1925223'
++      inodes_used: '5'
++      inodes_available: '1925218'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      - size=5242880
++      devices:
++      - none
++    "/run/shm":
++      kb_size: '7700892'
++      kb_used: '0'
++      kb_available: '7700892'
++      percent_used: 0%
++      total_inodes: '1925223'
++      inodes_used: '1'
++      inodes_available: '1925222'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - nosuid
++      - nodev
++      devices:
++      - none
++    "/proc":
++      fs_type: proc
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      devices:
++      - proc
++    "/sys":
++      fs_type: sysfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      devices:
++      - sysfs
++    "/sys/fs/fuse/connections":
++      fs_type: fusectl
++      mount_options:
++      - rw
++      devices:
++      - none
++    "/sys/kernel/debug":
++      fs_type: debugfs
++      mount_options:
++      - rw
++      devices:
++      - none
++    "/sys/kernel/security":
++      fs_type: securityfs
++      mount_options:
++      - rw
++      devices:
++      - none
++    "/dev/pts":
++      fs_type: devpts
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - gid=5
++      - mode=0620
++      devices:
++      - devpts
++  by_pair:
++    "/dev/sda1,/":
++      device: "/dev/sda1"
++      kb_size: '20608636'
++      kb_used: '1319980'
++      kb_available: '18328668'
++      percent_used: 7%
++      mount: "/"
++      total_inodes: '1310720'
++      inodes_used: '61389'
++      inodes_available: '1249331'
++      inodes_percent_used: 5%
++      fs_type: ext4
++      mount_options:
++      - rw
++      uuid: 1ae54dc3-6478-4029-9d47-8dc028980461
++      label: cloudimg-rootfs
++    udev,/dev:
++      device: udev
++      kb_size: '7692844'
++      kb_used: '4'
++      kb_available: '7692840'
++      percent_used: 1%
++      mount: "/dev"
++      total_inodes: '1923211'
++      inodes_used: '395'
++      inodes_available: '1922816'
++      inodes_percent_used: 1%
++      fs_type: devtmpfs
++      mount_options:
++      - rw
++      - mode=0755
++    tmpfs,/run:
++      device: tmpfs
++      kb_size: '1540180'
++      kb_used: '224'
++      kb_available: '1539956'
++      percent_used: 1%
++      mount: "/run"
++      total_inodes: '1925223'
++      inodes_used: '278'
++      inodes_available: '1924945'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - size=10%
++      - mode=0755
++    none,/run/lock:
++      device: none
++      kb_size: '5120'
++      kb_used: '0'
++      kb_available: '5120'
++      percent_used: 0%
++      mount: "/run/lock"
++      total_inodes: '1925223'
++      inodes_used: '5'
++      inodes_available: '1925218'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++      - size=5242880
++    none,/run/shm:
++      device: none
++      kb_size: '7700892'
++      kb_used: '0'
++      kb_available: '7700892'
++      percent_used: 0%
++      mount: "/run/shm"
++      total_inodes: '1925223'
++      inodes_used: '1'
++      inodes_available: '1925222'
++      inodes_percent_used: 1%
++      fs_type: tmpfs
++      mount_options:
++      - rw
++      - nosuid
++      - nodev
++    proc,/proc:
++      device: proc
++      mount: "/proc"
++      fs_type: proc
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++    sysfs,/sys:
++      device: sysfs
++      mount: "/sys"
++      fs_type: sysfs
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - nodev
++    none,/sys/fs/fuse/connections:
++      device: none
++      mount: "/sys/fs/fuse/connections"
++      fs_type: fusectl
++      mount_options:
++      - rw
++    none,/sys/kernel/debug:
++      device: none
++      mount: "/sys/kernel/debug"
++      fs_type: debugfs
++      mount_options:
++      - rw
++    none,/sys/kernel/security:
++      device: none
++      mount: "/sys/kernel/security"
++      fs_type: securityfs
++      mount_options:
++      - rw
++    devpts,/dev/pts:
++      device: devpts
++      mount: "/dev/pts"
++      fs_type: devpts
++      mount_options:
++      - rw
++      - noexec
++      - nosuid
++      - gid=5
++      - mode=0620
++    "/dev/sda,":
++      device: "/dev/sda"
++    rootfs,/:
++      device: rootfs
++      mount: "/"
++      fs_type: rootfs
++      mount_options:
++      - rw
++    "/dev/disk/by-uuid/1ae54dc3-6478-4029-9d47-8dc028980461,/":
++      device: "/dev/disk/by-uuid/1ae54dc3-6478-4029-9d47-8dc028980461"
++      mount: "/"
++      fs_type: ext4
++      mount_options:
++      - rw
++      - relatime
++      - data=ordered
++dmi:
++  dmidecode_version: '2.11'
++  smbios_version: '2.4'
++  structures:
++    count: '16'
++    size: '550'
++  bios:
++    all_records:
++    - record_id: '0x0000'
++      size: '0'
++      application_identifier: BIOS Information
++      Vendor: Google
++      Version: Google
++      Release Date: 01/01/2011
++      Address: '0xE8000'
++      Runtime Size: 96 kB
++      ROM Size: 64 kB
++      Characteristics:
++        BIOS characteristics not supported: 
++        Targeted content distribution is supported: 
++      BIOS Revision: '1.0'
++    vendor: Google
++    version: Google
++    release_date: 01/01/2011
++    address: '0xE8000'
++    runtime_size: 96 kB
++    rom_size: 64 kB
++    bios_revision: '1.0'
++  system:
++    all_records:
++    - record_id: '0x0100'
++      size: '1'
++      application_identifier: System Information
++      Manufacturer: Google
++      Product Name: Google Compute Engine
++      Version: Not Specified
++      Serial Number: GoogleCloud-7A4FAFED9B587C29E1D7C2DA15067D63
++      UUID: 7A4FAFED-9B58-7C29-E1D7-C2DA15067D63
++      Wake-up Type: Power Switch
++      SKU Number: Not Specified
++      Family: Not Specified
++    manufacturer: Google
++    product_name: Google Compute Engine
++    version: Not Specified
++    serial_number: GoogleCloud-7A4FAFED9B587C29E1D7C2DA15067D63
++    uuid: 7A4FAFED-9B58-7C29-E1D7-C2DA15067D63
++    wake_up_type: Power Switch
++    sku_number: Not Specified
++    family: Not Specified
++  base_board:
++    all_records:
++    - record_id: '0x0200'
++      size: '2'
++      application_identifier: Base Board Information
++      Manufacturer: Google
++      Product Name: Google Compute Engine
++      Version: Not Specified
++      Serial Number: Not Specified
++      Asset Tag: Not Specified
++      Features:
++        Board is a hosting board: 
++      Location In Chassis: Not Specified
++      Chassis Handle: '0x0300'
++      Type: Motherboard
++      Contained Object Handles: '0'
++    manufacturer: Google
++    product_name: Google Compute Engine
++    version: Not Specified
++    serial_number: Not Specified
++    asset_tag: Not Specified
++    location_in_chassis: Not Specified
++    chassis_handle: '0x0300'
++    type: Motherboard
++    contained_object_handles: '0'
++  chassis:
++    all_records:
++    - record_id: '0x0300'
++      size: '3'
++      application_identifier: Chassis Information
++      Manufacturer: Google
++      Type: Other
++      Lock: Not Present
++      Version: Not Specified
++      Serial Number: Not Specified
++      Asset Tag: Not Specified
++      Boot-up State: Safe
++      Power Supply State: Safe
++      Thermal State: Safe
++      Security Status: Unknown
++      OEM Information: '0x00000000'
++      Height: Unspecified
++      Number Of Power Cords: Unspecified
++    manufacturer: Google
++    type: Other
++    lock: Not Present
++    version: Not Specified
++    serial_number: Not Specified
++    asset_tag: Not Specified
++    boot_up_state: Safe
++    power_supply_state: Safe
++    thermal_state: Safe
++    security_status: Unknown
++    oem_information: '0x00000000'
++    height: Unspecified
++    number_of_power_cords: Unspecified
++  processor:
++    all_records:
++    - record_id: '0x0401'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 1
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0402'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 2
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0403'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 3
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0404'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 4
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    type: Central Processor
++    family: Other
++    manufacturer: Google
++    id: D7 06 02 00 FF FB 8B 1F
++    version: Not Specified
++    voltage: Unknown
++    external_clock: Unknown
++    max_speed: 2000 MHz
++    current_speed: 2000 MHz
++    status: Populated, Enabled
++    upgrade: Other
++    l1_cache_handle: Not Provided
++    l2_cache_handle: Not Provided
++    l3_cache_handle: Not Provided
++root_group: root
+ cloud_v2:
+   public_ipv4_addrs:
+-  - 104.198.230.71
++  - 35.184.89.202
+   local_ipv4_addrs:
+-  - 10.240.0.43
++  - 10.240.0.17
+   provider: gce
+-  local_hostname: packer-5840f75b-fcdb-8613-0214-a36bd3a17f2a.c.eco-emissary-99515.internal
+-  public_ipv4: 104.198.230.71
+-  local_ipv4: 10.240.0.43
+-root_group: root
++  local_hostname: packer-5889172f-e84a-34c1-ca0c-478ae54fc110.c.eco-emissary-99515.internal
++  public_ipv4: 35.184.89.202
++  local_ipv4: 10.240.0.17
++ohai_time: 1485379519.379407
++cloud:
++  public_ips:
++  - 35.184.89.202
++  private_ips:
++  - 10.240.0.17
++  public_ipv4:
++  - 35.184.89.202
++  local_ipv4:
++  - 10.240.0.17
++  public_hostname: 
++  local_hostname: packer-5889172f-e84a-34c1-ca0c-478ae54fc110.c.eco-emissary-99515.internal
++  provider: gce
++hostname: packer-5889172f-e84a-34c1-ca0c-478ae54fc110
++machinename: packer-5889172f-e84a-34c1-ca0c-478ae54fc110
++fqdn: packer-5889172f-e84a-34c1-ca0c-478ae54fc110.c.eco-emissary-99515.internal
++domain: c.eco-emissary-99515.internal
+ recipes:
+ - travis_ci_haskell
+ - travis_ci_haskell::default
++- travis_packer_templates::default
+ - travis_ci_standard::default
+ - apt::default
+ - travis_build_environment::apt
+ - travis_build_environment::cloud_init
+-- travis_packer_templates::default
+ - travis_build_environment::default
+ - timezone::default
+ - sysctl::default
+@@ -3102,6 +3134,7 @@
+ - travis_build_environment::root
+ - travis_build_environment::ci_user
+ - travis_build_environment::sysctl
++- travis_build_environment::hostname
+ - iptables::default
+ - package-updates::default
+ - build-essential::default
+@@ -3327,6 +3360,8 @@
+     version: 1.0.0
+   phpunit:
+     version: 0.0.0
++  poise-profiler:
++    version: 1.0.1
+   postgresql:
+     version: 2.1.0
+   pypy:
+@@ -3421,4 +3456,4 @@
+     version: 0.0.0
+   zookeeper:
+     version: 0.0.0
+-__timestamp: 2016-12-02 04:25:21 UTC
++__timestamp: 2017-01-25 21:25:20 UTC

@@ -1,0 +1,43 @@
+{
+  "packer_templates_diff_url": "https://github.com/travis-ci/packer-templates/compare/0f241c1...294c7d9",
+  "travis_cookbooks_diff_url": "https://github.com/travis-ci/travis-cookbooks/compare/998099c...9ac3e46",
+  "current_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-connie/googlecompute/image-metadata-travis-ci-connie-trusty-1480957854.tar.bz2",
+  "next_image_metadata_tarball_url": "https://s3.amazonaws.com/travis-infrastructure-packer-build-artifacts/travis-ci/packer-templates/ci-connie/googlecompute/image-metadata-travis-ci-connie-trusty-1485370628.tar.bz2",
+  "stack": "connie-trusty",
+  "output_files": [
+    "current-image.env",
+    "env.diff",
+    "job-board-register.yml.diff",
+    "next-image.env",
+    "node-attributes.yml.diff",
+    "travis_packer_templates_rspec.json.diff"
+  ],
+  "current_image_name": "travis-ci-connie-trusty-1480957854",
+  "next_image_name": "travis-ci-connie-trusty-1485370628",
+  "current_tarball_files": [
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/PACKER_BUILD_NAME",
+    "env/PACKER_BUILDER_TYPE",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "env/TRAVIS_COOKBOOKS_SHA",
+    "travis_packer_templates_rspec.json",
+    "node-attributes.yml",
+    "job-board-register.yml"
+  ],
+  "next_tarball_files": [
+    "system_info.json",
+    "env/TRAVIS_COOKBOOKS_BRANCH",
+    "env/TRAVIS_COOKBOOKS_SHA",
+    "env/PACKER_TEMPLATES_BRANCH",
+    "env/PACKER_BUILD_NAME",
+    "env/PACKER_BUILDER_TYPE",
+    "env/PACKER_TEMPLATES_SHA",
+    "env/TRAVIS_COOKBOOKS_DIR",
+    "travis_packer_templates_rspec.json",
+    "job-board-register.yml",
+    "node-attributes.yml",
+    "dpkg-manifest.json"
+  ]
+}

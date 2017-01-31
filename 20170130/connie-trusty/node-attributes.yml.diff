@@ -1,0 +1,6008 @@
+--- travis-ci-connie-trusty-1480957854/node-attributes.yml
++++ travis-ci-connie-trusty-1485370628/node-attributes.yml
+@@ -1,18 +1,4 @@
+ ---
+-build-essential:
+-  compile_time: false
+-iojs:
+-  default: 1.6.4
+-  versions:
+-  - 1.6.4
+-  default_modules:
+-  - grunt-cli
+-nodejs:
+-  default: ''
+-  versions: []
+-  aliases:
+-    0.12.2: '0.12'
+-  default_modules: []
+ apt:
+   cacher-client:
+     restrict_environment: false
+@@ -114,6 +100,13 @@
+   - git-core
+   gpg:
+     keyserver: hkp://ha.pool.sks-keyservers.net
++travis_groovy:
++  version: 2.4.5
++  installation_dir: "/usr/local/groovy"
++  url: http://dl.bintray.com/groovy/maven/apache-groovy-binary-2.4.5.zip
++  checksum: 87e8e9af1f718b84c9bca5a8c42425aadb9e97d8e4ad64e0c91f7c1454cd4caa
++build-essential:
++  compile_time: false
+ dmg:
+   base_dir: "/Applications"
+   cache_dir: "/tmp/packer-chef-client/local-mode-cache/cache"
+@@ -303,9 +296,9 @@
+   - zh_CN.UTF-8
+   - zh_TW.UTF-8
+   rubies:
+-  - 2.2.5
+-  - 2.3.1
+-  default_ruby: 2.3.1
++  - 2.3.3
++  - 2.4.0
++  default_ruby: 2.4.0
+   gems: {}
+   global_gems:
+   - name: bundler
+@@ -328,9 +321,8 @@
+     rvm_with_default_gems: rake bundler
+     rvm_without_gems: rubygems-bundler
+     rvm_autolibs_flag: read-fail
+-  golang_libraries:
+-  - golang.org/x/tools/cmd/cover
+-  rebar_release: https://github.com/rebar/rebar/wiki/rebar
++  rebar_url: https://github.com/rebar/rebar/wiki/rebar
++  rebar3_url: https://s3.amazonaws.com/rebar3/rebar3
+   kerl_path: "/usr/local/bin/kerl"
+   kerl_base_dir: "/home/travis/.kerl"
+   otp_releases: []
+@@ -364,6 +356,14 @@
+     '5.4': 5.4.45
+     '5.5': 5.5.30
+     '5.6': 5.6.24
++  nodejs_versions: []
++  nodejs_default: ''
++  nodejs_aliases:
++    '7.4': 7.4.0
++  nodejs_default_modules: []
++  nvm:
++    url: https://raw.githubusercontent.com/creationix/nvm/v0.33.0/nvm.sh
++    sha256sum: 40208b5d10788c257fa4bf7619f4fde57476c75d3e99e17b1cd9b9f413d11a39
+   arch: amd64
+   jq_install_dest: "/usr/local/bin/jq"
+   sphinxsearch:
+@@ -371,6 +371,13 @@
+     - ppa:builds/sphinxsearch-rel20
+     - ppa:builds/sphinxsearch-rel21
+     - ppa:builds/sphinxsearch-rel22
++  elasticsearch:
++    version: 5.0.2
++    service_enabled: false
++  redis:
++    service_enabled: false
++  firefox_version: 50.0.2
++  firefox_download_url: https://releases.mozilla.org/pub/firefox/releases/50.0.2/linux-x86_64/en-US/firefox-50.0.2.tar.bz2
+   clang:
+     version: 3.5.0
+     download_url: http://llvm.org/releases/3.5.0/clang+llvm-3.5.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz
+@@ -379,17 +386,52 @@
+   gimme:
+     url: https://raw.githubusercontent.com/travis-ci/gimme/v1.0.0/gimme
+     sha256sum: 7283e248184bada52442e01608e107fb27fd3ecfc691d6e632fc2b5dc6e255ce
+-    default_version: 1.6.3
++    default_version: 1.7.4
+     versions:
+-    - 1.6.3
++    - 1.7.4
+     install_user: travis
+     install_user_home: "/home/travis"
+     debug: false
++  haskell_ghc_versions:
++  - 7.0.4
++  - 7.4.2
++  - 7.6.3
++  - 7.8.4
++  - 7.10.3
++  - 8.0.2
++  haskell_cabal_versions:
++  - '1.16'
++  - '1.18'
++  - '1.20'
++  - '1.22'
++  - '1.24'
++  haskell_default_ghc: 7.6.3
++  haskell_default_cabal: '1.18'
++  gradle_version: 3.2.1
++  gradle_url: https://services.gradle.org/distributions/gradle-3.2.1-bin.zip
++  gradle_checksum: 9843a3654d3e57dce54db06d05f18b664b95c22bf90c6becccb61fc63ce60689
+   lein_url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+   sysctl_kernel_shmmax: 45794432
+   sysctl_disable_ipv6: true
+   wget:
+     version: '1.18'
++  maven_url: https://www.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
++  maven_version: 3.3.9
++  maven_checksum: 6e3e9c949ab4695a204f74038717aa7b2689b1be94875899ac1b3fe42800ff82
++  maven_binaries:
++  - bin/m2.conf
++  - bin/mvn
++  - bin/mvn.cmd
++  - bin/mvnDebug
++  - bin/mvnDebug.cmd
++  - bin/mvnyjp
++  shellcheck_url: https://s3.amazonaws.com/travis-blue-public/binaries/ubuntu/14.04/x86_64/shellcheck-0.4.5.tar.bz2
++  shellcheck_version: 0.4.5
++  shellcheck_checksum: 82397d9993d01daee52cebb672e782c596dc7ec928a199c709a20bd24c2941c9
++  shellcheck_binaries:
++  - shellcheck
++  shfmt_url: https://github.com/mvdan/sh/releases/download/v1.0.0/shfmt_v1.0.0_linux_amd64
++  shfmt_checksum: 172d2cf2d7d71191b7b0cd0d7169d703475825cdd270a6982899a349dcd98588
+   yarn_url: https://yarnpkg.com/downloads/0.17.8/yarn-v0.17.8.tar.gz
+   yarn_version: 0.17.8
+   yarn_checksum: b54e762e2a54f1fb23c6b0f9c239c3791aae05aface5ea0d6498f2a7979b541c
+@@ -424,42 +466,18 @@
+     install_jce_unlimited: true
+     jvm_name: java-9-oracle
+     pinned_release: 
+-postgresql:
+-  default_version: '9.2'
+-  alternate_versions:
+-  - '9.3'
+-  - '9.4'
+-  - '9.5'
+-  - '9.6'
+-  enabled: true
+-  port: 5432
+-  ssl: true
+-  max_connections: 255
+-  fsync: false
+-  full_page_writes: false
+-  client_min_messages: error
+-  data_on_ramfs: true
+-  data_dir: "/var/ramfs/postgresql"
+-  contrib_modules: true
+-  client_packages:
+-  - postgresql-client
+-  - libpq-dev
+-  postgis_version: '2.3'
+-  superusers:
+-  - travis
+-  - rails
+ travis_docker:
+-  version: 1.12.3-0~trusty
++  version: 1.12.6-0~ubuntu-trusty
+   users:
+   - travis
+   compose:
+-    url: https://github.com/docker/compose/releases/download/1.8.1/docker-compose-Linux-x86_64
+-    sha256sum: d9c19bfd39ccd8bf7168c2afefb6a2cbd77d299c4d61531a220f6803ec6b701a
++    url: https://github.com/docker/compose/releases/download/1.9.0/docker-compose-Linux-x86_64
++    sha256sum: eeca988428d29534fecdff2768fa2e8c293b812b1c77da8ab5daf7f441c92e5b
+   update_grub: true
+   binary:
+-    url: https://get.docker.com/builds/Linux/x86_64/docker-1.12.3.tgz
+-    version: 1.12.3
+-    checksum: 626601deb41d9706ac98da23f673af6c0d4631c4d194a677a9a1a07d7219fa0f
++    url: https://get.docker.com/builds/Linux/x86_64/docker-1.12.6.tgz
++    version: 1.12.6
++    checksum: cadc6025c841e034506703a06cf54204e51d0cadfae4bae62628ac648d82efdd
+     binaries:
+     - docker
+     - docker-containerd
+@@ -473,10 +491,10 @@
+     PACKER_BUILDER_TYPE: googlecompute
+     PACKER_BUILD_NAME: googlecompute
+     PACKER_TEMPLATES_BRANCH: master
+-    PACKER_TEMPLATES_SHA: 0f241c1
++    PACKER_TEMPLATES_SHA: 294c7d9
+     TRAVIS_COOKBOOKS_BRANCH: ''
+     TRAVIS_COOKBOOKS_DIR: "/tmp/chef-stuff/travis-cookbooks"
+-    TRAVIS_COOKBOOKS_SHA: 998099c
++    TRAVIS_COOKBOOKS_SHA: 9ac3e46
+   job_board:
+     languages:
+     - __connie__
+@@ -497,102 +515,504 @@
+     - ruby_interpreter
+     stack: connie
+   packages:
++  - acpid
++  - adduser
++  - apparmor
++  - apport
++  - apport-symptoms
++  - apt
+   - apt-transport-https
++  - apt-utils
++  - apt-xapian-index
++  - aptitude
++  - aptitude-common
++  - at
+   - autoconf
+   - automake
++  - base-files
++  - base-passwd
+   - bash
++  - bash-completion
+   - bc
++  - bind9-host
+   - binutils-doc
+   - bison
+   - bsdmainutils
++  - bsdutils
+   - btrfs-tools
+   - build-essential
++  - busybox-initramfs
++  - busybox-static
++  - byobu
+   - bzip2
+   - bzr
+   - ca-certificates
+   - ccache
++  - command-not-found
++  - command-not-found-data
++  - console-setup
++  - coreutils
++  - cpio
++  - crda
+   - cron
++  - cryptsetup
++  - cryptsetup-bin
+   - curl
++  - dash
++  - debconf
++  - debconf-i18n
++  - debianutils
++  - dh-python
++  - diffutils
++  - dmidecode
++  - dmsetup
++  - dnsutils
+   - dosemu
++  - dosfstools
++  - dpkg
++  - e2fslibs:amd64
++  - e2fsprogs
++  - eatmydata
++  - ed
++  - eject
++  - emacs
++  - emacs23-nox
++  - ethtool
++  - file
++  - findutils
+   - flex
++  - fonts-ubuntu-font-family-console
++  - friendly-recovery
++  - ftp
++  - fuse
+   - gawk
+   - gcc
++  - gcc-4.8-base:amd64
++  - gcc-4.9-base:amd64
++  - gdisk
++  - geoip-database
+   - gettext
++  - gettext-base
++  - gir1.2-glib-2.0
+   - git
++  - gnupg
+   - gnupg2
++  - gpgv
++  - grep
++  - groff-base
++  - grub-common
++  - grub-gfxpayload-lists
++  - grub-pc
++  - grub-pc-bin
++  - grub2-common
+   - gzip
+   - haveged
++  - hdparm
++  - hostname
++  - ifupdown
+   - imagemagick
++  - info
++  - init-system-helpers
++  - initramfs-tools
++  - initramfs-tools-bin
++  - initscripts
++  - insserv
++  - install-info
++  - iproute2
+   - iptables
++  - iputils-ping
++  - iputils-tracepath
++  - irqbalance
++  - isc-dhcp-client
++  - isc-dhcp-common
++  - iso-codes
++  - kbd
++  - keyboard-configuration
++  - klibc-utils
++  - kmod
++  - krb5-locales
+   - language-pack-en
++  - laptop-detect
+   - lemon
++  - less
++  - libacl1:amd64
++  - libapparmor-perl
++  - libapparmor1:amd64
++  - libapt-inst1.5:amd64
++  - libapt-pkg4.12:amd64
++  - libarchive-extract-perl
++  - libasn1-8-heimdal:amd64
++  - libasprintf0c2:amd64
++  - libattr1:amd64
++  - libaudit-common
++  - libaudit1:amd64
++  - libbind9-90
++  - libblkid1:amd64
++  - libboost-iostreams1.54.0:amd64
++  - libbsd0:amd64
++  - libbz2-1.0:amd64
+   - libbz2-dev
++  - libc-bin
+   - libc-client2007e-dev
++  - libc6:amd64
++  - libcap-ng0
++  - libcap2-bin
++  - libcap2:amd64
++  - libcgmanager0:amd64
++  - libck-connector0:amd64
++  - libclass-accessor-perl
++  - libcomerr2:amd64
++  - libcryptsetup4
++  - libcurl3-gnutls:amd64
++  - libcurl3:amd64
+   - libcurl4-gnutls-dev
++  - libcwidget3
++  - libdb5.3:amd64
++  - libdbus-1-3:amd64
++  - libdbus-glib-1-2:amd64
++  - libdebconfclient0:amd64
++  - libdevmapper1.02.1:amd64
++  - libdns100
++  - libdrm2:amd64
++  - libdumbnet1
++  - libedit2:amd64
++  - libelf1:amd64
++  - libept1.4.12:amd64
++  - libestr0
+   - libevent-2.0-5
++  - libevent-2.0-5:amd64
+   - libexpat1-dev
++  - libexpat1:amd64
+   - libffi-dev
++  - libffi6:amd64
+   - libfreetype6-dev
++  - libfreetype6:amd64
++  - libfribidi0:amd64
++  - libfuse2:amd64
++  - libgc1c2:amd64
++  - libgcc1:amd64
++  - libgcrypt11:amd64
+   - libgdbm-dev
++  - libgdbm3:amd64
++  - libgeoip1:amd64
++  - libgirepository-1.0-1
++  - libgl1-mesa-glx
++  - libglib2.0-0:amd64
++  - libglib2.0-data
+   - libgmp3-dev
++  - libgnutls-openssl27:amd64
++  - libgnutls26:amd64
++  - libgpg-error0:amd64
++  - libgpm2:amd64
++  - libgssapi-krb5-2:amd64
++  - libgssapi3-heimdal:amd64
++  - libhcrypto4-heimdal:amd64
++  - libheimbase1-heimdal:amd64
++  - libheimntlm0-heimdal:amd64
++  - libhx509-5-heimdal:amd64
+   - libicu-dev
++  - libicu52:amd64
++  - libidn11:amd64
++  - libio-string-perl
++  - libisc95
++  - libisccc90
++  - libisccfg90
+   - libjpeg8-dev
++  - libjson-c2:amd64
++  - libjson0:amd64
++  - libk5crypto3:amd64
++  - libkeyutils1:amd64
++  - libklibc
++  - libkmod2:amd64
++  - libkrb5-26-heimdal:amd64
++  - libkrb5-3:amd64
+   - libkrb5-dev
++  - libkrb5support0:amd64
+   - libldap-2.4-2
++  - libldap-2.4-2:amd64
+   - libldap2-dev
++  - liblocale-gettext-perl
++  - liblockfile-bin
++  - liblockfile1:amd64
++  - liblog-message-simple-perl
+   - libltdl-dev
++  - liblwres90
++  - liblzma5:amd64
++  - libmagic1:amd64
+   - libmagickwand-dev
+   - libmcrypt-dev
+   - libmhash-dev
++  - libmodule-pluggable-perl
++  - libmount1:amd64
++  - libmpdec2:amd64
+   - libmysqlclient-dev
+   - libncurses5-dev
++  - libncurses5:amd64
+   - libncursesw5-dev
++  - libncursesw5:amd64
++  - libnewt0.52:amd64
++  - libnfnetlink0:amd64
++  - libnih-dbus1:amd64
++  - libnih1:amd64
++  - libnl-3-200:amd64
++  - libnl-genl-3-200:amd64
++  - libnuma1:amd64
++  - libopts25:amd64
+   - libossp-uuid-dev
++  - libp11-kit0:amd64
++  - libpam-cap:amd64
++  - libpam-modules-bin
++  - libpam-modules:amd64
++  - libpam-runtime
++  - libpam0g:amd64
++  - libparse-debianchangelog-perl
++  - libparted0debian1:amd64
++  - libpcap0.8:amd64
++  - libpci3:amd64
++  - libpcre3:amd64
++  - libpipeline1:amd64
++  - libplymouth2:amd64
++  - libpng12-0:amd64
+   - libpng12-dev
++  - libpod-latex-perl
++  - libpopt0:amd64
+   - libpq-dev
++  - libprocps3:amd64
++  - libpython-stdlib:amd64
++  - libpython2.7-minimal:amd64
++  - libpython2.7-stdlib:amd64
++  - libpython2.7:amd64
++  - libpython3-stdlib:amd64
++  - libpython3.4-minimal:amd64
++  - libpython3.4-stdlib:amd64
+   - libqt4-dev
+   - libreadline-dev
+   - libreadline6
++  - libreadline6:amd64
++  - libroken18-heimdal:amd64
++  - librtmp0:amd64
++  - libsasl2-2:amd64
+   - libsasl2-dev
++  - libsasl2-modules-db:amd64
++  - libsasl2-modules:amd64
++  - libselinux1:amd64
++  - libsemanage-common
++  - libsemanage1:amd64
++  - libsepol1:amd64
++  - libsigc++-2.0-0c2a:amd64
++  - libsigsegv2:amd64
++  - libslang2:amd64
++  - libsqlite3-0:amd64
+   - libsqlite3-dev
++  - libss2:amd64
+   - libssl-dev
+   - libssl0.9.8
++  - libssl1.0.0:amd64
++  - libstdc++6:amd64
++  - libsub-name-perl
+   - libt1-dev
++  - libtasn1-6:amd64
++  - libterm-ui-perl
++  - libtext-charwidth-perl
++  - libtext-iconv-perl
++  - libtext-soundex-perl
++  - libtext-wrapi18n-perl
+   - libtidy-dev
++  - libtimedate-perl
++  - libtinfo5:amd64
+   - libtool
++  - libudev1:amd64
++  - libusb-0.1-4:amd64
++  - libusb-1.0-0:amd64
++  - libustr-1.0-1:amd64
++  - libuuid1:amd64
++  - libwind0-heimdal:amd64
++  - libwrap0:amd64
++  - libx11-6:amd64
++  - libx11-data
++  - libxapian22
++  - libxau6:amd64
++  - libxcb1:amd64
++  - libxdmcp6:amd64
++  - libxext6:amd64
+   - libxml2-dev
++  - libxml2:amd64
++  - libxmuu1:amd64
+   - libxslt1-dev
++  - libxtables10
+   - libyaml-0-2
++  - libyaml-0-2:amd64
+   - libyaml-dev
++  - linux-firmware
++  - locales
++  - lockfile-progs
++  - login
++  - logrotate
++  - lsb-base
++  - lsb-release
++  - lshw
+   - lsof
++  - ltrace
+   - lvm2
++  - makedev
++  - man-db
++  - manpages
++  - mawk
+   - md5deep
+   - mercurial
++  - mime-support
+   - mingw32
++  - mlocate
++  - module-init-tools
++  - mount
++  - mountall
++  - mtr-tiny
++  - multiarch-support
+   - mysql-client
++  - nano
++  - ncurses-base
++  - ncurses-bin
++  - ncurses-term
++  - net-tools
++  - netbase
+   - netcat-openbsd
++  - ntfs-3g
++  - ntp
++  - ntpdate
++  - open-vm-tools
++  - openssh-client
++  - openssh-server
++  - openssh-sftp-server
+   - openssl
++  - os-prober
++  - overlayroot
++  - parted
++  - passwd
++  - patch
++  - pciutils
+   - perl
++  - perl-base
++  - perl-modules
+   - pkg-config
++  - plymouth
++  - plymouth-theme-ubuntu-text
++  - pollinate
+   - postgresql-client
++  - powermgmt-base
++  - procps
++  - psmisc
+   - python
++  - python-apt
++  - python-apt-common
++  - python-boto
++  - python-chardet
++  - python-cheetah
++  - python-configobj
++  - python-debian
++  - python-gdbm
++  - python-json-pointer
++  - python-jsonpatch
++  - python-minimal
++  - python-oauth
++  - python-openssl
++  - python-pam
++  - python-pkg-resources
++  - python-prettytable
++  - python-pycurl
++  - python-requests
++  - python-serial
++  - python-six
++  - python-twisted-bin
++  - python-twisted-core
++  - python-twisted-names
++  - python-twisted-web
++  - python-urllib3
++  - python-xapian
++  - python-yaml
++  - python-zope.interface
++  - python2.7
++  - python2.7-minimal
++  - python3
++  - python3-apport
++  - python3-apt
++  - python3-commandnotfound
++  - python3-dbus
++  - python3-distupgrade
++  - python3-gdbm:amd64
++  - python3-gi
++  - python3-minimal
++  - python3-newt
++  - python3-problem-report
++  - python3-pycurl
++  - python3-software-properties
++  - python3-update-manager
++  - python3.4
++  - python3.4-minimal
+   - qt4-qmake
+   - ragel
+   - re2c
++  - readline-common
++  - resolvconf
+   - rsync
++  - rsyslog
+   - ruby2.0
++  - run-one
++  - screen
++  - sed
++  - sensible-utils
++  - sgml-base
++  - shared-mime-info
+   - software-properties-common
+   - sqlite3
++  - ssh-import-id
++  - sshguard
++  - strace
+   - subversion
+   - sudo
++  - sysv-rc
++  - sysvinit-utils
++  - tar
++  - tasksel
++  - tasksel-data
++  - tcpd
++  - tcpdump
++  - telnet
+   - thin-provisioning-tools
++  - time
++  - tmux
++  - tzdata
++  - ubuntu-keyring
++  - ubuntu-minimal
++  - ubuntu-release-upgrader-core
++  - ucf
++  - udev
++  - ufw
++  - unattended-upgrades
+   - unzip
++  - update-manager-core
++  - update-notifier-common
++  - upstart
++  - usbutils
++  - util-linux
++  - uuid-runtime
+   - vim
++  - vim-common
++  - vim-runtime
++  - vim-tiny
++  - w3m
+   - wamerican
+   - wget
++  - whiptail
++  - wireless-regdb
++  - xauth
+   - xfsprogs
++  - xkb-data
++  - xml-core
++  - xz-utils
++  - zerofree
+   - zip
+   - zlib1g-dev
++  - zlib1g:amd64
+   packages_file: "/var/tmp/packages.txt"
+   packer_env_dir: "/.packer-env"
+   job_board_register_yml: "/.job-board-register.yml"
+@@ -601,24 +1021,38 @@
+   prerequisite_packages: []
+   perls: []
+   modules: []
+-pypy:
+-  tarball:
+-    version: '2.3'
+-    arch: amd64
+-    url: https://bitbucket.org/pypy/pypy/downloads/pypy-2.3-linux64.tar.bz2
+-    filename: pypy-2.3-linux64.tar.bz2
+-    dirname: pypy-2.3-linux64
+-    installation_dir: "/usr/local/pypy"
++travis_postgresql:
++  default_version: '9.2'
++  alternate_versions:
++  - '9.3'
++  - '9.4'
++  - '9.5'
++  - '9.6'
++  enabled: true
++  port: 5432
++  ssl: true
++  max_connections: 255
++  fsync: false
++  full_page_writes: false
++  client_min_messages: error
++  contrib_modules: true
++  client_packages:
++  - postgresql-client
++  - libpq-dev
++  postgis_version: '2.3'
++  superusers:
++  - travis
++  - rails
+ travis_python:
+   pyenv:
+-    revision: v1.0.0
++    revision: v1.0.6
+     pythons: []
+     aliases:
+-      2.7.12:
++      2.7.13:
+       - '2.7'
+-      3.5.2:
+-      - '3.5'
+-      pypy-2.6.1:
++      3.6.0:
++      - '3.6'
++      pypy2-5.6.0:
+       - pypy
+   pip:
+     packages:
+@@ -629,7 +1063,7 @@
+       - wheel
+       '2.7':
+       - numpy
+-      '3.5':
++      '3.6':
+       - numpy
+   system:
+     pythons: []
+@@ -640,7 +1074,7 @@
+   gem_url: https://s3.amazonaws.com/travis-system-info/system-info-2.0.3.gem
+   gem_sha256sum: 9d9b7bb90a05610bdda8aee1e8371f24d76e8bc9a75243a0f13cee1e6c7e4058
+   travis_cookbooks_sha: fffffff
+-  cookbooks_sha: 998099c
++  cookbooks_sha: 9ac3e46
+ tags: []
+ travis_phpbuild:
+   prerequisite_recipes: []
+@@ -671,13 +1105,13 @@
+       - LOWER_UP
+       encapsulation: Ethernet
+       addresses:
+-        42:01:0A:F0:00:15:
++        42:01:0A:F0:00:11:
+           family: lladdr
+-        10.240.0.21:
++        10.240.0.17:
+           family: inet
+           prefixlen: '32'
+           netmask: 255.255.255.255
+-          broadcast: 10.240.0.21
++          broadcast: 10.240.0.17
+           scope: Global
+       state: up
+       arp:
+@@ -726,18 +1160,20 @@
+       eth0:
+         tx:
+           queuelen: '1000'
+-          bytes: '591753'
+-          packets: '6911'
++          bytes: '491591'
++          packets: '5660'
+           errors: '0'
+           drop: '0'
+           carrier: '0'
+           collisions: '0'
+         rx:
+-          bytes: '68183895'
+-          packets: '10832'
++          bytes: '67990869'
++          packets: '8202'
+           errors: '0'
+           drop: '0'
+           overrun: '0'
++ipaddress: 10.240.0.17
++macaddress: 42:01:0A:F0:00:11
+ cpu:
+   '0':
+     vendor_id: GenuineIntel
+@@ -745,7 +1181,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '0'
+@@ -807,7 +1243,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '0'
+@@ -869,7 +1305,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '1'
+@@ -931,7 +1367,7 @@
+     model: '45'
+     model_name: Intel(R) Xeon(R) CPU @ 2.60GHz
+     stepping: '7'
+-    mhz: '2599.998'
++    mhz: '2600.000'
+     cache_size: 20480 KB
+     physical_id: '0'
+     core_id: '1'
+@@ -990,42 +1426,10 @@
+   total: 4
+   real: 1
+   cores: 2
+-memory:
+-  swap:
+-    cached: 0kB
+-    total: 0kB
+-    free: 0kB
+-  hugepages:
+-    total: '0'
+-    free: '0'
+-    reserved: '0'
+-    surplus: '0'
+-  total: 15400704kB
+-  free: 14604092kB
+-  buffers: 27236kB
+-  cached: 476788kB
+-  active: 358388kB
+-  inactive: 275484kB
+-  dirty: 154884kB
+-  writeback: 0kB
+-  anon_pages: 129656kB
+-  mapped: 21112kB
+-  slab: 75272kB
+-  slab_reclaimable: 60796kB
+-  slab_unreclaim: 14476kB
+-  page_tables: 3148kB
+-  nfs_unstable: 0kB
+-  bounce: 0kB
+-  commit_limit: 7700352kB
+-  committed_as: 224420kB
+-  vmalloc_total: 34359738367kB
+-  vmalloc_used: 0kB
+-  vmalloc_chunk: 0kB
+-  hugepage_size: 2048kB
+ kernel:
+   name: Linux
+-  release: 4.4.0-51-generic
+-  version: "#72~14.04.1-Ubuntu SMP Thu Nov 24 19:22:30 UTC 2016"
++  release: 4.4.0-59-generic
++  version: "#80~14.04.1-Ubuntu SMP Fri Jan 6 18:02:02 UTC 2017"
+   machine: x86_64
+   processor: x86_64
+   os: GNU/Linux
+@@ -1051,6 +1455,12 @@
+     ppdev:
+       size: '20480'
+       refcount: '0'
++    pvpanic:
++      size: '16384'
++      refcount: '0'
++    i2c_piix4:
++      size: '24576'
++      refcount: '0'
+     input_leds:
+       size: '16384'
+       refcount: '0'
+@@ -1060,8 +1470,8 @@
+     8250_fintek:
+       size: '16384'
+       refcount: '0'
+-    i2c_piix4:
+-      size: '24576'
++    serio_raw:
++      size: '16384'
+       refcount: '0'
+     parport:
+       size: '49152'
+@@ -1069,12 +1479,6 @@
+     mac_hid:
+       size: '16384'
+       refcount: '0'
+-    pvpanic:
+-      size: '16384'
+-      refcount: '0'
+-    serio_raw:
+-      size: '16384'
+-      refcount: '0'
+     crct10dif_pclmul:
+       size: '16384'
+       refcount: '0'
+@@ -1087,6 +1491,9 @@
+     aesni_intel:
+       size: '167936'
+       refcount: '0'
++    psmouse:
++      size: '126976'
++      refcount: '0'
+     aes_x86_64:
+       size: '20480'
+       refcount: '1'
+@@ -1105,2171 +1512,94 @@
+     cryptd:
+       size: '20480'
+       refcount: '3'
+-    psmouse:
+-      size: '126976'
+-      refcount: '0'
+     virtio_scsi:
+       size: '20480'
+       refcount: '1'
+ os: linux
+-os_version: 4.4.0-51-generic
++os_version: 4.4.0-59-generic
+ lsb:
+   id: Ubuntu
++  description: Ubuntu 14.04.5 LTS
+   release: '14.04'
+   codename: trusty
+-  description: Ubuntu 14.04.5 LTS
+ platform: ubuntu
+ platform_version: '14.04'
+ platform_family: debian
+-ipaddress: 10.240.0.21
+-macaddress: 42:01:0A:F0:00:15
+-ohai_time: 1480957946.5311673
++memory:
++  swap:
++    cached: 0kB
++    total: 0kB
++    free: 0kB
++  hugepages:
++    total: '0'
++    free: '0'
++    reserved: '0'
++    surplus: '0'
++  total: 15400624kB
++  free: 14602180kB
++  buffers: 27444kB
++  cached: 477272kB
++  active: 362008kB
++  inactive: 274396kB
++  dirty: 152676kB
++  writeback: 0kB
++  anon_pages: 131600kB
++  mapped: 20920kB
++  slab: 74852kB
++  slab_reclaimable: 60588kB
++  slab_unreclaim: 14264kB
++  page_tables: 3172kB
++  nfs_unstable: 0kB
++  bounce: 0kB
++  commit_limit: 7700312kB
++  committed_as: 224836kB
++  vmalloc_total: 34359738367kB
++  vmalloc_used: 0kB
++  vmalloc_chunk: 0kB
++  hugepage_size: 2048kB
++languages:
++  ruby:
++    platform: x86_64-linux
++    version: 2.3.1
++    release_date: '2016-04-26'
++    target: x86_64-pc-linux-gnu
++    target_cpu: x86_64
++    target_vendor: pc
++    target_os: linux
++    host: x86_64-pc-linux-gnu
++    host_cpu: x86_64
++    host_os: linux-gnu
++    host_vendor: pc
++    bin_dir: "/opt/chef/embedded/bin"
++    ruby_bin: "/opt/chef/embedded/bin/ruby"
++    gems_dir: "/opt/chef/embedded/lib/ruby/gems/2.3.0"
++    gem_bin: "/opt/chef/embedded/bin/gem"
++  perl:
++    version: 5.18.2
++    archname: x86_64-linux-gnu-thread-multi
++  python:
++    version: 2.7.6
++    builddate: Oct 26 2016, 20:30:19
++ohai_time: 1485370706.469502
++sessions:
++  by_session: {}
++  by_user: {}
++machine_id: b4b185893cc9f29fc38cea2e5875477d
+ virtualization:
+   systems: {}
+-command:
+-  ps: ps -ef
+-packages:
+-  accountsservice:
+-    version: 0.6.35-0ubuntu7.3
+-    arch: amd64
+-  acpid:
+-    version: 1:2.0.21-1ubuntu2
+-    arch: amd64
+-  adduser:
+-    version: 3.113+nmu3ubuntu3
+-    arch: all
+-  apparmor:
+-    version: 2.8.95~2430-0ubuntu5.3
+-    arch: amd64
+-  apport:
+-    version: 2.14.1-0ubuntu3.21
+-    arch: all
+-  apport-symptoms:
+-    version: '0.20'
+-    arch: all
+-  apt:
+-    version: 1.0.1ubuntu2.15
+-    arch: amd64
+-  apt-transport-https:
+-    version: 1.0.1ubuntu2.15
+-    arch: amd64
+-  apt-utils:
+-    version: 1.0.1ubuntu2.15
+-    arch: amd64
+-  apt-xapian-index:
+-    version: 0.45ubuntu4
+-    arch: all
+-  aptitude:
+-    version: 0.6.8.2-1ubuntu4
+-    arch: amd64
+-  aptitude-common:
+-    version: 0.6.8.2-1ubuntu4
+-    arch: all
+-  at:
+-    version: 3.1.14-1ubuntu1
+-    arch: amd64
+-  base-files:
+-    version: 7.2ubuntu5.5
+-    arch: amd64
+-  base-passwd:
+-    version: 3.5.33
+-    arch: amd64
+-  bash:
+-    version: 4.3-7ubuntu1.5
+-    arch: amd64
+-  bash-completion:
+-    version: 1:2.1-4ubuntu0.2
+-    arch: all
+-  bc:
+-    version: 1.06.95-8ubuntu1
+-    arch: amd64
+-  bind9-host:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  bsdmainutils:
+-    version: 9.0.5ubuntu1
+-    arch: amd64
+-  bsdutils:
+-    version: 1:2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  busybox-initramfs:
+-    version: 1:1.21.0-1ubuntu1
+-    arch: amd64
+-  busybox-static:
+-    version: 1:1.21.0-1ubuntu1
+-    arch: amd64
+-  byobu:
+-    version: 5.77-0ubuntu1.2
+-    arch: all
+-  bzip2:
+-    version: 1.0.6-5
+-    arch: amd64
+-  ca-certificates:
+-    version: 20160104ubuntu0.14.04.1
+-    arch: all
+-  chef:
+-    version: 12.16.42-1
+-    arch: amd64
+-  cloud-guest-utils:
+-    version: 0.27-0ubuntu9.2
+-    arch: all
+-  cloud-init:
+-    version: 0.7.5-0ubuntu1.20
+-    arch: all
+-  command-not-found:
+-    version: 0.3ubuntu12
+-    arch: all
+-  command-not-found-data:
+-    version: 0.3ubuntu12
+-    arch: amd64
+-  console-setup:
+-    version: 1.70ubuntu8
+-    arch: all
+-  coreutils:
+-    version: 8.21-1ubuntu5.4
+-    arch: amd64
+-  cpio:
+-    version: 2.11+dfsg-1ubuntu1.2
+-    arch: amd64
+-  crda:
+-    version: 1.1.2-1ubuntu2
+-    arch: amd64
+-  cron:
+-    version: 3.0pl1-124ubuntu2
+-    arch: amd64
+-  cryptsetup:
+-    version: 2:1.6.1-1ubuntu1
+-    arch: amd64
+-  cryptsetup-bin:
+-    version: 2:1.6.1-1ubuntu1
+-    arch: amd64
+-  curl:
+-    version: 7.35.0-1ubuntu2.10
+-    arch: amd64
+-  dash:
+-    version: 0.5.7-4ubuntu1
+-    arch: amd64
+-  dbus:
+-    version: 1.6.18-0ubuntu4.4
+-    arch: amd64
+-  debconf:
+-    version: 1.5.51ubuntu2
+-    arch: all
+-  debconf-i18n:
+-    version: 1.5.51ubuntu2
+-    arch: all
+-  debianutils:
+-    version: '4.4'
+-    arch: amd64
+-  dh-python:
+-    version: 1.20140128-1ubuntu8.2
+-    arch: all
+-  diffutils:
+-    version: 1:3.3-1
+-    arch: amd64
+-  dmidecode:
+-    version: 2.12-2
+-    arch: amd64
+-  dmsetup:
+-    version: 2:1.02.77-6ubuntu2
+-    arch: amd64
+-  dnsutils:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  dosfstools:
+-    version: 3.0.26-1ubuntu0.1
+-    arch: amd64
+-  dpkg:
+-    version: 1.17.5ubuntu5.7
+-    arch: amd64
+-  e2fslibs:
+-    version: 1.42.9-3ubuntu1.3
+-    arch: amd64
+-  e2fsprogs:
+-    version: 1.42.9-3ubuntu1.3
+-    arch: amd64
+-  eatmydata:
+-    version: 26-2
+-    arch: amd64
+-  ed:
+-    version: 1.9-2
+-    arch: amd64
+-  eject:
+-    version: 2.1.5+deb1+cvs20081104-13.1
+-    arch: amd64
+-  ethtool:
+-    version: 1:3.13-1
+-    arch: amd64
+-  file:
+-    version: 1:5.14-2ubuntu3.3
+-    arch: amd64
+-  findutils:
+-    version: 4.4.2-7
+-    arch: amd64
+-  fonts-ubuntu-font-family-console:
+-    version: 0.80-0ubuntu6
+-    arch: all
+-  friendly-recovery:
+-    version: 0.2.25
+-    arch: all
+-  ftp:
+-    version: 0.17-28
+-    arch: amd64
+-  fuse:
+-    version: 2.9.2-4ubuntu4.14.04.1
+-    arch: amd64
+-  gawk:
+-    version: 1:4.0.1+dfsg-2.1ubuntu2
+-    arch: amd64
+-  gcc-4.8-base:
+-    version: 4.8.4-2ubuntu1~14.04.3
+-    arch: amd64
+-  gcc-4.9-base:
+-    version: 4.9.3-0ubuntu4
+-    arch: amd64
+-  gce-cloud-config:
+-    version: 1.3.2-0ubuntu1~14.04.0
+-    arch: amd64
+-  gce-daemon:
+-    version: 1.3.2-0ubuntu1~14.04.0
+-    arch: amd64
+-  gce-startup-scripts:
+-    version: 1.3.2-0ubuntu1~14.04.0
+-    arch: amd64
+-  gdisk:
+-    version: 0.8.8-1ubuntu0.1
+-    arch: amd64
+-  geoip-database:
+-    version: 20140313-1
+-    arch: all
+-  gettext-base:
+-    version: 0.18.3.1-1ubuntu3
+-    arch: amd64
+-  gir1.2-glib-2.0:
+-    version: 1.40.0-1ubuntu0.2
+-    arch: amd64
+-  git:
+-    version: 1:1.9.1-1ubuntu0.3
+-    arch: amd64
+-  git-man:
+-    version: 1:1.9.1-1ubuntu0.3
+-    arch: all
+-  gnupg:
+-    version: 1.4.16-1ubuntu2.4
+-    arch: amd64
+-  google-cloud-sdk:
+-    version: 111.0.0-0ubuntu1~14.04.0
+-    arch: all
+-  gpgv:
+-    version: 1.4.16-1ubuntu2.4
+-    arch: amd64
+-  grep:
+-    version: 2.16-1
+-    arch: amd64
+-  groff-base:
+-    version: 1.22.2-5
+-    arch: amd64
+-  grub-common:
+-    version: 2.02~beta2-9ubuntu1.12
+-    arch: amd64
+-  grub-gfxpayload-lists:
+-    version: '0.6'
+-    arch: amd64
+-  grub-pc:
+-    version: 2.02~beta2-9ubuntu1.12
+-    arch: amd64
+-  grub-pc-bin:
+-    version: 2.02~beta2-9ubuntu1.12
+-    arch: amd64
+-  grub2-common:
+-    version: 2.02~beta2-9ubuntu1.12
+-    arch: amd64
+-  gzip:
+-    version: 1.6-3ubuntu1
+-    arch: amd64
+-  hdparm:
+-    version: 9.43-1ubuntu3
+-    arch: amd64
+-  hostname:
+-    version: 3.15ubuntu1
+-    arch: amd64
+-  ifupdown:
+-    version: 0.7.47.2ubuntu4.4
+-    arch: amd64
+-  info:
+-    version: 5.2.0.dfsg.1-2
+-    arch: amd64
+-  init-system-helpers:
+-    version: '1.14'
+-    arch: all
+-  initramfs-tools:
+-    version: 0.103ubuntu4.4
+-    arch: all
+-  initramfs-tools-bin:
+-    version: 0.103ubuntu4.4
+-    arch: amd64
+-  initscripts:
+-    version: 2.88dsf-41ubuntu6.3
+-    arch: amd64
+-  insserv:
+-    version: 1.14.0-5ubuntu2
+-    arch: amd64
+-  install-info:
+-    version: 5.2.0.dfsg.1-2
+-    arch: amd64
+-  iproute2:
+-    version: 3.12.0-2ubuntu1
+-    arch: amd64
+-  iptables:
+-    version: 1.4.21-1ubuntu1
+-    arch: amd64
+-  iputils-ping:
+-    version: 3:20121221-4ubuntu1.1
+-    arch: amd64
+-  iputils-tracepath:
+-    version: 3:20121221-4ubuntu1.1
+-    arch: amd64
+-  irqbalance:
+-    version: 1.0.6-2ubuntu0.14.04.4
+-    arch: amd64
+-  isc-dhcp-client:
+-    version: 4.2.4-7ubuntu12.8
+-    arch: amd64
+-  isc-dhcp-common:
+-    version: 4.2.4-7ubuntu12.8
+-    arch: amd64
+-  iso-codes:
+-    version: 3.52-1
+-    arch: all
+-  kbd:
+-    version: 1.15.5-1ubuntu1
+-    arch: amd64
+-  keyboard-configuration:
+-    version: 1.70ubuntu8
+-    arch: all
+-  klibc-utils:
+-    version: 2.0.3-0ubuntu1.14.04.2
+-    arch: amd64
+-  kmod:
+-    version: 15-0ubuntu6
+-    arch: amd64
+-  krb5-locales:
+-    version: 1.12+dfsg-2ubuntu5.2
+-    arch: all
+-  landscape-client:
+-    version: 14.12-0ubuntu0.14.04
+-    arch: amd64
+-  landscape-common:
+-    version: 14.12-0ubuntu0.14.04
+-    arch: amd64
+-  language-selector-common:
+-    version: 0.129.3
+-    arch: all
+-  laptop-detect:
+-    version: 0.13.7ubuntu2
+-    arch: amd64
+-  less:
+-    version: 458-2
+-    arch: amd64
+-  libaccountsservice0:
+-    version: 0.6.35-0ubuntu7.3
+-    arch: amd64
+-  libacl1:
+-    version: 2.2.52-1
+-    arch: amd64
+-  libapparmor-perl:
+-    version: 2.8.95~2430-0ubuntu5.3
+-    arch: amd64
+-  libapparmor1:
+-    version: 2.8.95~2430-0ubuntu5.3
+-    arch: amd64
+-  libapt-inst1.5:
+-    version: 1.0.1ubuntu2.15
+-    arch: amd64
+-  libapt-pkg4.12:
+-    version: 1.0.1ubuntu2.15
+-    arch: amd64
+-  libarchive-extract-perl:
+-    version: 0.70-1
+-    arch: all
+-  libasn1-8-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libasprintf0c2:
+-    version: 0.18.3.1-1ubuntu3
+-    arch: amd64
+-  libattr1:
+-    version: 1:2.4.47-1ubuntu1
+-    arch: amd64
+-  libaudit-common:
+-    version: 1:2.3.2-2ubuntu1
+-    arch: all
+-  libaudit1:
+-    version: 1:2.3.2-2ubuntu1
+-    arch: amd64
+-  libbind9-90:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  libblkid1:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  libboost-iostreams1.54.0:
+-    version: 1.54.0-4ubuntu3.1
+-    arch: amd64
+-  libbsd0:
+-    version: 0.6.0-2ubuntu1
+-    arch: amd64
+-  libbz2-1.0:
+-    version: 1.0.6-5
+-    arch: amd64
+-  libc-bin:
+-    version: 2.19-0ubuntu6.9
+-    arch: amd64
+-  libc6:
+-    version: 2.19-0ubuntu6.9
+-    arch: amd64
+-  libcap-ng0:
+-    version: 0.7.3-1ubuntu2
+-    arch: amd64
+-  libcap2:
+-    version: 1:2.24-0ubuntu2
+-    arch: amd64
+-  libcap2-bin:
+-    version: 1:2.24-0ubuntu2
+-    arch: amd64
+-  libcgmanager0:
+-    version: 0.24-0ubuntu7.5
+-    arch: amd64
+-  libck-connector0:
+-    version: 0.4.5-3.1ubuntu2
+-    arch: amd64
+-  libclass-accessor-perl:
+-    version: 0.34-1
+-    arch: all
+-  libcomerr2:
+-    version: 1.42.9-3ubuntu1.3
+-    arch: amd64
+-  libcryptsetup4:
+-    version: 2:1.6.1-1ubuntu1
+-    arch: amd64
+-  libcurl3:
+-    version: 7.35.0-1ubuntu2.10
+-    arch: amd64
+-  libcurl3-gnutls:
+-    version: 7.35.0-1ubuntu2.10
+-    arch: amd64
+-  libcwidget3:
+-    version: 0.5.16-3.5ubuntu1
+-    arch: amd64
+-  libdb5.3:
+-    version: 5.3.28-3ubuntu3
+-    arch: amd64
+-  libdbus-1-3:
+-    version: 1.6.18-0ubuntu4.4
+-    arch: amd64
+-  libdbus-glib-1-2:
+-    version: 0.100.2-1
+-    arch: amd64
+-  libdebconfclient0:
+-    version: 0.187ubuntu1
+-    arch: amd64
+-  libdevmapper1.02.1:
+-    version: 2:1.02.77-6ubuntu2
+-    arch: amd64
+-  libdns100:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  libdrm2:
+-    version: 2.4.67-1ubuntu0.14.04.1
+-    arch: amd64
+-  libdumbnet1:
+-    version: 1.12-4build1
+-    arch: amd64
+-  libedit2:
+-    version: 3.1-20130712-2
+-    arch: amd64
+-  libelf1:
+-    version: 0.158-0ubuntu5.2
+-    arch: amd64
+-  libept1.4.12:
+-    version: 1.0.12
+-    arch: amd64
+-  liberror-perl:
+-    version: 0.17-1.1
+-    arch: all
+-  libestr0:
+-    version: 0.1.9-0ubuntu2
+-    arch: amd64
+-  libevent-2.0-5:
+-    version: 2.0.21-stable-1ubuntu1.14.04.1
+-    arch: amd64
+-  libexpat1:
+-    version: 2.1.0-4ubuntu1.3
+-    arch: amd64
+-  libffi6:
+-    version: 3.1~rc1+r3.0.13-12ubuntu0.1
+-    arch: amd64
+-  libfreetype6:
+-    version: 2.5.2-1ubuntu2.5
+-    arch: amd64
+-  libfribidi0:
+-    version: 0.19.6-1
+-    arch: amd64
+-  libfuse2:
+-    version: 2.9.2-4ubuntu4.14.04.1
+-    arch: amd64
+-  libgc1c2:
+-    version: 1:7.2d-5ubuntu2
+-    arch: amd64
+-  libgcc1:
+-    version: 1:4.9.3-0ubuntu4
+-    arch: amd64
+-  libgck-1-0:
+-    version: 3.10.1-1
+-    arch: amd64
+-  libgcr-3-common:
+-    version: 3.10.1-1
+-    arch: all
+-  libgcr-base-3-1:
+-    version: 3.10.1-1
+-    arch: amd64
+-  libgcrypt11:
+-    version: 1.5.3-2ubuntu4.4
+-    arch: amd64
+-  libgdbm3:
+-    version: 1.8.3-12build1
+-    arch: amd64
+-  libgeoip1:
+-    version: 1.6.0-1
+-    arch: amd64
+-  libgirepository-1.0-1:
+-    version: 1.40.0-1ubuntu0.2
+-    arch: amd64
+-  libglib2.0-0:
+-    version: 2.40.2-0ubuntu1
+-    arch: amd64
+-  libglib2.0-data:
+-    version: 2.40.2-0ubuntu1
+-    arch: all
+-  libgnutls-openssl27:
+-    version: 2.12.23-12ubuntu2.5
+-    arch: amd64
+-  libgnutls26:
+-    version: 2.12.23-12ubuntu2.5
+-    arch: amd64
+-  libgpg-error0:
+-    version: 1.12-0.2ubuntu1
+-    arch: amd64
+-  libgpm2:
+-    version: 1.20.4-6.1
+-    arch: amd64
+-  libgssapi-krb5-2:
+-    version: 1.12+dfsg-2ubuntu5.2
+-    arch: amd64
+-  libgssapi3-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libhcrypto4-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libheimbase1-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libheimntlm0-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libhx509-5-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libicu52:
+-    version: 52.1-3ubuntu0.4
+-    arch: amd64
+-  libidn11:
+-    version: 1.28-1ubuntu2.1
+-    arch: amd64
+-  libio-string-perl:
+-    version: 1.08-3
+-    arch: all
+-  libisc95:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  libisccc90:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  libisccfg90:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  libjson-c2:
+-    version: 0.11-3ubuntu1.2
+-    arch: amd64
+-  libjson0:
+-    version: 0.11-3ubuntu1.2
+-    arch: amd64
+-  libk5crypto3:
+-    version: 1.12+dfsg-2ubuntu5.2
+-    arch: amd64
+-  libkeyutils1:
+-    version: 1.5.6-1
+-    arch: amd64
+-  libklibc:
+-    version: 2.0.3-0ubuntu1.14.04.2
+-    arch: amd64
+-  libkmod2:
+-    version: 15-0ubuntu6
+-    arch: amd64
+-  libkrb5-26-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libkrb5-3:
+-    version: 1.12+dfsg-2ubuntu5.2
+-    arch: amd64
+-  libkrb5support0:
+-    version: 1.12+dfsg-2ubuntu5.2
+-    arch: amd64
+-  libldap-2.4-2:
+-    version: 2.4.31-1+nmu2ubuntu8.3
+-    arch: amd64
+-  liblocale-gettext-perl:
+-    version: 1.05-7build3
+-    arch: amd64
+-  liblockfile-bin:
+-    version: 1.09-6ubuntu1
+-    arch: amd64
+-  liblockfile1:
+-    version: 1.09-6ubuntu1
+-    arch: amd64
+-  liblog-message-simple-perl:
+-    version: 0.10-1
+-    arch: all
+-  liblwres90:
+-    version: 1:9.9.5.dfsg-3ubuntu0.10
+-    arch: amd64
+-  liblzma5:
+-    version: 5.1.1alpha+20120614-2ubuntu2
+-    arch: amd64
+-  libmagic1:
+-    version: 1:5.14-2ubuntu3.3
+-    arch: amd64
+-  libmodule-pluggable-perl:
+-    version: 5.1-1
+-    arch: all
+-  libmount1:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  libmpdec2:
+-    version: 2.4.0-6
+-    arch: amd64
+-  libncurses5:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: amd64
+-  libncursesw5:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: amd64
+-  libnewt0.52:
+-    version: 0.52.15-2ubuntu5
+-    arch: amd64
+-  libnfnetlink0:
+-    version: 1.0.1-2
+-    arch: amd64
+-  libnih-dbus1:
+-    version: 1.0.3-4ubuntu25
+-    arch: amd64
+-  libnih1:
+-    version: 1.0.3-4ubuntu25
+-    arch: amd64
+-  libnl-3-200:
+-    version: 3.2.21-1ubuntu4
+-    arch: amd64
+-  libnl-genl-3-200:
+-    version: 3.2.21-1ubuntu4
+-    arch: amd64
+-  libnuma1:
+-    version: 2.0.9~rc5-1ubuntu3.14.04.2
+-    arch: amd64
+-  libopts25:
+-    version: 1:5.18-2ubuntu2
+-    arch: amd64
+-  libp11-kit0:
+-    version: 0.20.2-2ubuntu2
+-    arch: amd64
+-  libpam-cap:
+-    version: 1:2.24-0ubuntu2
+-    arch: amd64
+-  libpam-modules:
+-    version: 1.1.8-1ubuntu2.2
+-    arch: amd64
+-  libpam-modules-bin:
+-    version: 1.1.8-1ubuntu2.2
+-    arch: amd64
+-  libpam-runtime:
+-    version: 1.1.8-1ubuntu2.2
+-    arch: all
+-  libpam-systemd:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  libpam0g:
+-    version: 1.1.8-1ubuntu2.2
+-    arch: amd64
+-  libparse-debianchangelog-perl:
+-    version: 1.2.0-1ubuntu1
+-    arch: all
+-  libparted0debian1:
+-    version: 2.3-19ubuntu1.14.04.1
+-    arch: amd64
+-  libpcap0.8:
+-    version: 1.5.3-2
+-    arch: amd64
+-  libpci3:
+-    version: 1:3.2.1-1ubuntu5.1
+-    arch: amd64
+-  libpcre3:
+-    version: 1:8.31-2ubuntu2.3
+-    arch: amd64
+-  libpipeline1:
+-    version: 1.3.0-1
+-    arch: amd64
+-  libplymouth2:
+-    version: 0.8.8-0ubuntu17.1
+-    arch: amd64
+-  libpng12-0:
+-    version: 1.2.50-1ubuntu2.14.04.2
+-    arch: amd64
+-  libpod-latex-perl:
+-    version: 0.61-1
+-    arch: all
+-  libpolkit-agent-1-0:
+-    version: 0.105-4ubuntu3.14.04.1
+-    arch: amd64
+-  libpolkit-backend-1-0:
+-    version: 0.105-4ubuntu3.14.04.1
+-    arch: amd64
+-  libpolkit-gobject-1-0:
+-    version: 0.105-4ubuntu3.14.04.1
+-    arch: amd64
+-  libpopt0:
+-    version: 1.16-8ubuntu1
+-    arch: amd64
+-  libprocps3:
+-    version: 1:3.3.9-1ubuntu2.2
+-    arch: amd64
+-  libpython-stdlib:
+-    version: 2.7.5-5ubuntu3
+-    arch: amd64
+-  libpython2.7:
+-    version: 2.7.6-8ubuntu0.3
+-    arch: amd64
+-  libpython2.7-minimal:
+-    version: 2.7.6-8ubuntu0.3
+-    arch: amd64
+-  libpython2.7-stdlib:
+-    version: 2.7.6-8ubuntu0.3
+-    arch: amd64
+-  libpython3-stdlib:
+-    version: 3.4.0-0ubuntu2
+-    arch: amd64
+-  libpython3.4-minimal:
+-    version: 3.4.3-1ubuntu1~14.04.5
+-    arch: amd64
+-  libpython3.4-stdlib:
+-    version: 3.4.3-1ubuntu1~14.04.5
+-    arch: amd64
+-  libreadline6:
+-    version: 6.3-4ubuntu2
+-    arch: amd64
+-  libroken18-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  librtmp0:
+-    version: 2.4+20121230.gitdf6c518-1
+-    arch: amd64
+-  libsasl2-2:
+-    version: 2.1.25.dfsg1-17build1
+-    arch: amd64
+-  libsasl2-modules:
+-    version: 2.1.25.dfsg1-17build1
+-    arch: amd64
+-  libsasl2-modules-db:
+-    version: 2.1.25.dfsg1-17build1
+-    arch: amd64
+-  libselinux1:
+-    version: 2.2.2-1ubuntu0.1
+-    arch: amd64
+-  libsemanage-common:
+-    version: 2.2-1
+-    arch: all
+-  libsemanage1:
+-    version: 2.2-1
+-    arch: amd64
+-  libsepol1:
+-    version: 2.2-1ubuntu0.1
+-    arch: amd64
+-  libsigc++-2.0-0c2a:
+-    version: 2.2.10-0.2ubuntu2
+-    arch: amd64
+-  libsigsegv2:
+-    version: 2.10-2
+-    arch: amd64
+-  libslang2:
+-    version: 2.2.4-15ubuntu1
+-    arch: amd64
+-  libsqlite3-0:
+-    version: 3.8.2-1ubuntu2.1
+-    arch: amd64
+-  libss2:
+-    version: 1.42.9-3ubuntu1.3
+-    arch: amd64
+-  libssl1.0.0:
+-    version: 1.0.1f-1ubuntu2.21
+-    arch: amd64
+-  libstdc++6:
+-    version: 4.8.4-2ubuntu1~14.04.3
+-    arch: amd64
+-  libsub-name-perl:
+-    version: 0.05-1build4
+-    arch: amd64
+-  libsystemd-daemon0:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  libsystemd-login0:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  libtasn1-6:
+-    version: 3.4-3ubuntu0.4
+-    arch: amd64
+-  libterm-ui-perl:
+-    version: 0.42-1
+-    arch: all
+-  libtext-charwidth-perl:
+-    version: 0.04-7build3
+-    arch: amd64
+-  libtext-iconv-perl:
+-    version: 1.7-5build2
+-    arch: amd64
+-  libtext-soundex-perl:
+-    version: 3.4-1build1
+-    arch: amd64
+-  libtext-wrapi18n-perl:
+-    version: 0.06-7
+-    arch: all
+-  libtimedate-perl:
+-    version: 2.3000-1
+-    arch: all
+-  libtinfo5:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: amd64
+-  libudev1:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  libusb-0.1-4:
+-    version: 2:0.1.12-23.3ubuntu1
+-    arch: amd64
+-  libusb-1.0-0:
+-    version: 2:1.0.17-1ubuntu2
+-    arch: amd64
+-  libustr-1.0-1:
+-    version: 1.0.4-3ubuntu2
+-    arch: amd64
+-  libuuid1:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  libwind0-heimdal:
+-    version: 1.6~git20131207+dfsg-1ubuntu1.1
+-    arch: amd64
+-  libwrap0:
+-    version: 7.6.q-25
+-    arch: amd64
+-  libx11-6:
+-    version: 2:1.6.2-1ubuntu2
+-    arch: amd64
+-  libx11-data:
+-    version: 2:1.6.2-1ubuntu2
+-    arch: all
+-  libxapian22:
+-    version: 1.2.16-2ubuntu1
+-    arch: amd64
+-  libxau6:
+-    version: 1:1.0.8-1
+-    arch: amd64
+-  libxcb1:
+-    version: 1.10-2ubuntu1
+-    arch: amd64
+-  libxdmcp6:
+-    version: 1:1.1.1-1
+-    arch: amd64
+-  libxext6:
+-    version: 2:1.3.2-1ubuntu0.0.14.04.1
+-    arch: amd64
+-  libxml2:
+-    version: 2.9.1+dfsg1-3ubuntu4.8
+-    arch: amd64
+-  libxmuu1:
+-    version: 2:1.1.1-1
+-    arch: amd64
+-  libxtables10:
+-    version: 1.4.21-1ubuntu1
+-    arch: amd64
+-  libyaml-0-2:
+-    version: 0.1.4-3ubuntu3.1
+-    arch: amd64
+-  linux-firmware:
+-    version: 1.127.22
+-    arch: all
+-  linux-image-4.4.0-51-generic:
+-    version: 4.4.0-51.72~14.04.1
+-    arch: amd64
+-  linux-image-extra-4.4.0-51-generic:
+-    version: 4.4.0-51.72~14.04.1
+-    arch: amd64
+-  linux-image-generic-lts-xenial:
+-    version: 4.4.0.51.38
+-    arch: amd64
+-  locales:
+-    version: 2.13+git20120306-12.1
+-    arch: all
+-  lockfile-progs:
+-    version: 0.1.17
+-    arch: amd64
+-  login:
+-    version: 1:4.1.5.1-1ubuntu9.2
+-    arch: amd64
+-  logrotate:
+-    version: 3.8.7-1ubuntu1
+-    arch: amd64
+-  lsb-base:
+-    version: 4.1+Debian11ubuntu6.2
+-    arch: all
+-  lsb-release:
+-    version: 4.1+Debian11ubuntu6.2
+-    arch: all
+-  lshw:
+-    version: 02.16-2ubuntu1.3
+-    arch: amd64
+-  lsof:
+-    version: 4.86+dfsg-1ubuntu2
+-    arch: amd64
+-  ltrace:
+-    version: 0.7.3-4ubuntu5.1
+-    arch: amd64
+-  makedev:
+-    version: 2.3.1-93ubuntu1
+-    arch: all
+-  man-db:
+-    version: 2.6.7.1-1ubuntu1
+-    arch: amd64
+-  manpages:
+-    version: 3.54-1ubuntu1
+-    arch: all
+-  mawk:
+-    version: 1.3.3-17ubuntu2
+-    arch: amd64
+-  mime-support:
+-    version: 3.54ubuntu1.1
+-    arch: all
+-  mlocate:
+-    version: 0.26-1ubuntu1
+-    arch: amd64
+-  module-init-tools:
+-    version: 15-0ubuntu6
+-    arch: all
+-  mount:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  mountall:
+-    version: '2.53'
+-    arch: amd64
+-  mtr-tiny:
+-    version: 0.85-2
+-    arch: amd64
+-  multiarch-support:
+-    version: 2.19-0ubuntu6.9
+-    arch: amd64
+-  nano:
+-    version: 2.2.6-1ubuntu1
+-    arch: amd64
+-  ncurses-base:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: all
+-  ncurses-bin:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: amd64
+-  ncurses-term:
+-    version: 5.9+20140118-1ubuntu1
+-    arch: all
+-  net-tools:
+-    version: 1.60-25ubuntu2.1
+-    arch: amd64
+-  netbase:
+-    version: '5.2'
+-    arch: all
+-  netcat-openbsd:
+-    version: 1.105-7ubuntu1
+-    arch: amd64
+-  ntfs-3g:
+-    version: 1:2013.1.13AR.1-2ubuntu2
+-    arch: amd64
+-  ntp:
+-    version: 1:4.2.6.p5+dfsg-3ubuntu2.14.04.10
+-    arch: amd64
+-  ntpdate:
+-    version: 1:4.2.6.p5+dfsg-3ubuntu2.14.04.10
+-    arch: amd64
+-  open-vm-tools:
+-    version: 2:9.4.0-1280544-5ubuntu6.2
+-    arch: amd64
+-  openssh-client:
+-    version: 1:6.6p1-2ubuntu2.8
+-    arch: amd64
+-  openssh-server:
+-    version: 1:6.6p1-2ubuntu2.8
+-    arch: amd64
+-  openssh-sftp-server:
+-    version: 1:6.6p1-2ubuntu2.8
+-    arch: amd64
+-  openssl:
+-    version: 1.0.1f-1ubuntu2.21
+-    arch: amd64
+-  os-prober:
+-    version: 1.63ubuntu1.1
+-    arch: amd64
+-  overlayroot:
+-    version: 0.25ubuntu1.14.04.1
+-    arch: all
+-  parted:
+-    version: 2.3-19ubuntu1.14.04.1
+-    arch: amd64
+-  passwd:
+-    version: 1:4.1.5.1-1ubuntu9.2
+-    arch: amd64
+-  patch:
+-    version: 2.7.1-4ubuntu2.3
+-    arch: amd64
+-  pciutils:
+-    version: 1:3.2.1-1ubuntu5.1
+-    arch: amd64
+-  perl:
+-    version: 5.18.2-2ubuntu1.1
+-    arch: amd64
+-  perl-base:
+-    version: 5.18.2-2ubuntu1.1
+-    arch: amd64
+-  perl-modules:
+-    version: 5.18.2-2ubuntu1.1
+-    arch: all
+-  plymouth:
+-    version: 0.8.8-0ubuntu17.1
+-    arch: amd64
+-  plymouth-theme-ubuntu-text:
+-    version: 0.8.8-0ubuntu17.1
+-    arch: amd64
+-  policykit-1:
+-    version: 0.105-4ubuntu3.14.04.1
+-    arch: amd64
+-  pollinate:
+-    version: 4.23-0ubuntu1~14.04
+-    arch: all
+-  popularity-contest:
+-    version: 1.57ubuntu1
+-    arch: all
+-  powermgmt-base:
+-    version: 1.31build1
+-    arch: amd64
+-  ppp:
+-    version: 2.4.5-5.1ubuntu2.2
+-    arch: amd64
+-  pppconfig:
+-    version: 2.3.19ubuntu1
+-    arch: all
+-  pppoeconf:
+-    version: 1.20ubuntu1
+-    arch: all
+-  procps:
+-    version: 1:3.3.9-1ubuntu2.2
+-    arch: amd64
+-  psmisc:
+-    version: 22.20-1ubuntu2
+-    arch: amd64
+-  python:
+-    version: 2.7.5-5ubuntu3
+-    arch: amd64
+-  python-apt:
+-    version: 0.9.3.5ubuntu2
+-    arch: amd64
+-  python-apt-common:
+-    version: 0.9.3.5ubuntu2
+-    arch: all
+-  python-boto:
+-    version: 2.20.1-2ubuntu2
+-    arch: all
+-  python-chardet:
+-    version: 2.0.1-2build2
+-    arch: all
+-  python-cheetah:
+-    version: 2.4.4-3.fakesyncbuild1
+-    arch: amd64
+-  python-configobj:
+-    version: 4.7.2+ds-5build1
+-    arch: all
+-  python-debian:
+-    version: 0.1.21+nmu2ubuntu2
+-    arch: all
+-  python-gdbm:
+-    version: 2.7.5-1ubuntu1
+-    arch: amd64
+-  python-json-pointer:
+-    version: 1.0-2build1
+-    arch: all
+-  python-jsonpatch:
+-    version: 1.3-4
+-    arch: all
+-  python-minimal:
+-    version: 2.7.5-5ubuntu3
+-    arch: amd64
+-  python-oauth:
+-    version: 1.0.1-3build2
+-    arch: all
+-  python-openssl:
+-    version: 0.13-2ubuntu6
+-    arch: amd64
+-  python-pam:
+-    version: 0.4.2-13.1ubuntu3
+-    arch: amd64
+-  python-pkg-resources:
+-    version: 3.3-1ubuntu2
+-    arch: all
+-  python-prettytable:
+-    version: 0.7.2-2ubuntu2
+-    arch: all
+-  python-pycurl:
+-    version: 7.19.3-0ubuntu3
+-    arch: amd64
+-  python-requests:
+-    version: 2.2.1-1ubuntu0.3
+-    arch: all
+-  python-serial:
+-    version: 2.6-1build1
+-    arch: all
+-  python-six:
+-    version: 1.5.2-1ubuntu1
+-    arch: all
+-  python-twisted-bin:
+-    version: 13.2.0-1ubuntu1
+-    arch: amd64
+-  python-twisted-core:
+-    version: 13.2.0-1ubuntu1
+-    arch: all
+-  python-twisted-names:
+-    version: 13.2.0-1ubuntu1
+-    arch: all
+-  python-twisted-web:
+-    version: 13.2.0-1ubuntu1
+-    arch: all
+-  python-urllib3:
+-    version: 1.7.1-1ubuntu4
+-    arch: all
+-  python-xapian:
+-    version: 1.2.16-2ubuntu1
+-    arch: amd64
+-  python-yaml:
+-    version: 3.10-4ubuntu0.1
+-    arch: amd64
+-  python-zope.interface:
+-    version: 4.0.5-1ubuntu4
+-    arch: amd64
+-  python2.7:
+-    version: 2.7.6-8ubuntu0.3
+-    arch: amd64
+-  python2.7-minimal:
+-    version: 2.7.6-8ubuntu0.3
+-    arch: amd64
+-  python3:
+-    version: 3.4.0-0ubuntu2
+-    arch: amd64
+-  python3-apport:
+-    version: 2.14.1-0ubuntu3.21
+-    arch: all
+-  python3-apt:
+-    version: 0.9.3.5ubuntu2
+-    arch: amd64
+-  python3-commandnotfound:
+-    version: 0.3ubuntu12
+-    arch: all
+-  python3-dbus:
+-    version: 1.2.0-2build2
+-    arch: amd64
+-  python3-distupgrade:
+-    version: 1:0.220.8
+-    arch: all
+-  python3-gdbm:
+-    version: 3.4.3-1~14.04.2
+-    arch: amd64
+-  python3-gi:
+-    version: 3.12.0-1ubuntu1
+-    arch: amd64
+-  python3-minimal:
+-    version: 3.4.0-0ubuntu2
+-    arch: amd64
+-  python3-newt:
+-    version: 0.52.15-2ubuntu5
+-    arch: amd64
+-  python3-problem-report:
+-    version: 2.14.1-0ubuntu3.21
+-    arch: all
+-  python3-pycurl:
+-    version: 7.19.3-0ubuntu3
+-    arch: amd64
+-  python3-software-properties:
+-    version: 0.92.37.7
+-    arch: all
+-  python3-update-manager:
+-    version: 1:0.196.22
+-    arch: all
+-  python3.4:
+-    version: 3.4.3-1ubuntu1~14.04.5
+-    arch: amd64
+-  python3.4-minimal:
+-    version: 3.4.3-1ubuntu1~14.04.5
+-    arch: amd64
+-  readline-common:
+-    version: 6.3-4ubuntu2
+-    arch: all
+-  resolvconf:
+-    version: 1.69ubuntu1.1
+-    arch: all
+-  rsync:
+-    version: 3.1.0-2ubuntu0.2
+-    arch: amd64
+-  rsyslog:
+-    version: 7.4.4-1ubuntu2.6
+-    arch: amd64
+-  run-one:
+-    version: 1.17-0ubuntu1
+-    arch: all
+-  screen:
+-    version: 4.1.0~20120320gitdb59704-9
+-    arch: amd64
+-  sed:
+-    version: 4.2.2-4ubuntu1
+-    arch: amd64
+-  sensible-utils:
+-    version: 0.0.9
+-    arch: all
+-  sgml-base:
+-    version: 1.26+nmu4ubuntu1
+-    arch: all
+-  shared-mime-info:
+-    version: 1.2-0ubuntu3
+-    arch: amd64
+-  software-properties-common:
+-    version: 0.92.37.7
+-    arch: all
+-  ssh-import-id:
+-    version: 3.21-0ubuntu1
+-    arch: all
+-  sshguard:
+-    version: 1.5-5
+-    arch: amd64
+-  strace:
+-    version: 4.8-1ubuntu5
+-    arch: amd64
+-  sudo:
+-    version: 1.8.9p5-1ubuntu1.3
+-    arch: amd64
+-  systemd-services:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  systemd-shim:
+-    version: 6-2bzr1
+-    arch: amd64
+-  sysv-rc:
+-    version: 2.88dsf-41ubuntu6.3
+-    arch: all
+-  sysvinit-utils:
+-    version: 2.88dsf-41ubuntu6.3
+-    arch: amd64
+-  tar:
+-    version: 1.27.1-1ubuntu0.1
+-    arch: amd64
+-  tasksel:
+-    version: 2.88ubuntu15
+-    arch: all
+-  tasksel-data:
+-    version: 2.88ubuntu15
+-    arch: all
+-  tcpd:
+-    version: 7.6.q-25
+-    arch: amd64
+-  tcpdump:
+-    version: 4.5.1-2ubuntu1.2
+-    arch: amd64
+-  telnet:
+-    version: 0.17-36build2
+-    arch: amd64
+-  time:
+-    version: 1.7-24
+-    arch: amd64
+-  tmux:
+-    version: 1.8-5
+-    arch: amd64
+-  tzdata:
+-    version: 2016h-0ubuntu0.14.04
+-    arch: all
+-  ubuntu-keyring:
+-    version: 2012.05.19
+-    arch: all
+-  ubuntu-minimal:
+-    version: '1.325'
+-    arch: amd64
+-  ubuntu-release-upgrader-core:
+-    version: 1:0.220.8
+-    arch: all
+-  ubuntu-standard:
+-    version: '1.325'
+-    arch: amd64
+-  ucf:
+-    version: 3.0027+nmu1
+-    arch: all
+-  udev:
+-    version: 204-5ubuntu20.19
+-    arch: amd64
+-  ufw:
+-    version: 0.34~rc-0ubuntu2
+-    arch: all
+-  unattended-upgrades:
+-    version: 0.82.1ubuntu2.4
+-    arch: all
+-  update-manager-core:
+-    version: 1:0.196.22
+-    arch: all
+-  update-notifier-common:
+-    version: 0.154.1ubuntu2
+-    arch: all
+-  upstart:
+-    version: 1.12.1-0ubuntu4.2
+-    arch: amd64
+-  ureadahead:
+-    version: 0.100.0-16
+-    arch: amd64
+-  usbutils:
+-    version: 1:007-2ubuntu1.1
+-    arch: amd64
+-  util-linux:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  uuid-runtime:
+-    version: 2.20.1-5.1ubuntu20.7
+-    arch: amd64
+-  vim:
+-    version: 2:7.4.052-1ubuntu3.1
+-    arch: amd64
+-  vim-common:
+-    version: 2:7.4.052-1ubuntu3.1
+-    arch: amd64
+-  vim-runtime:
+-    version: 2:7.4.052-1ubuntu3.1
+-    arch: all
+-  vim-tiny:
+-    version: 2:7.4.052-1ubuntu3.1
+-    arch: amd64
+-  w3m:
+-    version: 0.5.3-15
+-    arch: amd64
+-  wget:
+-    version: 1.15-1ubuntu1.14.04.2
+-    arch: amd64
+-  whiptail:
+-    version: 0.52.15-2ubuntu5
+-    arch: amd64
+-  wireless-regdb:
+-    version: 2013.02.13-1ubuntu1
+-    arch: all
+-  xauth:
+-    version: 1:1.0.7-1ubuntu1
+-    arch: amd64
+-  xkb-data:
+-    version: 2.10.1-1ubuntu1
+-    arch: all
+-  xml-core:
+-    version: 0.13+nmu2
+-    arch: all
+-  xz-utils:
+-    version: 5.1.1alpha+20120614-2ubuntu2
+-    arch: amd64
+-  zerofree:
+-    version: 1.0.2-1ubuntu1
+-    arch: amd64
+-  zlib1g:
+-    version: 1:1.2.8.dfsg-1ubuntu1
+-    arch: amd64
+-languages:
+-  perl:
+-    version: 5.18.2
+-    archname: x86_64-linux-gnu-thread-multi
+-  python:
+-    version: 2.7.6
+-    builddate: Oct 26 2016, 20:30:19
+-  ruby:
+-    platform: x86_64-linux
+-    version: 2.3.1
+-    release_date: '2016-04-26'
+-    target: x86_64-pc-linux-gnu
+-    target_cpu: x86_64
+-    target_vendor: pc
+-    target_os: linux
+-    host: x86_64-pc-linux-gnu
+-    host_cpu: x86_64
+-    host_os: linux-gnu
+-    host_vendor: pc
+-    bin_dir: "/opt/chef/embedded/bin"
+-    ruby_bin: "/opt/chef/embedded/bin/ruby"
+-    gems_dir: "/opt/chef/embedded/lib/ruby/gems/2.3.0"
+-    gem_bin: "/opt/chef/embedded/bin/gem"
+-shells:
+-- "/bin/sh"
+-- "/bin/dash"
+-- "/bin/bash"
+-- "/bin/rbash"
+-- "/usr/bin/tmux"
+-- "/usr/bin/screen"
+-fips:
+-  kernel:
+-    enabled: false
+-filesystem:
+-  udev:
+-    kb_size: '7688508'
+-    kb_used: '12'
+-    kb_available: '7688496'
+-    percent_used: 1%
+-    mount: "/dev"
+-    total_inodes: '1922127'
+-    inodes_used: '411'
+-    inodes_available: '1921716'
+-    inodes_percent_used: 1%
+-    fs_type: devtmpfs
+-    mount_options:
+-    - rw
+-    - mode=0755
+-  tmpfs:
+-    kb_size: '1540072'
+-    kb_used: '336'
+-    kb_available: '1539736'
+-    percent_used: 1%
+-    mount: "/run"
+-    total_inodes: '1925088'
+-    inodes_used: '326'
+-    inodes_available: '1924762'
+-    inodes_percent_used: 1%
+-    fs_type: tmpfs
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - size=10%
+-    - mode=0755
+-  "/dev/sda1":
+-    kb_size: '15448048'
+-    kb_used: '1366744'
+-    kb_available: '13331028'
+-    percent_used: 10%
+-    mount: "/"
+-    total_inodes: '983040'
+-    inodes_used: '65606'
+-    inodes_available: '917434'
+-    inodes_percent_used: 7%
+-    fs_type: ext4
+-    mount_options:
+-    - rw
+-    uuid: 19713d8b-fe03-471f-8c80-6608e09a1d12
+-    label: cloudimg-rootfs
+-  none:
+-    kb_size: '102400'
+-    kb_used: '0'
+-    kb_available: '102400'
+-    percent_used: 0%
+-    mount: "/sys/fs/pstore"
+-    total_inodes: '1925088'
+-    inodes_used: '2'
+-    inodes_available: '1925086'
+-    inodes_percent_used: 1%
+-    fs_type: pstore
+-    mount_options:
+-    - rw
+-  proc:
+-    mount: "/proc"
+-    fs_type: proc
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - nodev
+-  sysfs:
+-    mount: "/sys"
+-    fs_type: sysfs
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - nodev
+-  devpts:
+-    mount: "/dev/pts"
+-    fs_type: devpts
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - gid=5
+-    - mode=0620
+-  systemd:
+-    mount: "/sys/fs/cgroup/systemd"
+-    fs_type: cgroup
+-    mount_options:
+-    - rw
+-    - noexec
+-    - nosuid
+-    - nodev
+-    - none
+-    - name=systemd
+-dmi:
+-  dmidecode_version: '2.12'
+-  smbios_version: '2.4'
+-  structures:
+-    count: '16'
+-    size: '550'
+-  bios:
+-    all_records:
+-    - record_id: '0x0000'
+-      size: '0'
+-      application_identifier: BIOS Information
+-      Vendor: Google
+-      Version: Google
+-      Release Date: 01/01/2011
+-      Address: '0xE8000'
+-      Runtime Size: 96 kB
+-      ROM Size: 64 kB
+-      Characteristics:
+-        BIOS characteristics not supported: 
+-        Targeted content distribution is supported: 
+-      BIOS Revision: '1.0'
+-    vendor: Google
+-    version: Google
+-    release_date: 01/01/2011
+-    address: '0xE8000'
+-    runtime_size: 96 kB
+-    rom_size: 64 kB
+-    bios_revision: '1.0'
+-  system:
+-    all_records:
+-    - record_id: '0x0100'
+-      size: '1'
+-      application_identifier: System Information
+-      Manufacturer: Google
+-      Product Name: Google Compute Engine
+-      Version: Not Specified
+-      Serial Number: GoogleCloud-12A087F4976705B14991D1D7E48E294E
+-      UUID: 12A087F4-9767-05B1-4991-D1D7E48E294E
+-      Wake-up Type: Power Switch
+-      SKU Number: Not Specified
+-      Family: Not Specified
+-    manufacturer: Google
+-    product_name: Google Compute Engine
+-    version: Not Specified
+-    serial_number: GoogleCloud-12A087F4976705B14991D1D7E48E294E
+-    uuid: 12A087F4-9767-05B1-4991-D1D7E48E294E
+-    wake_up_type: Power Switch
+-    sku_number: Not Specified
+-    family: Not Specified
+-  base_board:
+-    all_records:
+-    - record_id: '0x0200'
+-      size: '2'
+-      application_identifier: Base Board Information
+-      Manufacturer: Google
+-      Product Name: Google Compute Engine
+-      Version: Not Specified
+-      Serial Number: Not Specified
+-      Asset Tag: Not Specified
+-      Features:
+-        Board is a hosting board: 
+-      Location In Chassis: Not Specified
+-      Chassis Handle: '0x0300'
+-      Type: Motherboard
+-      Contained Object Handles: '0'
+-    manufacturer: Google
+-    product_name: Google Compute Engine
+-    version: Not Specified
+-    serial_number: Not Specified
+-    asset_tag: Not Specified
+-    location_in_chassis: Not Specified
+-    chassis_handle: '0x0300'
+-    type: Motherboard
+-    contained_object_handles: '0'
+-  chassis:
+-    all_records:
+-    - record_id: '0x0300'
+-      size: '3'
+-      application_identifier: Chassis Information
+-      Manufacturer: Google
+-      Type: Other
+-      Lock: Not Present
+-      Version: Not Specified
+-      Serial Number: Not Specified
+-      Asset Tag: Not Specified
+-      Boot-up State: Safe
+-      Power Supply State: Safe
+-      Thermal State: Safe
+-      Security Status: Unknown
+-      OEM Information: '0x00000000'
+-      Height: Unspecified
+-      Number Of Power Cords: Unspecified
+-    manufacturer: Google
+-    type: Other
+-    lock: Not Present
+-    version: Not Specified
+-    serial_number: Not Specified
+-    asset_tag: Not Specified
+-    boot_up_state: Safe
+-    power_supply_state: Safe
+-    thermal_state: Safe
+-    security_status: Unknown
+-    oem_information: '0x00000000'
+-    height: Unspecified
+-    number_of_power_cords: Unspecified
+-  processor:
+-    all_records:
+-    - record_id: '0x0401'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 1
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0402'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 2
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0403'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 3
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    - record_id: '0x0404'
+-      size: '4'
+-      application_identifier: Processor Information
+-      Socket Designation: CPU 4
+-      Type: Central Processor
+-      Family: Other
+-      Manufacturer: Google
+-      ID: D7 06 02 00 FF FB 8B 1F
+-      Version: Not Specified
+-      Voltage: Unknown
+-      External Clock: Unknown
+-      Max Speed: 2000 MHz
+-      Current Speed: 2000 MHz
+-      Status: Populated, Enabled
+-      Upgrade: Other
+-      L1 Cache Handle: Not Provided
+-      L2 Cache Handle: Not Provided
+-      L3 Cache Handle: Not Provided
+-    type: Central Processor
+-    family: Other
+-    manufacturer: Google
+-    id: D7 06 02 00 FF FB 8B 1F
+-    version: Not Specified
+-    voltage: Unknown
+-    external_clock: Unknown
+-    max_speed: 2000 MHz
+-    current_speed: 2000 MHz
+-    status: Populated, Enabled
+-    upgrade: Other
+-    l1_cache_handle: Not Provided
+-    l2_cache_handle: Not Provided
+-    l3_cache_handle: Not Provided
+-etc:
+-  passwd:
+-    root:
+-      dir: "/root"
+-      gid: 0
+-      uid: 0
+-      shell: "/bin/bash"
+-      gecos: root
+-    daemon:
+-      dir: "/usr/sbin"
+-      gid: 1
+-      uid: 1
+-      shell: "/usr/sbin/nologin"
+-      gecos: daemon
+-    bin:
+-      dir: "/bin"
+-      gid: 2
+-      uid: 2
+-      shell: "/usr/sbin/nologin"
+-      gecos: bin
+-    sys:
+-      dir: "/dev"
+-      gid: 3
+-      uid: 3
+-      shell: "/usr/sbin/nologin"
+-      gecos: sys
+-    sync:
+-      dir: "/bin"
+-      gid: 65534
+-      uid: 4
+-      shell: "/bin/sync"
+-      gecos: sync
+-    games:
+-      dir: "/usr/games"
+-      gid: 60
+-      uid: 5
+-      shell: "/usr/sbin/nologin"
+-      gecos: games
+-    man:
+-      dir: "/var/cache/man"
+-      gid: 12
+-      uid: 6
+-      shell: "/usr/sbin/nologin"
+-      gecos: man
+-    lp:
+-      dir: "/var/spool/lpd"
+-      gid: 7
+-      uid: 7
+-      shell: "/usr/sbin/nologin"
+-      gecos: lp
+-    mail:
+-      dir: "/var/mail"
+-      gid: 8
+-      uid: 8
+-      shell: "/usr/sbin/nologin"
+-      gecos: mail
+-    news:
+-      dir: "/var/spool/news"
+-      gid: 9
+-      uid: 9
+-      shell: "/usr/sbin/nologin"
+-      gecos: news
+-    uucp:
+-      dir: "/var/spool/uucp"
+-      gid: 10
+-      uid: 10
+-      shell: "/usr/sbin/nologin"
+-      gecos: uucp
+-    proxy:
+-      dir: "/bin"
+-      gid: 13
+-      uid: 13
+-      shell: "/usr/sbin/nologin"
+-      gecos: proxy
+-    www-data:
+-      dir: "/var/www"
+-      gid: 33
+-      uid: 33
+-      shell: "/usr/sbin/nologin"
+-      gecos: www-data
+-    backup:
+-      dir: "/var/backups"
+-      gid: 34
+-      uid: 34
+-      shell: "/usr/sbin/nologin"
+-      gecos: backup
+-    list:
+-      dir: "/var/list"
+-      gid: 38
+-      uid: 38
+-      shell: "/usr/sbin/nologin"
+-      gecos: Mailing List Manager
+-    irc:
+-      dir: "/var/run/ircd"
+-      gid: 39
+-      uid: 39
+-      shell: "/usr/sbin/nologin"
+-      gecos: ircd
+-    gnats:
+-      dir: "/var/lib/gnats"
+-      gid: 41
+-      uid: 41
+-      shell: "/usr/sbin/nologin"
+-      gecos: Gnats Bug-Reporting System (admin)
+-    nobody:
+-      dir: "/nonexistent"
+-      gid: 65534
+-      uid: 65534
+-      shell: "/usr/sbin/nologin"
+-      gecos: nobody
+-    libuuid:
+-      dir: "/var/lib/libuuid"
+-      gid: 101
+-      uid: 100
+-      shell: ''
+-      gecos: ''
+-    syslog:
+-      dir: "/home/syslog"
+-      gid: 104
+-      uid: 101
+-      shell: "/bin/false"
+-      gecos: ''
+-    messagebus:
+-      dir: "/var/run/dbus"
+-      gid: 106
+-      uid: 102
+-      shell: "/bin/false"
+-      gecos: ''
+-    landscape:
+-      dir: "/var/lib/landscape"
+-      gid: 109
+-      uid: 103
+-      shell: "/bin/false"
+-      gecos: ''
+-    sshd:
+-      dir: "/var/run/sshd"
+-      gid: 65534
+-      uid: 104
+-      shell: "/usr/sbin/nologin"
+-      gecos: ''
+-    pollinate:
+-      dir: "/var/cache/pollinate"
+-      gid: 1
+-      uid: 105
+-      shell: "/bin/false"
+-      gecos: ''
+-    ntp:
+-      dir: "/home/ntp"
+-      gid: 111
+-      uid: 106
+-      shell: "/bin/false"
+-      gecos: ''
+-    travis:
+-      dir: "/home/travis"
+-      gid: 1000
+-      uid: 1000
+-      shell: "/bin/bash"
+-      gecos: ''
+-  group:
+-    root:
+-      gid: 0
+-      members: []
+-    daemon:
+-      gid: 1
+-      members: []
+-    bin:
+-      gid: 2
+-      members: []
+-    sys:
+-      gid: 3
+-      members: []
+-    adm:
+-      gid: 4
+-      members:
+-      - syslog
+-    tty:
+-      gid: 5
+-      members: []
+-    disk:
+-      gid: 6
+-      members: []
+-    lp:
+-      gid: 7
+-      members: []
+-    mail:
+-      gid: 8
+-      members: []
+-    news:
+-      gid: 9
+-      members: []
+-    uucp:
+-      gid: 10
+-      members: []
+-    man:
+-      gid: 12
+-      members: []
+-    proxy:
+-      gid: 13
+-      members: []
+-    kmem:
+-      gid: 15
+-      members: []
+-    dialout:
+-      gid: 20
+-      members: []
+-    fax:
+-      gid: 21
+-      members: []
+-    voice:
+-      gid: 22
+-      members: []
+-    cdrom:
+-      gid: 24
+-      members: []
+-    floppy:
+-      gid: 25
+-      members: []
+-    tape:
+-      gid: 26
+-      members: []
+-    sudo:
+-      gid: 27
+-      members: []
+-    audio:
+-      gid: 29
+-      members: []
+-    dip:
+-      gid: 30
+-      members: []
+-    www-data:
+-      gid: 33
+-      members: []
+-    backup:
+-      gid: 34
+-      members: []
+-    operator:
+-      gid: 37
+-      members: []
+-    list:
+-      gid: 38
+-      members: []
+-    irc:
+-      gid: 39
+-      members: []
+-    src:
+-      gid: 40
+-      members: []
+-    gnats:
+-      gid: 41
+-      members: []
+-    shadow:
+-      gid: 42
+-      members: []
+-    utmp:
+-      gid: 43
+-      members: []
+-    video:
+-      gid: 44
+-      members: []
+-    sasl:
+-      gid: 45
+-      members: []
+-    plugdev:
+-      gid: 46
+-      members: []
+-    staff:
+-      gid: 50
+-      members: []
+-    games:
+-      gid: 60
+-      members: []
+-    users:
+-      gid: 100
+-      members: []
+-    nogroup:
+-      gid: 65534
+-      members: []
+-    libuuid:
+-      gid: 101
+-      members: []
+-    netdev:
+-      gid: 102
+-      members: []
+-    crontab:
+-      gid: 103
+-      members: []
+-    syslog:
+-      gid: 104
+-      members: []
+-    fuse:
+-      gid: 105
+-      members: []
+-    messagebus:
+-      gid: 106
+-      members: []
+-    mlocate:
+-      gid: 107
+-      members: []
+-    ssh:
+-      gid: 108
+-      members: []
+-    landscape:
+-      gid: 109
+-      members: []
+-    admin:
+-      gid: 110
+-      members: []
+-    ntp:
+-      gid: 111
+-      members: []
+-    travis:
+-      gid: 1000
+-      members: []
+-current_user: root
+-uptime_seconds: 76
+-uptime: 1 minutes 16 seconds
+-idletime_seconds: 269
+-idletime: 4 minutes 29 seconds
+-keys:
+-  ssh:
+-    host_rsa_public: AAAAB3NzaC1yc2EAAAADAQABAAABAQDBjGmyRAUoXjLQwbcwfivoEilIT00pqGYE/eSbft9Xi4JZWP945XGAlfS1ektjfocTS6ZMmwVg4Xi7qACS1u7TB4VoW4LRwuGA9gJJf6ISKLdHzbSby3/klyZ6GI4P4vgTZSHLgQBxJHfbxsIxXamwTPLeAH0MaWuIhYmsFFYamZXTxtSbB55ig/ENflK6595C3T9PQqH8iPOr1yp5X0y+nKoZJE0sYqcX5QlxYQh9Pbft03CJ1vJoP29cBrHSiirC3ftnlHUr0R2kJ61e3fgyyorWq2fKtUsEVwIdsay1WhKt2ue/awsJjLYSqAVsDhOjZ514aDVDuhCaV/guEjAr
+-    host_dsa_public: AAAAB3NzaC1kc3MAAACBAJYRwANR8JZLQX7LgaqevakSPRnlD13am3IP5cmK/oRN4V2CO6FFUqOqG2kq8DX7H1QiTHliwUa4toOqBU6dCsqTfm4tkFHv75B8fUPg+T9zGPbLVxtH491JkM4vPXthjXCulTMjShL04FoHrQ6GPWLb0hIcRCb50JYaSdk3Hqj3AAAAFQCH3RgTX4YgOCbeKWJUcSWXbrJStQAAAIAshalezyPsyU9rqtNX2Py3HAblj34xVveUja6lnguApKg3XZeOUPhkZNwEtNHVtmfUqKDYqVPLXgIFg/8iIB1ogi4jCjeteo2I7Emu5PxmHpDeVm8RngdhHhFp82pirDJX3EP6etJ/ud7Aewb0QC+UlZ832F8nWU8h46qiSTjS9gAAAIAn/kUooDDGsFht1xPjSO8PQbwMCZiq7Yo89A1kjQeNoyJcu9xbFqYu/HsG4VoWE8FnAPY5CFfGY4nDF9nslqtj1BIcPXCl387FIwOduqoZZO52EM3PAc+u/FLdhp7Chqd8gC7JkIPT1GXaJehmIyGp5rmbRMLqtFLH/CCAGx/sIg==
+-    host_ecdsa_public: AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHQsRSWt6H8oNXYgfP72zu+7XTKmdz/pR/nUvxEsJJ48w51JOQEn+U+rD2U3x2uPxzZBrD8DdNzn+QCATQJihCM=
+-    host_ecdsa_type: ecdsa-sha2-nistp256
+-    host_ed25519_public: AAAAC3NzaC1lZDI1NTE5AAAAICOl3e+4yVCvreqMTX9TKqjrlo5WzEdInxLTOSXjpUnG
+-gce:
+-  instance:
+-    attributes:
+-      sshKeys: 'root:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKc9hDNwrq1B1EBA8PGC1roMGJ71w1KoN9FvwfaU9q9mdliMVhyx6N4uDbogCpLkUguZd4p1pWoNg40a3zT29PgbyW0DhdqUS77uRjivhDKhISs6fVDRWu1DnBU64bfCyECiJcGitqcoTMdhjmRKA/dSRr2FFGWT51MESGRqEjB36bwKme6yY1rABI9sSXMQFK2Xl888/+yvsbtRqPqjIKRyUCJRJbwsS9W8eZtdW5YvDA9tGzdhCjpkl+UEYvx5bxyi50T8FKbV9YEkBhZIqxq+QtHGSQblNq3ukx+kXu87pfwvM3oy9i4ZPwB66FQjS6eQlxj+WhRHy6hm0Rl9bn
+-
+-'
+-    cpuPlatform: Intel Sandy Bridge
+-    description: New instance created by Packer
+-    disks:
+-    - deviceName: persistent-disk-0
+-      index: 0
+-      mode: READ_WRITE
+-      type: PERSISTENT
+-    hostname: packer-58459f9f-0c7a-6809-06af-4c993524ebb6.c.eco-emissary-99515.internal
+-    id: 4781341888922263887
+-    image: ''
+-    licenses:
+-    - id: '1000010'
+-    machineType: projects/539774316296/machineTypes/n1-standard-4
+-    maintenanceEvent: NONE
+-    networkInterfaces:
+-    - accessConfigs:
+-      - externalIp: 104.198.212.236
+-        type: ONE_TO_ONE_NAT
+-      forwardedIps: []
+-      ip: 10.240.0.21
+-      ipAliases: []
+-      mac: 42:01:0a:f0:00:15
+-      network: projects/539774316296/networks/default
+-    scheduling:
+-      automaticRestart: 'TRUE'
+-      onHostMaintenance: MIGRATE
+-      preemptible: 'FALSE'
+-    serviceAccounts:
+-      539774316296-compute@developer.gserviceaccount.com:
+-        aliases:
+-        - default
+-        email: 539774316296-compute@developer.gserviceaccount.com
+-        scopes:
+-        - https://www.googleapis.com/auth/userinfo.email
+-        - https://www.googleapis.com/auth/compute
+-        - https://www.googleapis.com/auth/devstorage.full_control
+-      default:
+-        aliases:
+-        - default
+-        email: 539774316296-compute@developer.gserviceaccount.com
+-        scopes:
+-        - https://www.googleapis.com/auth/userinfo.email
+-        - https://www.googleapis.com/auth/compute
+-        - https://www.googleapis.com/auth/devstorage.full_control
+-    tags:
+-    - ci
+-    - connie
+-    - travis-ci-packer-templates
+-    virtualClock:
+-      driftToken: '0'
+-    zone: projects/539774316296/zones/us-central1-a
+-  project:
+-    attributes:
+-      google-compute-default-region: us-central1
+-      google-compute-default-zone: us-central1-f
+-      sshKeys: |-
+-        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOQSqaH5vTw5+fLccsIzoZ1A+viIDdc1EsN4X37AzAAUxGpMgbFMleP4uEc99solxcgHgSqomAzPKrWwPAuo2D0/eMC1G0oBwKjW1DfSaMxgsVS4cscUuU4aUjaxSsVQgVr/27HVqwRVI9j8T8bk5YiQzZaZ9yn2aHglDMbBi/cGAM4iMF6owVWZh3ywX1YqFgA8uZ3Ap0pgrnm9sNomDTmKbgEMlRhoJmDXyBs6E/Ldx69CxCdFeNel35zEjQW7MUO+ohPaZi7WB3s2s3ZRaQGVJks0FRpN6BRhE4AIAfhnXkBIZaOujQ/busMmBbmyZ+RP03J/ymUXcIMdHwhpr9 igor@ig-pro+travis
+-        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyEerYBAUgrvmwfc3602oo3WVQbnEIam4vig6ah8YXUfpp1aatedEibcdvQCd5DYHrLFPDDeULF2IsJNh+hVTh1Pxj2Z4W1H+U/tXZt2eMeTX+MgAfREecL4dNcbRgDR1SuitfbsKv8zc5a+SZUYBaIAZvBIC5MJs2DMhYr3GQksIW8C2rROpowKP1Lj38IwSkvLZRvjIpT7diSctpJbiQV6Oh3MG949KUOdsb6RhjO1P+PIS03xds8+F8CfFLdw37bfAXNVEaijQcgG19a0tRivPpXFcem6Z9/PJF7ccjY1uJ7pQNkeLGI2Kx91rA/msAakulm40CQVg+aVn3oNU1 meatballhat
+-        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZlA6FbXCWI2Fo34RsbbHgqzt7Me0mmLEVr4VInaQHbDt6mEelKHH46J3hin/WQTEhZ/sSuLZb0YML+ebHL390wHRkzqCIJvh1vORlbxlmDivvALF61NsAJuDo38GbLi2Zri/4NrCFmajwr9ofwrDNIar7xixEjX0/adqSFl7eqDl+kj+YB/qKMmpv52rSekcBwUBC1kLwNaRAGQNUkML4WpzM3P2/5NARkFel+hawYCDazWKo38ew4NITo39NYyrOefZ5eyo/3RLKGyrYh8Wl+XDxRmjvCWo6Fh1JFmyz9OovuzEj+bMaYYDCLIR280P7HYnLVuSLWyLClZhe+ISt me@failb0wl.local
+-        solarce:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyNDg0uxFwrQ3NF64oFKKZfXvEOnVxmU0RMdYPI3FjEEyOinAUoe8cfSbo71vf8oFa0H7ECcBuZjiJbqctctGjiNHV/29P3Smo0niReeqEXK4Hy4LZumCx9jV2hceKyyS3zFDfTwcQ4M3gv6n71IKAtRw7T136mLcb2YsT001Mvho2XqL7C+1+Gsi24sTvKOeKPvcx/bD7tH5EJAJAgKggtcLe35S9efd3ZLhYNOl1fD0uEd2FFBfQ/7z0SlMPcg58FP5iJDEyDrlXKRJ+flVJr0OCuQrGqJ+DWBCkIluIr0dliW//FuGWNyyOLQjdOPAmWslCe/oIq7gKbBUaPk2d solarce@dirge.local
+-        solarce:ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAxWuTBCVNg8OOTibpUpxIQsmO8ZWfhEbo3gTXSzg91rL3hp8U8BYJtdtaDxPIb4uqVntnTm38jylEHf3SAdnxTXoDhceSBBe5bDmtOQCNLu1HlBlauQd0temV92gA1LnjGLcrz23l/RBJj+jcAYhErqwjy+ffDIip1ltGB9mJoHe9yuICCwaq3BXv8jZ0yOEFM16kWrZXOuqOIU83LdgnPj1tj1DbXg++ax/Yb7ENgOjH/DlHJ1vDy/i2C29ZSa+PptPkXLOKeGa20zCJeMQ4wYwrK4t1Jiyaui4XHe8j4B0FfyM+z2lAjdqn1iuGT4AYx+tFq5/88OM66rclWRZkYmUSX3C7w4U7Rgyj/hIkl0UTHfPiSFiiJ9L0jwvHq6erbdLKX/aD/yCvhv4VJ9bBFgVVhSXciNJgQOAzGd+gUBJVZqr/DZby51U4JuR8dy11KtoH0S3nzBggYbekWNFKcEzSdmuVaZgC9Q+B59Gu850+gv8YH/9ysOmbRHbOiRmTdUnY3slqu+QRgIpun2xqvV9Fc1YWvV2ioEWCfpH0z0ImasZh55TCuDpicRtUiR3I8uwn46EoxqNkQqX5mm+k/ers03q3rRar2PzpEF6G3F+4bJKv+mbfx+BtKS6K6ZjSQzsc2E+RUNeyuaJEeytjYvrDpxkwGAF1vr5wHiQInFE= brandon@inatree.org
+-        maria:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJ+JCZtFI4yEFMznf2hGUV31FNRjJpi700PPNJPLeOXgWk/apUKp4aCUrsWQ0zbdGMqa91GsFwDhd8CZ/DmplxogRmFCWeCfZW2Vb4k8FUoit9C9dUi16y0OdZpU4j8qXAF92v33xocR9JQtdhx3BUlzp6vVzXJAie0Ymk5GPYdy5lgrEaPdOiGNEGIsn9Y8X4kJqT7Ao1nSDYEIvQEi6DuyfDWwI2cEEaawF7/mJHp8SlFkDFpbUZics0HuEzeRovYFa/GoA1Rb5j82RgdRfPV+vv/+sEGNauhqJoahfbbxalsN/1xH4DpdBja3pckCnd9LwDZHHG91d7fwariQTr2pSXVaYVOA4PIynH3sp88So7gY9Em8/53mJewC7meK81qjpXz1XWGyBdMAjURz5GpZpUKzNtQ9TD7TXabMAd8s1ma+zGN7vJyk1O5mgqHn3jbp9WwzQgJP1j6CmQ8Uk6UNXpMy2sIOOWsu5HyEUkqkgnUrIGhl9YNGVV4AUQCV5W92NPGyFEdRCgboNM46jfT+q8p6Lp8ym4VHCgDJDhLREWUV8Sd09bljJRz3Uef6wFt2NalZwFezjNNyNNmQL/OmscZEvQeSmY05c9IelG2tZ21u4ZnIkFxm13zAgYKXDQMWgymkroy57S7WxS20+/KIc2aSLBHhva4dHywquPfw== mariadeanton@gmail.com
+-        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDn2pIwN+i5c7y7LFNoV51U48sPUD6LlhXTC+1/Sl1M0cYwhusWx8SRq13F4nXguYyBFpJHDVDhQHCn2zRMhlR1I6mmibvNQPKevYfvNsMMUCYEFhDbf0cE0euMStmPIrrJsutZJOqW+Iz7C3Enhy3V4ERfq/109Xy5/ZdbzdSSzJ2Kb1xFZnTh3g1L/0A1/MG8yIiBP27aaiijIm+PTfepOChmJsPtqdhIqREVcIZ6GC1lN7K8o9owHEqPXazvcyXp/mM+W2F96bCH9yHFI+I570rqFx8lvZI8Ud2f+IqnolfDd572Pb5GTovBDnfVAnqf5+mRa+fDgsx1IQxBbDp9 henrik@donna
+-        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClTWvnY2EhuAC8pEdZr6SQo6PII4biOv6PUeXJWnVFVrzA2HdL50MOYxub+1DOTr5RnqRh1BlArghMte9icfHuqWKMSXUJeVrzDny8xz3qccCDOzegRfK+NIHi3rpblE2BtF+gqVgLN9YDxtIqGrlF1JkVc3TgeRVvMWUUAVh8B0HzUyPpClSZN4cMX6Z06dp8OUyWCMxVhUGFUX2y9CLMfAtugI7I9VFefS1VtSQ7KA5ZiHhjVv7JubFfF6YV1BaikHh2pP/LXVpv6uRWINnuKdpchgmEur590A7X9ZriTf58I1W/yzdE8iZ8EF8tqOil/TeD4W84nDnCTrCfI921 me@rp-yul-l0970.rp.corp
+-        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD2vV2unA5zIbMKYrolRSdKPNEfl1PiNjRfb8KDug0OsY4XZK++HELOhVx1WCMDhqY832TvfifRUiNa50attERq88pdI4wNtqwvURRMNJagVvok15vBV/Fdr2hCi7mDGbIM4uAhp73ocX1ABmBSOtx6GBje0kZXgOw3T+L6yWZ3PstcmeQxMRYWz8OPjmODh/1O0v4OpOaZLniwcplutbK2SZxJt1cybvw8b9o+a+ZHFCsoQB9/bwTPcK/6EogJiwNSP9uIYW7nmnA9FpjD3H2UeGtuGhULNyj5TiUu2k6f6Q9YS31HvmLC51awj0tWdC1En4HHXIo1FQAkC4wIXs/ henrik@skyhawk
+-        emma:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpNWK4WB3OvByfNwy49JdIYR1MG7TeLi9aZdFX6cMtHpFJqNzBK1Ba06/pMqOfESm7K223i+ExaIPDqfwcwkecIVSBcJyFtr5rlvp1xi9n1MMuTK/TDbuCM2Ou/OuRQL0yNs/zwRbrrfZagvf2SSQ2Kr8LZodqVAYLyd/UGXXwHbr/7K5prZkWsVN2UeUYGaN3AyHT3qHOVzy47zDVO0rZbgyE6IBBOp6uuOPCv5Ric9yTuITEY7S0j9JFOTbbaEyAsE3Ffu+DsMHbyoeFEWXDnCEvkdNbcIQWQp8ughBJ+8yIQXdhVJL6p0aSqkeIWjuEzVXpfmJ7DoxC/C029gKr emma@aqualung
+-        carmen:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGODoXKQ3+dEvzGoNCmG6Mw9tfkT4/UZhI5PdXpJpSkSQAFVk8LaIDBk9cT/+E3qaATuhMABvaCyeRUGDqL/pRkVzAOVbLrbu8vT3laES8RaPugQ3zem7+/b31OyxZ7nPrUndJmY4D1STBrCZ14fGrGN7RC++q9b8UavxTS3ex/ZvYgdkMxVa5Uwf1BVbK6wMIkSfie5xzcChYC1DhDDAv4r9WKtcmYFnN5+Uh58b3ceVeWg414PhyMeHdcfNr0PctBRALgaDdyR/Qqn4Kap08pWX/kJWfVUqSACRRwOwmeaoWJSHu/QDD90C5bV9mHlMJ5+tEdwP9P3uPATieDEx carmen@elita1
+-        konstantinhaase:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
+-        konstantin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
+-    numericProjectId: 539774316296
+-    projectId: eco-emissary-99515
+-cloud_v2:
+-  public_ipv4_addrs:
+-  - 104.198.212.236
+-  local_ipv4_addrs:
+-  - 10.240.0.21
+-  provider: gce
+-  local_hostname: packer-58459f9f-0c7a-6809-06af-4c993524ebb6.c.eco-emissary-99515.internal
+-  public_ipv4: 104.198.212.236
+-  local_ipv4: 10.240.0.21
+-chef_packages:
+-  chef:
+-    version: 12.16.42
+-    chef_root: "/opt/chef/embedded/lib/ruby/gems/2.3.0/gems/chef-12.16.42/lib"
+-  ohai:
+-    version: 8.21.0
+-    ohai_root: "/opt/chef/embedded/lib/ruby/gems/2.3.0/gems/ohai-8.21.0/lib/ohai"
+-cloud:
+-  public_ips:
+-  - 104.198.212.236
+-  private_ips:
+-  - 10.240.0.21
+-  public_ipv4:
+-  - 104.198.212.236
+-  local_ipv4:
+-  - 10.240.0.21
+-  public_hostname: 
+-  local_hostname: packer-58459f9f-0c7a-6809-06af-4c993524ebb6.c.eco-emissary-99515.internal
+-  provider: gce
+-time:
+-  timezone: UTC
+-root_group: root
+-hostname: packer-58459f9f-0c7a-6809-06af-4c993524ebb6
+-machinename: packer-58459f9f-0c7a-6809-06af-4c993524ebb6
+-fqdn: packer-58459f9f-0c7a-6809-06af-4c993524ebb6.c.eco-emissary-99515.internal
+-domain: c.eco-emissary-99515.internal
+-machine_id: fa9cf7f6bf67884f71ca2879583f39f3
+-shard_seed: 188817291
++fips:
++  kernel:
++    enabled: false
+ filesystem2:
+   by_device:
+     udev:
+-      kb_size: '7688508'
++      kb_size: '7688132'
+       kb_used: '12'
+-      kb_available: '7688496'
++      kb_available: '7688120'
+       percent_used: 1%
+-      total_inodes: '1922127'
++      total_inodes: '1922033'
+       inodes_used: '411'
+-      inodes_available: '1921716'
++      inodes_available: '1921622'
+       inodes_percent_used: 1%
+       fs_type: devtmpfs
+       mount_options:
+@@ -3278,13 +1608,13 @@
+       mounts:
+       - "/dev"
+     tmpfs:
+-      kb_size: '1540072'
++      kb_size: '1540064'
+       kb_used: '336'
+-      kb_available: '1539736'
++      kb_available: '1539728'
+       percent_used: 1%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '326'
+-      inodes_available: '1924762'
++      inodes_available: '1924752'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3297,17 +1627,17 @@
+       - "/run"
+     "/dev/sda1":
+       kb_size: '15448048'
+-      kb_used: '1366744'
+-      kb_available: '13331028'
++      kb_used: '1367916'
++      kb_available: '13329856'
+       percent_used: 10%
+       total_inodes: '983040'
+-      inodes_used: '65606'
+-      inodes_available: '917434'
++      inodes_used: '65468'
++      inodes_available: '917572'
+       inodes_percent_used: 7%
+       fs_type: ext4
+       mount_options:
+       - rw
+-      uuid: 19713d8b-fe03-471f-8c80-6608e09a1d12
++      uuid: 7f4feb6f-c182-466f-95a5-905ecc5c44ff
+       label: cloudimg-rootfs
+       mounts:
+       - "/"
+@@ -3316,9 +1646,9 @@
+       kb_used: '0'
+       kb_available: '102400'
+       percent_used: 0%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '2'
+-      inodes_available: '1925086'
++      inodes_available: '1925076'
+       inodes_percent_used: 1%
+       fs_type: pstore
+       mount_options:
+@@ -3371,17 +1701,16 @@
+       - name=systemd
+       mounts:
+       - "/sys/fs/cgroup/systemd"
+-    "/dev/sda":
+-      mounts: []
++    "/dev/sda": {}
+   by_mountpoint:
+     "/dev":
+-      kb_size: '7688508'
++      kb_size: '7688132'
+       kb_used: '12'
+-      kb_available: '7688496'
++      kb_available: '7688120'
+       percent_used: 1%
+-      total_inodes: '1922127'
++      total_inodes: '1922033'
+       inodes_used: '411'
+-      inodes_available: '1921716'
++      inodes_available: '1921622'
+       inodes_percent_used: 1%
+       fs_type: devtmpfs
+       mount_options:
+@@ -3390,13 +1719,13 @@
+       devices:
+       - udev
+     "/run":
+-      kb_size: '1540072'
++      kb_size: '1540064'
+       kb_used: '336'
+-      kb_available: '1539736'
++      kb_available: '1539728'
+       percent_used: 1%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '326'
+-      inodes_available: '1924762'
++      inodes_available: '1924752'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3409,17 +1738,17 @@
+       - tmpfs
+     "/":
+       kb_size: '15448048'
+-      kb_used: '1366744'
+-      kb_available: '13331028'
++      kb_used: '1367916'
++      kb_available: '13329856'
+       percent_used: 10%
+       total_inodes: '983040'
+-      inodes_used: '65606'
+-      inodes_available: '917434'
++      inodes_used: '65468'
++      inodes_available: '917572'
+       inodes_percent_used: 7%
+       fs_type: ext4
+       mount_options:
+       - rw
+-      uuid: 19713d8b-fe03-471f-8c80-6608e09a1d12
++      uuid: 7f4feb6f-c182-466f-95a5-905ecc5c44ff
+       label: cloudimg-rootfs
+       devices:
+       - "/dev/sda1"
+@@ -3428,9 +1757,9 @@
+       kb_used: '0'
+       kb_available: '4'
+       percent_used: 0%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '2'
+-      inodes_available: '1925086'
++      inodes_available: '1925076'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3442,9 +1771,9 @@
+       kb_used: '0'
+       kb_available: '5120'
+       percent_used: 0%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '3'
+-      inodes_available: '1925085'
++      inodes_available: '1925075'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3456,13 +1785,13 @@
+       devices:
+       - none
+     "/run/shm":
+-      kb_size: '7700352'
++      kb_size: '7700312'
+       kb_used: '0'
+-      kb_available: '7700352'
++      kb_available: '7700312'
+       percent_used: 0%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '1'
+-      inodes_available: '1925087'
++      inodes_available: '1925077'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3476,9 +1805,9 @@
+       kb_used: '0'
+       kb_available: '102400'
+       percent_used: 0%
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '2'
+-      inodes_available: '1925086'
++      inodes_available: '1925076'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3556,14 +1885,14 @@
+   by_pair:
+     udev,/dev:
+       device: udev
+-      kb_size: '7688508'
++      kb_size: '7688132'
+       kb_used: '12'
+-      kb_available: '7688496'
++      kb_available: '7688120'
+       percent_used: 1%
+       mount: "/dev"
+-      total_inodes: '1922127'
++      total_inodes: '1922033'
+       inodes_used: '411'
+-      inodes_available: '1921716'
++      inodes_available: '1921622'
+       inodes_percent_used: 1%
+       fs_type: devtmpfs
+       mount_options:
+@@ -3571,14 +1900,14 @@
+       - mode=0755
+     tmpfs,/run:
+       device: tmpfs
+-      kb_size: '1540072'
++      kb_size: '1540064'
+       kb_used: '336'
+-      kb_available: '1539736'
++      kb_available: '1539728'
+       percent_used: 1%
+       mount: "/run"
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '326'
+-      inodes_available: '1924762'
++      inodes_available: '1924752'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3590,18 +1919,18 @@
+     "/dev/sda1,/":
+       device: "/dev/sda1"
+       kb_size: '15448048'
+-      kb_used: '1366744'
+-      kb_available: '13331028'
++      kb_used: '1367916'
++      kb_available: '13329856'
+       percent_used: 10%
+       mount: "/"
+       total_inodes: '983040'
+-      inodes_used: '65606'
+-      inodes_available: '917434'
++      inodes_used: '65468'
++      inodes_available: '917572'
+       inodes_percent_used: 7%
+       fs_type: ext4
+       mount_options:
+       - rw
+-      uuid: 19713d8b-fe03-471f-8c80-6608e09a1d12
++      uuid: 7f4feb6f-c182-466f-95a5-905ecc5c44ff
+       label: cloudimg-rootfs
+     none,/sys/fs/cgroup:
+       device: none
+@@ -3610,9 +1939,9 @@
+       kb_available: '4'
+       percent_used: 0%
+       mount: "/sys/fs/cgroup"
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '2'
+-      inodes_available: '1925086'
++      inodes_available: '1925076'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3624,9 +1953,9 @@
+       kb_available: '5120'
+       percent_used: 0%
+       mount: "/run/lock"
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '3'
+-      inodes_available: '1925085'
++      inodes_available: '1925075'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3637,14 +1966,14 @@
+       - size=5242880
+     none,/run/shm:
+       device: none
+-      kb_size: '7700352'
++      kb_size: '7700312'
+       kb_used: '0'
+-      kb_available: '7700352'
++      kb_available: '7700312'
+       percent_used: 0%
+       mount: "/run/shm"
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '1'
+-      inodes_available: '1925087'
++      inodes_available: '1925077'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3658,9 +1987,9 @@
+       kb_available: '102400'
+       percent_used: 0%
+       mount: "/run/user"
+-      total_inodes: '1925088'
++      total_inodes: '1925078'
+       inodes_used: '2'
+-      inodes_available: '1925086'
++      inodes_available: '1925076'
+       inodes_percent_used: 1%
+       fs_type: tmpfs
+       mount_options:
+@@ -3735,176 +2064,2285 @@
+       - name=systemd
+     "/dev/sda,":
+       device: "/dev/sda"
++filesystem:
++  udev:
++    kb_size: '7688132'
++    kb_used: '12'
++    kb_available: '7688120'
++    percent_used: 1%
++    mount: "/dev"
++    total_inodes: '1922033'
++    inodes_used: '411'
++    inodes_available: '1921622'
++    inodes_percent_used: 1%
++    fs_type: devtmpfs
++    mount_options:
++    - rw
++    - mode=0755
++  tmpfs:
++    kb_size: '1540064'
++    kb_used: '336'
++    kb_available: '1539728'
++    percent_used: 1%
++    mount: "/run"
++    total_inodes: '1925078'
++    inodes_used: '326'
++    inodes_available: '1924752'
++    inodes_percent_used: 1%
++    fs_type: tmpfs
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - size=10%
++    - mode=0755
++  "/dev/sda1":
++    kb_size: '15448048'
++    kb_used: '1367916'
++    kb_available: '13329856'
++    percent_used: 10%
++    mount: "/"
++    total_inodes: '983040'
++    inodes_used: '65468'
++    inodes_available: '917572'
++    inodes_percent_used: 7%
++    fs_type: ext4
++    mount_options:
++    - rw
++    uuid: 7f4feb6f-c182-466f-95a5-905ecc5c44ff
++    label: cloudimg-rootfs
++  none:
++    kb_size: '102400'
++    kb_used: '0'
++    kb_available: '102400'
++    percent_used: 0%
++    mount: "/sys/fs/pstore"
++    total_inodes: '1925078'
++    inodes_used: '2'
++    inodes_available: '1925076'
++    inodes_percent_used: 1%
++    fs_type: pstore
++    mount_options:
++    - rw
++  proc:
++    mount: "/proc"
++    fs_type: proc
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - nodev
++  sysfs:
++    mount: "/sys"
++    fs_type: sysfs
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - nodev
++  devpts:
++    mount: "/dev/pts"
++    fs_type: devpts
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - gid=5
++    - mode=0620
++  systemd:
++    mount: "/sys/fs/cgroup/systemd"
++    fs_type: cgroup
++    mount_options:
++    - rw
++    - noexec
++    - nosuid
++    - nodev
++    - none
++    - name=systemd
++hostnamectl:
++  static_hostname: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46
++  icon_name: computer-vm
++  chassis: vm
++  boot_id: f33fdda8161d4aca8bb8ee4188fb830e
++  virtualization: kvm
++  operating_system: Ubuntu 14.04.5 LTS
++  kernel: Linux 4.4.0-59-generic
++  architecture: x86_64
++block_device:
++  sda:
++    size: '31457280'
++    removable: '0'
++    model: PersistentDisk
++    rev: '1'
++    state: running
++    timeout: '30'
++    vendor: Google
++    queue_depth: '256'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram0:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram1:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram2:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram3:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram4:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram5:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram6:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram7:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram8:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram9:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  loop0:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop1:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop2:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop3:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop4:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop5:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop6:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  loop7:
++    size: '0'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '512'
++    logical_block_size: '512'
++  ram10:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram11:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram12:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram13:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram14:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++  ram15:
++    size: '131072'
++    removable: '0'
++    rotational: '1'
++    physical_block_size: '4096'
++    logical_block_size: '512'
++command:
++  ps: ps -ef
++hostname: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46
++machinename: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46
++fqdn: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46.c.eco-emissary-99515.internal
++domain: c.eco-emissary-99515.internal
++uptime_seconds: 58
++uptime: 58 seconds
++idletime_seconds: 196
++idletime: 3 minutes 16 seconds
++keys:
++  ssh:
++    host_rsa_public: AAAAB3NzaC1yc2EAAAADAQABAAABAQCnQH+dKSwAKbl0b/kXHWO56F4l7djB/coxsyfnIPAEF9KXFU6htijjtws4ab4weOOnSTLrGtHWhQy10dymVJ1ZK6TzZSWvkCTpR5wB75ZPhIqpPvt0mlIpaUhdoMeiQoOEYGP57pBSCYsssw03J3CyvycXWJRhgyl5fNk4yqHZvGMz9prgO/SsPXUC875XelAyfgTNwMcJZrrH3LcPylIn5EhNLMu9IrYulcKlF/4ZgnsWZC44iyLa1rLKvL/TFquLZmfIm/+yPkqMlcF6YkdKhCCTXh4uTpnbKf5dos96T/qO/8P2b5DRHaw25lnzs+xs9WPl4F+dgxYE/F2mrdl5
++    host_dsa_public: AAAAB3NzaC1kc3MAAACBAOfQirJGKQ9l2uDk7iuiyCpMoFiUUDksvZ/5dS26IArYi3a4+c0aP5b35U6L/TAj2sJ87xPhBTzoVobHBygVKB99ccjUBNQQRGaKm80N3D9WXOXX5eKQoxhxVzeEm5M1y2haJeijln1YkEVr/wOLrImUa65o+2vA06u4F8VvKoxnAAAAFQDjukIf7nfWpVQiUvIc7Jp7eFMRDQAAAIAXpLLJKzoYUH8zx+eHhJpDp8eNK1jkJh5IKfN7h82lJHHgJHP8h0Mb46ZSVet/JHAbof/0L3JWzK/OmodpwOHTpUp3HTxwO8ux7xNtxjp6pQ05Gm91NN6WtpFf0zQmmDfXYcAptIXGwNcyhJRTDqRRMlSSOGATuibHQQrzNsVdigAAAIEAierbU6MVtNIiw9XD2Zieae6lIC80oRaCTDKVHR8w2bIkBKW474Ct+Y5vk+SxDdOMbh8FmxBMYAqf5Oho6or7DBjsZBtcmt2j88ispdMfk8s+57+gIupBpOCJqv0wCm6p0lMqSNEjK04Ui+1c3pgMDoSQpssrlA18ZYKuwj399Fg=
++    host_ecdsa_public: AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLb4EJTzM0xquS3/UZWaoFTHy5lCmn30HnP0fmYbuav5I/ie4NBuPezvMUD06kUUBBNNO+yKhaUSvOPuhvRZnEE=
++    host_ecdsa_type: ecdsa-sha2-nistp256
++    host_ed25519_public: AAAAC3NzaC1lZDI1NTE5AAAAIEtcO4k63brrlLN4ZfMgXZnp+pv/7whNBLIsaEKGev5w
++packages:
++  accountsservice:
++    version: 0.6.35-0ubuntu7.3
++    arch: amd64
++  acpid:
++    version: 1:2.0.21-1ubuntu2
++    arch: amd64
++  adduser:
++    version: 3.113+nmu3ubuntu3
++    arch: all
++  apparmor:
++    version: 2.8.95~2430-0ubuntu5.3
++    arch: amd64
++  apport:
++    version: 2.14.1-0ubuntu3.23
++    arch: all
++  apport-symptoms:
++    version: '0.20'
++    arch: all
++  apt:
++    version: 1.0.1ubuntu2.17
++    arch: amd64
++  apt-transport-https:
++    version: 1.0.1ubuntu2.17
++    arch: amd64
++  apt-utils:
++    version: 1.0.1ubuntu2.17
++    arch: amd64
++  apt-xapian-index:
++    version: 0.45ubuntu4
++    arch: all
++  aptitude:
++    version: 0.6.8.2-1ubuntu4
++    arch: amd64
++  aptitude-common:
++    version: 0.6.8.2-1ubuntu4
++    arch: all
++  at:
++    version: 3.1.14-1ubuntu1
++    arch: amd64
++  base-files:
++    version: 7.2ubuntu5.5
++    arch: amd64
++  base-passwd:
++    version: 3.5.33
++    arch: amd64
++  bash:
++    version: 4.3-7ubuntu1.5
++    arch: amd64
++  bash-completion:
++    version: 1:2.1-4ubuntu0.2
++    arch: all
++  bc:
++    version: 1.06.95-8ubuntu1
++    arch: amd64
++  bind9-host:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  bsdmainutils:
++    version: 9.0.5ubuntu1
++    arch: amd64
++  bsdutils:
++    version: 1:2.20.1-5.1ubuntu20.9
++    arch: amd64
++  busybox-initramfs:
++    version: 1:1.21.0-1ubuntu1
++    arch: amd64
++  busybox-static:
++    version: 1:1.21.0-1ubuntu1
++    arch: amd64
++  byobu:
++    version: 5.77-0ubuntu1.2
++    arch: all
++  bzip2:
++    version: 1.0.6-5
++    arch: amd64
++  ca-certificates:
++    version: 20160104ubuntu0.14.04.1
++    arch: all
++  chef:
++    version: 12.18.31-1
++    arch: amd64
++  cloud-guest-utils:
++    version: 0.27-0ubuntu9.2
++    arch: all
++  cloud-init:
++    version: 0.7.5-0ubuntu1.21
++    arch: all
++  command-not-found:
++    version: 0.3ubuntu12
++    arch: all
++  command-not-found-data:
++    version: 0.3ubuntu12
++    arch: amd64
++  console-setup:
++    version: 1.70ubuntu8
++    arch: all
++  coreutils:
++    version: 8.21-1ubuntu5.4
++    arch: amd64
++  cpio:
++    version: 2.11+dfsg-1ubuntu1.2
++    arch: amd64
++  crda:
++    version: 1.1.2-1ubuntu2
++    arch: amd64
++  cron:
++    version: 3.0pl1-124ubuntu2
++    arch: amd64
++  cryptsetup:
++    version: 2:1.6.1-1ubuntu1
++    arch: amd64
++  cryptsetup-bin:
++    version: 2:1.6.1-1ubuntu1
++    arch: amd64
++  curl:
++    version: 7.35.0-1ubuntu2.10
++    arch: amd64
++  dash:
++    version: 0.5.7-4ubuntu1
++    arch: amd64
++  dbus:
++    version: 1.6.18-0ubuntu4.4
++    arch: amd64
++  debconf:
++    version: 1.5.51ubuntu2
++    arch: all
++  debconf-i18n:
++    version: 1.5.51ubuntu2
++    arch: all
++  debianutils:
++    version: '4.4'
++    arch: amd64
++  dh-python:
++    version: 1.20140128-1ubuntu8.2
++    arch: all
++  diffutils:
++    version: 1:3.3-1
++    arch: amd64
++  dmidecode:
++    version: 2.12-2
++    arch: amd64
++  dmsetup:
++    version: 2:1.02.77-6ubuntu2
++    arch: amd64
++  dnsutils:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  dosfstools:
++    version: 3.0.26-1ubuntu0.1
++    arch: amd64
++  dpkg:
++    version: 1.17.5ubuntu5.7
++    arch: amd64
++  e2fslibs:
++    version: 1.42.9-3ubuntu1.3
++    arch: amd64
++  e2fsprogs:
++    version: 1.42.9-3ubuntu1.3
++    arch: amd64
++  eatmydata:
++    version: 26-2
++    arch: amd64
++  ed:
++    version: 1.9-2
++    arch: amd64
++  eject:
++    version: 2.1.5+deb1+cvs20081104-13.1
++    arch: amd64
++  ethtool:
++    version: 1:3.13-1
++    arch: amd64
++  file:
++    version: 1:5.14-2ubuntu3.3
++    arch: amd64
++  findutils:
++    version: 4.4.2-7
++    arch: amd64
++  fonts-ubuntu-font-family-console:
++    version: 0.80-0ubuntu6
++    arch: all
++  friendly-recovery:
++    version: 0.2.25
++    arch: all
++  ftp:
++    version: 0.17-28
++    arch: amd64
++  fuse:
++    version: 2.9.2-4ubuntu4.14.04.1
++    arch: amd64
++  gawk:
++    version: 1:4.0.1+dfsg-2.1ubuntu2
++    arch: amd64
++  gcc-4.8-base:
++    version: 4.8.4-2ubuntu1~14.04.3
++    arch: amd64
++  gcc-4.9-base:
++    version: 4.9.3-0ubuntu4
++    arch: amd64
++  gce-cloud-config:
++    version: 1.3.2-0ubuntu1~14.04.0
++    arch: amd64
++  gce-daemon:
++    version: 1.3.2-0ubuntu1~14.04.0
++    arch: amd64
++  gce-startup-scripts:
++    version: 1.3.2-0ubuntu1~14.04.0
++    arch: amd64
++  gdisk:
++    version: 0.8.8-1ubuntu0.1
++    arch: amd64
++  geoip-database:
++    version: 20140313-1
++    arch: all
++  gettext-base:
++    version: 0.18.3.1-1ubuntu3
++    arch: amd64
++  gir1.2-glib-2.0:
++    version: 1.40.0-1ubuntu0.2
++    arch: amd64
++  git:
++    version: 1:1.9.1-1ubuntu0.3
++    arch: amd64
++  git-man:
++    version: 1:1.9.1-1ubuntu0.3
++    arch: all
++  gnupg:
++    version: 1.4.16-1ubuntu2.4
++    arch: amd64
++  google-cloud-sdk:
++    version: 111.0.0-0ubuntu1~14.04.0
++    arch: all
++  gpgv:
++    version: 1.4.16-1ubuntu2.4
++    arch: amd64
++  grep:
++    version: 2.16-1
++    arch: amd64
++  groff-base:
++    version: 1.22.2-5
++    arch: amd64
++  grub-common:
++    version: 2.02~beta2-9ubuntu1.12
++    arch: amd64
++  grub-gfxpayload-lists:
++    version: '0.6'
++    arch: amd64
++  grub-pc:
++    version: 2.02~beta2-9ubuntu1.12
++    arch: amd64
++  grub-pc-bin:
++    version: 2.02~beta2-9ubuntu1.12
++    arch: amd64
++  grub2-common:
++    version: 2.02~beta2-9ubuntu1.12
++    arch: amd64
++  gzip:
++    version: 1.6-3ubuntu1
++    arch: amd64
++  hdparm:
++    version: 9.43-1ubuntu3
++    arch: amd64
++  hostname:
++    version: 3.15ubuntu1
++    arch: amd64
++  ifupdown:
++    version: 0.7.47.2ubuntu4.4
++    arch: amd64
++  info:
++    version: 5.2.0.dfsg.1-2
++    arch: amd64
++  init-system-helpers:
++    version: 1.14ubuntu1
++    arch: all
++  initramfs-tools:
++    version: 0.103ubuntu4.5
++    arch: all
++  initramfs-tools-bin:
++    version: 0.103ubuntu4.5
++    arch: amd64
++  initscripts:
++    version: 2.88dsf-41ubuntu6.3
++    arch: amd64
++  insserv:
++    version: 1.14.0-5ubuntu2
++    arch: amd64
++  install-info:
++    version: 5.2.0.dfsg.1-2
++    arch: amd64
++  iproute2:
++    version: 3.12.0-2ubuntu1
++    arch: amd64
++  iptables:
++    version: 1.4.21-1ubuntu1
++    arch: amd64
++  iputils-ping:
++    version: 3:20121221-4ubuntu1.1
++    arch: amd64
++  iputils-tracepath:
++    version: 3:20121221-4ubuntu1.1
++    arch: amd64
++  irqbalance:
++    version: 1.0.6-2ubuntu0.14.04.4
++    arch: amd64
++  isc-dhcp-client:
++    version: 4.2.4-7ubuntu12.8
++    arch: amd64
++  isc-dhcp-common:
++    version: 4.2.4-7ubuntu12.8
++    arch: amd64
++  iso-codes:
++    version: 3.52-1
++    arch: all
++  kbd:
++    version: 1.15.5-1ubuntu1
++    arch: amd64
++  keyboard-configuration:
++    version: 1.70ubuntu8
++    arch: all
++  klibc-utils:
++    version: 2.0.3-0ubuntu1.14.04.2
++    arch: amd64
++  kmod:
++    version: 15-0ubuntu6
++    arch: amd64
++  krb5-locales:
++    version: 1.12+dfsg-2ubuntu5.2
++    arch: all
++  landscape-client:
++    version: 14.12-0ubuntu0.14.04
++    arch: amd64
++  landscape-common:
++    version: 14.12-0ubuntu0.14.04
++    arch: amd64
++  language-selector-common:
++    version: 0.129.3
++    arch: all
++  laptop-detect:
++    version: 0.13.7ubuntu2
++    arch: amd64
++  less:
++    version: 458-2
++    arch: amd64
++  libaccountsservice0:
++    version: 0.6.35-0ubuntu7.3
++    arch: amd64
++  libacl1:
++    version: 2.2.52-1
++    arch: amd64
++  libapparmor-perl:
++    version: 2.8.95~2430-0ubuntu5.3
++    arch: amd64
++  libapparmor1:
++    version: 2.8.95~2430-0ubuntu5.3
++    arch: amd64
++  libapt-inst1.5:
++    version: 1.0.1ubuntu2.17
++    arch: amd64
++  libapt-pkg4.12:
++    version: 1.0.1ubuntu2.17
++    arch: amd64
++  libarchive-extract-perl:
++    version: 0.70-1
++    arch: all
++  libasn1-8-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libasprintf0c2:
++    version: 0.18.3.1-1ubuntu3
++    arch: amd64
++  libattr1:
++    version: 1:2.4.47-1ubuntu1
++    arch: amd64
++  libaudit-common:
++    version: 1:2.3.2-2ubuntu1
++    arch: all
++  libaudit1:
++    version: 1:2.3.2-2ubuntu1
++    arch: amd64
++  libbind9-90:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  libblkid1:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  libboost-iostreams1.54.0:
++    version: 1.54.0-4ubuntu3.1
++    arch: amd64
++  libbsd0:
++    version: 0.6.0-2ubuntu1
++    arch: amd64
++  libbz2-1.0:
++    version: 1.0.6-5
++    arch: amd64
++  libc-bin:
++    version: 2.19-0ubuntu6.9
++    arch: amd64
++  libc6:
++    version: 2.19-0ubuntu6.9
++    arch: amd64
++  libcap-ng0:
++    version: 0.7.3-1ubuntu2
++    arch: amd64
++  libcap2:
++    version: 1:2.24-0ubuntu2
++    arch: amd64
++  libcap2-bin:
++    version: 1:2.24-0ubuntu2
++    arch: amd64
++  libcgmanager0:
++    version: 0.24-0ubuntu7.5
++    arch: amd64
++  libck-connector0:
++    version: 0.4.5-3.1ubuntu2
++    arch: amd64
++  libclass-accessor-perl:
++    version: 0.34-1
++    arch: all
++  libcomerr2:
++    version: 1.42.9-3ubuntu1.3
++    arch: amd64
++  libcryptsetup4:
++    version: 2:1.6.1-1ubuntu1
++    arch: amd64
++  libcurl3:
++    version: 7.35.0-1ubuntu2.10
++    arch: amd64
++  libcurl3-gnutls:
++    version: 7.35.0-1ubuntu2.10
++    arch: amd64
++  libcwidget3:
++    version: 0.5.16-3.5ubuntu1
++    arch: amd64
++  libdb5.3:
++    version: 5.3.28-3ubuntu3
++    arch: amd64
++  libdbus-1-3:
++    version: 1.6.18-0ubuntu4.4
++    arch: amd64
++  libdbus-glib-1-2:
++    version: 0.100.2-1
++    arch: amd64
++  libdebconfclient0:
++    version: 0.187ubuntu1
++    arch: amd64
++  libdevmapper1.02.1:
++    version: 2:1.02.77-6ubuntu2
++    arch: amd64
++  libdns100:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  libdrm2:
++    version: 2.4.67-1ubuntu0.14.04.1
++    arch: amd64
++  libdumbnet1:
++    version: 1.12-4build1
++    arch: amd64
++  libedit2:
++    version: 3.1-20130712-2
++    arch: amd64
++  libelf1:
++    version: 0.158-0ubuntu5.2
++    arch: amd64
++  libept1.4.12:
++    version: 1.0.12
++    arch: amd64
++  liberror-perl:
++    version: 0.17-1.1
++    arch: all
++  libestr0:
++    version: 0.1.9-0ubuntu2
++    arch: amd64
++  libevent-2.0-5:
++    version: 2.0.21-stable-1ubuntu1.14.04.1
++    arch: amd64
++  libexpat1:
++    version: 2.1.0-4ubuntu1.3
++    arch: amd64
++  libffi6:
++    version: 3.1~rc1+r3.0.13-12ubuntu0.1
++    arch: amd64
++  libfreetype6:
++    version: 2.5.2-1ubuntu2.5
++    arch: amd64
++  libfribidi0:
++    version: 0.19.6-1
++    arch: amd64
++  libfuse2:
++    version: 2.9.2-4ubuntu4.14.04.1
++    arch: amd64
++  libgc1c2:
++    version: 1:7.2d-5ubuntu2
++    arch: amd64
++  libgcc1:
++    version: 1:4.9.3-0ubuntu4
++    arch: amd64
++  libgck-1-0:
++    version: 3.10.1-1
++    arch: amd64
++  libgcr-3-common:
++    version: 3.10.1-1
++    arch: all
++  libgcr-base-3-1:
++    version: 3.10.1-1
++    arch: amd64
++  libgcrypt11:
++    version: 1.5.3-2ubuntu4.4
++    arch: amd64
++  libgdbm3:
++    version: 1.8.3-12build1
++    arch: amd64
++  libgeoip1:
++    version: 1.6.0-1
++    arch: amd64
++  libgirepository-1.0-1:
++    version: 1.40.0-1ubuntu0.2
++    arch: amd64
++  libglib2.0-0:
++    version: 2.40.2-0ubuntu1
++    arch: amd64
++  libglib2.0-data:
++    version: 2.40.2-0ubuntu1
++    arch: all
++  libgnutls-openssl27:
++    version: 2.12.23-12ubuntu2.5
++    arch: amd64
++  libgnutls26:
++    version: 2.12.23-12ubuntu2.5
++    arch: amd64
++  libgpg-error0:
++    version: 1.12-0.2ubuntu1
++    arch: amd64
++  libgpm2:
++    version: 1.20.4-6.1
++    arch: amd64
++  libgssapi-krb5-2:
++    version: 1.12+dfsg-2ubuntu5.2
++    arch: amd64
++  libgssapi3-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libhcrypto4-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libheimbase1-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libheimntlm0-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libhx509-5-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libicu52:
++    version: 52.1-3ubuntu0.4
++    arch: amd64
++  libidn11:
++    version: 1.28-1ubuntu2.1
++    arch: amd64
++  libio-string-perl:
++    version: 1.08-3
++    arch: all
++  libisc95:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  libisccc90:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  libisccfg90:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  libjson-c2:
++    version: 0.11-3ubuntu1.2
++    arch: amd64
++  libjson0:
++    version: 0.11-3ubuntu1.2
++    arch: amd64
++  libk5crypto3:
++    version: 1.12+dfsg-2ubuntu5.2
++    arch: amd64
++  libkeyutils1:
++    version: 1.5.6-1
++    arch: amd64
++  libklibc:
++    version: 2.0.3-0ubuntu1.14.04.2
++    arch: amd64
++  libkmod2:
++    version: 15-0ubuntu6
++    arch: amd64
++  libkrb5-26-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libkrb5-3:
++    version: 1.12+dfsg-2ubuntu5.2
++    arch: amd64
++  libkrb5support0:
++    version: 1.12+dfsg-2ubuntu5.2
++    arch: amd64
++  libldap-2.4-2:
++    version: 2.4.31-1+nmu2ubuntu8.3
++    arch: amd64
++  liblocale-gettext-perl:
++    version: 1.05-7build3
++    arch: amd64
++  liblockfile-bin:
++    version: 1.09-6ubuntu1
++    arch: amd64
++  liblockfile1:
++    version: 1.09-6ubuntu1
++    arch: amd64
++  liblog-message-simple-perl:
++    version: 0.10-1
++    arch: all
++  liblwres90:
++    version: 1:9.9.5.dfsg-3ubuntu0.10
++    arch: amd64
++  liblzma5:
++    version: 5.1.1alpha+20120614-2ubuntu2
++    arch: amd64
++  libmagic1:
++    version: 1:5.14-2ubuntu3.3
++    arch: amd64
++  libmodule-pluggable-perl:
++    version: 5.1-1
++    arch: all
++  libmount1:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  libmpdec2:
++    version: 2.4.0-6
++    arch: amd64
++  libncurses5:
++    version: 5.9+20140118-1ubuntu1
++    arch: amd64
++  libncursesw5:
++    version: 5.9+20140118-1ubuntu1
++    arch: amd64
++  libnewt0.52:
++    version: 0.52.15-2ubuntu5
++    arch: amd64
++  libnfnetlink0:
++    version: 1.0.1-2
++    arch: amd64
++  libnih-dbus1:
++    version: 1.0.3-4ubuntu25
++    arch: amd64
++  libnih1:
++    version: 1.0.3-4ubuntu25
++    arch: amd64
++  libnl-3-200:
++    version: 3.2.21-1ubuntu4
++    arch: amd64
++  libnl-genl-3-200:
++    version: 3.2.21-1ubuntu4
++    arch: amd64
++  libnuma1:
++    version: 2.0.9~rc5-1ubuntu3.14.04.2
++    arch: amd64
++  libopts25:
++    version: 1:5.18-2ubuntu2
++    arch: amd64
++  libp11-kit0:
++    version: 0.20.2-2ubuntu2
++    arch: amd64
++  libpam-cap:
++    version: 1:2.24-0ubuntu2
++    arch: amd64
++  libpam-modules:
++    version: 1.1.8-1ubuntu2.2
++    arch: amd64
++  libpam-modules-bin:
++    version: 1.1.8-1ubuntu2.2
++    arch: amd64
++  libpam-runtime:
++    version: 1.1.8-1ubuntu2.2
++    arch: all
++  libpam-systemd:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  libpam0g:
++    version: 1.1.8-1ubuntu2.2
++    arch: amd64
++  libparse-debianchangelog-perl:
++    version: 1.2.0-1ubuntu1
++    arch: all
++  libparted0debian1:
++    version: 2.3-19ubuntu1.14.04.1
++    arch: amd64
++  libpcap0.8:
++    version: 1.5.3-2
++    arch: amd64
++  libpci3:
++    version: 1:3.2.1-1ubuntu5.1
++    arch: amd64
++  libpcre3:
++    version: 1:8.31-2ubuntu2.3
++    arch: amd64
++  libpipeline1:
++    version: 1.3.0-1
++    arch: amd64
++  libplymouth2:
++    version: 0.8.8-0ubuntu17.1
++    arch: amd64
++  libpng12-0:
++    version: 1.2.50-1ubuntu2.14.04.2
++    arch: amd64
++  libpod-latex-perl:
++    version: 0.61-1
++    arch: all
++  libpolkit-agent-1-0:
++    version: 0.105-4ubuntu3.14.04.1
++    arch: amd64
++  libpolkit-backend-1-0:
++    version: 0.105-4ubuntu3.14.04.1
++    arch: amd64
++  libpolkit-gobject-1-0:
++    version: 0.105-4ubuntu3.14.04.1
++    arch: amd64
++  libpopt0:
++    version: 1.16-8ubuntu1
++    arch: amd64
++  libprocps3:
++    version: 1:3.3.9-1ubuntu2.2
++    arch: amd64
++  libpython-stdlib:
++    version: 2.7.5-5ubuntu3
++    arch: amd64
++  libpython2.7:
++    version: 2.7.6-8ubuntu0.3
++    arch: amd64
++  libpython2.7-minimal:
++    version: 2.7.6-8ubuntu0.3
++    arch: amd64
++  libpython2.7-stdlib:
++    version: 2.7.6-8ubuntu0.3
++    arch: amd64
++  libpython3-stdlib:
++    version: 3.4.0-0ubuntu2
++    arch: amd64
++  libpython3.4-minimal:
++    version: 3.4.3-1ubuntu1~14.04.5
++    arch: amd64
++  libpython3.4-stdlib:
++    version: 3.4.3-1ubuntu1~14.04.5
++    arch: amd64
++  libreadline6:
++    version: 6.3-4ubuntu2
++    arch: amd64
++  libroken18-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  librtmp0:
++    version: 2.4+20121230.gitdf6c518-1
++    arch: amd64
++  libsasl2-2:
++    version: 2.1.25.dfsg1-17build1
++    arch: amd64
++  libsasl2-modules:
++    version: 2.1.25.dfsg1-17build1
++    arch: amd64
++  libsasl2-modules-db:
++    version: 2.1.25.dfsg1-17build1
++    arch: amd64
++  libselinux1:
++    version: 2.2.2-1ubuntu0.1
++    arch: amd64
++  libsemanage-common:
++    version: 2.2-1
++    arch: all
++  libsemanage1:
++    version: 2.2-1
++    arch: amd64
++  libsepol1:
++    version: 2.2-1ubuntu0.1
++    arch: amd64
++  libsigc++-2.0-0c2a:
++    version: 2.2.10-0.2ubuntu2
++    arch: amd64
++  libsigsegv2:
++    version: 2.10-2
++    arch: amd64
++  libslang2:
++    version: 2.2.4-15ubuntu1
++    arch: amd64
++  libsqlite3-0:
++    version: 3.8.2-1ubuntu2.1
++    arch: amd64
++  libss2:
++    version: 1.42.9-3ubuntu1.3
++    arch: amd64
++  libssl1.0.0:
++    version: 1.0.1f-1ubuntu2.21
++    arch: amd64
++  libstdc++6:
++    version: 4.8.4-2ubuntu1~14.04.3
++    arch: amd64
++  libsub-name-perl:
++    version: 0.05-1build4
++    arch: amd64
++  libsystemd-daemon0:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  libsystemd-login0:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  libtasn1-6:
++    version: 3.4-3ubuntu0.4
++    arch: amd64
++  libterm-ui-perl:
++    version: 0.42-1
++    arch: all
++  libtext-charwidth-perl:
++    version: 0.04-7build3
++    arch: amd64
++  libtext-iconv-perl:
++    version: 1.7-5build2
++    arch: amd64
++  libtext-soundex-perl:
++    version: 3.4-1build1
++    arch: amd64
++  libtext-wrapi18n-perl:
++    version: 0.06-7
++    arch: all
++  libtimedate-perl:
++    version: 2.3000-1
++    arch: all
++  libtinfo5:
++    version: 5.9+20140118-1ubuntu1
++    arch: amd64
++  libudev1:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  libusb-0.1-4:
++    version: 2:0.1.12-23.3ubuntu1
++    arch: amd64
++  libusb-1.0-0:
++    version: 2:1.0.17-1ubuntu2
++    arch: amd64
++  libustr-1.0-1:
++    version: 1.0.4-3ubuntu2
++    arch: amd64
++  libuuid1:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  libwind0-heimdal:
++    version: 1.6~git20131207+dfsg-1ubuntu1.1
++    arch: amd64
++  libwrap0:
++    version: 7.6.q-25
++    arch: amd64
++  libx11-6:
++    version: 2:1.6.2-1ubuntu2
++    arch: amd64
++  libx11-data:
++    version: 2:1.6.2-1ubuntu2
++    arch: all
++  libxapian22:
++    version: 1.2.16-2ubuntu1
++    arch: amd64
++  libxau6:
++    version: 1:1.0.8-1
++    arch: amd64
++  libxcb1:
++    version: 1.10-2ubuntu1
++    arch: amd64
++  libxdmcp6:
++    version: 1:1.1.1-1
++    arch: amd64
++  libxext6:
++    version: 2:1.3.2-1ubuntu0.0.14.04.1
++    arch: amd64
++  libxml2:
++    version: 2.9.1+dfsg1-3ubuntu4.8
++    arch: amd64
++  libxmuu1:
++    version: 2:1.1.1-1
++    arch: amd64
++  libxtables10:
++    version: 1.4.21-1ubuntu1
++    arch: amd64
++  libyaml-0-2:
++    version: 0.1.4-3ubuntu3.1
++    arch: amd64
++  linux-firmware:
++    version: 1.127.23
++    arch: all
++  linux-image-4.4.0-59-generic:
++    version: 4.4.0-59.80~14.04.1
++    arch: amd64
++  linux-image-extra-4.4.0-59-generic:
++    version: 4.4.0-59.80~14.04.1
++    arch: amd64
++  linux-image-generic-lts-xenial:
++    version: 4.4.0.59.46
++    arch: amd64
++  locales:
++    version: 2.13+git20120306-12.1
++    arch: all
++  lockfile-progs:
++    version: 0.1.17
++    arch: amd64
++  login:
++    version: 1:4.1.5.1-1ubuntu9.2
++    arch: amd64
++  logrotate:
++    version: 3.8.7-1ubuntu1
++    arch: amd64
++  lsb-base:
++    version: 4.1+Debian11ubuntu6.2
++    arch: all
++  lsb-release:
++    version: 4.1+Debian11ubuntu6.2
++    arch: all
++  lshw:
++    version: 02.16-2ubuntu1.3
++    arch: amd64
++  lsof:
++    version: 4.86+dfsg-1ubuntu2
++    arch: amd64
++  ltrace:
++    version: 0.7.3-4ubuntu5.1
++    arch: amd64
++  makedev:
++    version: 2.3.1-93ubuntu1
++    arch: all
++  man-db:
++    version: 2.6.7.1-1ubuntu1
++    arch: amd64
++  manpages:
++    version: 3.54-1ubuntu1
++    arch: all
++  mawk:
++    version: 1.3.3-17ubuntu2
++    arch: amd64
++  mime-support:
++    version: 3.54ubuntu1.1
++    arch: all
++  mlocate:
++    version: 0.26-1ubuntu1
++    arch: amd64
++  module-init-tools:
++    version: 15-0ubuntu6
++    arch: all
++  mount:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  mountall:
++    version: '2.53'
++    arch: amd64
++  mtr-tiny:
++    version: 0.85-2
++    arch: amd64
++  multiarch-support:
++    version: 2.19-0ubuntu6.9
++    arch: amd64
++  nano:
++    version: 2.2.6-1ubuntu1
++    arch: amd64
++  ncurses-base:
++    version: 5.9+20140118-1ubuntu1
++    arch: all
++  ncurses-bin:
++    version: 5.9+20140118-1ubuntu1
++    arch: amd64
++  ncurses-term:
++    version: 5.9+20140118-1ubuntu1
++    arch: all
++  net-tools:
++    version: 1.60-25ubuntu2.1
++    arch: amd64
++  netbase:
++    version: '5.2'
++    arch: all
++  netcat-openbsd:
++    version: 1.105-7ubuntu1
++    arch: amd64
++  ntfs-3g:
++    version: 1:2013.1.13AR.1-2ubuntu2
++    arch: amd64
++  ntp:
++    version: 1:4.2.6.p5+dfsg-3ubuntu2.14.04.10
++    arch: amd64
++  ntpdate:
++    version: 1:4.2.6.p5+dfsg-3ubuntu2.14.04.10
++    arch: amd64
++  open-vm-tools:
++    version: 2:9.4.0-1280544-5ubuntu6.2
++    arch: amd64
++  openssh-client:
++    version: 1:6.6p1-2ubuntu2.8
++    arch: amd64
++  openssh-server:
++    version: 1:6.6p1-2ubuntu2.8
++    arch: amd64
++  openssh-sftp-server:
++    version: 1:6.6p1-2ubuntu2.8
++    arch: amd64
++  openssl:
++    version: 1.0.1f-1ubuntu2.21
++    arch: amd64
++  os-prober:
++    version: 1.63ubuntu1.1
++    arch: amd64
++  overlayroot:
++    version: 0.25ubuntu1.14.04.1
++    arch: all
++  parted:
++    version: 2.3-19ubuntu1.14.04.1
++    arch: amd64
++  passwd:
++    version: 1:4.1.5.1-1ubuntu9.2
++    arch: amd64
++  patch:
++    version: 2.7.1-4ubuntu2.3
++    arch: amd64
++  pciutils:
++    version: 1:3.2.1-1ubuntu5.1
++    arch: amd64
++  perl:
++    version: 5.18.2-2ubuntu1.1
++    arch: amd64
++  perl-base:
++    version: 5.18.2-2ubuntu1.1
++    arch: amd64
++  perl-modules:
++    version: 5.18.2-2ubuntu1.1
++    arch: all
++  plymouth:
++    version: 0.8.8-0ubuntu17.1
++    arch: amd64
++  plymouth-theme-ubuntu-text:
++    version: 0.8.8-0ubuntu17.1
++    arch: amd64
++  policykit-1:
++    version: 0.105-4ubuntu3.14.04.1
++    arch: amd64
++  pollinate:
++    version: 4.23-0ubuntu1~14.04
++    arch: all
++  popularity-contest:
++    version: 1.57ubuntu1
++    arch: all
++  powermgmt-base:
++    version: 1.31build1
++    arch: amd64
++  ppp:
++    version: 2.4.5-5.1ubuntu2.2
++    arch: amd64
++  pppconfig:
++    version: 2.3.19ubuntu1
++    arch: all
++  pppoeconf:
++    version: 1.20ubuntu1
++    arch: all
++  procps:
++    version: 1:3.3.9-1ubuntu2.2
++    arch: amd64
++  psmisc:
++    version: 22.20-1ubuntu2
++    arch: amd64
++  python:
++    version: 2.7.5-5ubuntu3
++    arch: amd64
++  python-apt:
++    version: 0.9.3.5ubuntu2
++    arch: amd64
++  python-apt-common:
++    version: 0.9.3.5ubuntu2
++    arch: all
++  python-boto:
++    version: 2.20.1-2ubuntu2
++    arch: all
++  python-chardet:
++    version: 2.0.1-2build2
++    arch: all
++  python-cheetah:
++    version: 2.4.4-3.fakesyncbuild1
++    arch: amd64
++  python-configobj:
++    version: 4.7.2+ds-5build1
++    arch: all
++  python-debian:
++    version: 0.1.21+nmu2ubuntu2
++    arch: all
++  python-gdbm:
++    version: 2.7.5-1ubuntu1
++    arch: amd64
++  python-json-pointer:
++    version: 1.0-2build1
++    arch: all
++  python-jsonpatch:
++    version: 1.3-4
++    arch: all
++  python-minimal:
++    version: 2.7.5-5ubuntu3
++    arch: amd64
++  python-oauth:
++    version: 1.0.1-3build2
++    arch: all
++  python-openssl:
++    version: 0.13-2ubuntu6
++    arch: amd64
++  python-pam:
++    version: 0.4.2-13.1ubuntu3
++    arch: amd64
++  python-pkg-resources:
++    version: 3.3-1ubuntu2
++    arch: all
++  python-prettytable:
++    version: 0.7.2-2ubuntu2
++    arch: all
++  python-pycurl:
++    version: 7.19.3-0ubuntu3
++    arch: amd64
++  python-requests:
++    version: 2.2.1-1ubuntu0.3
++    arch: all
++  python-serial:
++    version: 2.6-1build1
++    arch: all
++  python-six:
++    version: 1.5.2-1ubuntu1
++    arch: all
++  python-twisted-bin:
++    version: 13.2.0-1ubuntu1
++    arch: amd64
++  python-twisted-core:
++    version: 13.2.0-1ubuntu1
++    arch: all
++  python-twisted-names:
++    version: 13.2.0-1ubuntu1
++    arch: all
++  python-twisted-web:
++    version: 13.2.0-1ubuntu1
++    arch: all
++  python-urllib3:
++    version: 1.7.1-1ubuntu4
++    arch: all
++  python-xapian:
++    version: 1.2.16-2ubuntu1
++    arch: amd64
++  python-yaml:
++    version: 3.10-4ubuntu0.1
++    arch: amd64
++  python-zope.interface:
++    version: 4.0.5-1ubuntu4
++    arch: amd64
++  python2.7:
++    version: 2.7.6-8ubuntu0.3
++    arch: amd64
++  python2.7-minimal:
++    version: 2.7.6-8ubuntu0.3
++    arch: amd64
++  python3:
++    version: 3.4.0-0ubuntu2
++    arch: amd64
++  python3-apport:
++    version: 2.14.1-0ubuntu3.23
++    arch: all
++  python3-apt:
++    version: 0.9.3.5ubuntu2
++    arch: amd64
++  python3-commandnotfound:
++    version: 0.3ubuntu12
++    arch: all
++  python3-dbus:
++    version: 1.2.0-2build2
++    arch: amd64
++  python3-distupgrade:
++    version: 1:0.220.9
++    arch: all
++  python3-gdbm:
++    version: 3.4.3-1~14.04.2
++    arch: amd64
++  python3-gi:
++    version: 3.12.0-1ubuntu1
++    arch: amd64
++  python3-minimal:
++    version: 3.4.0-0ubuntu2
++    arch: amd64
++  python3-newt:
++    version: 0.52.15-2ubuntu5
++    arch: amd64
++  python3-problem-report:
++    version: 2.14.1-0ubuntu3.23
++    arch: all
++  python3-pycurl:
++    version: 7.19.3-0ubuntu3
++    arch: amd64
++  python3-software-properties:
++    version: 0.92.37.7
++    arch: all
++  python3-update-manager:
++    version: 1:0.196.22
++    arch: all
++  python3.4:
++    version: 3.4.3-1ubuntu1~14.04.5
++    arch: amd64
++  python3.4-minimal:
++    version: 3.4.3-1ubuntu1~14.04.5
++    arch: amd64
++  readline-common:
++    version: 6.3-4ubuntu2
++    arch: all
++  resolvconf:
++    version: 1.69ubuntu1.1
++    arch: all
++  rsync:
++    version: 3.1.0-2ubuntu0.2
++    arch: amd64
++  rsyslog:
++    version: 7.4.4-1ubuntu2.6
++    arch: amd64
++  run-one:
++    version: 1.17-0ubuntu1
++    arch: all
++  screen:
++    version: 4.1.0~20120320gitdb59704-9
++    arch: amd64
++  sed:
++    version: 4.2.2-4ubuntu1
++    arch: amd64
++  sensible-utils:
++    version: 0.0.9
++    arch: all
++  sgml-base:
++    version: 1.26+nmu4ubuntu1
++    arch: all
++  shared-mime-info:
++    version: 1.2-0ubuntu3
++    arch: amd64
++  software-properties-common:
++    version: 0.92.37.7
++    arch: all
++  ssh-import-id:
++    version: 3.21-0ubuntu1
++    arch: all
++  sshguard:
++    version: 1.5-5
++    arch: amd64
++  strace:
++    version: 4.8-1ubuntu5
++    arch: amd64
++  sudo:
++    version: 1.8.9p5-1ubuntu1.3
++    arch: amd64
++  systemd-services:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  systemd-shim:
++    version: 6-2bzr1
++    arch: amd64
++  sysv-rc:
++    version: 2.88dsf-41ubuntu6.3
++    arch: all
++  sysvinit-utils:
++    version: 2.88dsf-41ubuntu6.3
++    arch: amd64
++  tar:
++    version: 1.27.1-1ubuntu0.1
++    arch: amd64
++  tasksel:
++    version: 2.88ubuntu15
++    arch: all
++  tasksel-data:
++    version: 2.88ubuntu15
++    arch: all
++  tcpd:
++    version: 7.6.q-25
++    arch: amd64
++  tcpdump:
++    version: 4.5.1-2ubuntu1.2
++    arch: amd64
++  telnet:
++    version: 0.17-36build2
++    arch: amd64
++  time:
++    version: 1.7-24
++    arch: amd64
++  tmux:
++    version: 1.8-5
++    arch: amd64
++  tzdata:
++    version: 2016j-0ubuntu0.14.04
++    arch: all
++  ubuntu-keyring:
++    version: 2012.05.19
++    arch: all
++  ubuntu-minimal:
++    version: '1.325'
++    arch: amd64
++  ubuntu-release-upgrader-core:
++    version: 1:0.220.9
++    arch: all
++  ubuntu-standard:
++    version: '1.325'
++    arch: amd64
++  ucf:
++    version: 3.0027+nmu1
++    arch: all
++  udev:
++    version: 204-5ubuntu20.20
++    arch: amd64
++  ufw:
++    version: 0.34~rc-0ubuntu2
++    arch: all
++  unattended-upgrades:
++    version: 0.82.1ubuntu2.4
++    arch: all
++  update-manager-core:
++    version: 1:0.196.22
++    arch: all
++  update-notifier-common:
++    version: 0.154.1ubuntu2
++    arch: all
++  upstart:
++    version: 1.12.1-0ubuntu4.2
++    arch: amd64
++  ureadahead:
++    version: 0.100.0-16
++    arch: amd64
++  usbutils:
++    version: 1:007-2ubuntu1.1
++    arch: amd64
++  util-linux:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  uuid-runtime:
++    version: 2.20.1-5.1ubuntu20.9
++    arch: amd64
++  vim:
++    version: 2:7.4.052-1ubuntu3.1
++    arch: amd64
++  vim-common:
++    version: 2:7.4.052-1ubuntu3.1
++    arch: amd64
++  vim-runtime:
++    version: 2:7.4.052-1ubuntu3.1
++    arch: all
++  vim-tiny:
++    version: 2:7.4.052-1ubuntu3.1
++    arch: amd64
++  w3m:
++    version: 0.5.3-15
++    arch: amd64
++  wget:
++    version: 1.15-1ubuntu1.14.04.2
++    arch: amd64
++  whiptail:
++    version: 0.52.15-2ubuntu5
++    arch: amd64
++  wireless-regdb:
++    version: 2013.02.13-1ubuntu1
++    arch: all
++  xauth:
++    version: 1:1.0.7-1ubuntu1
++    arch: amd64
++  xkb-data:
++    version: 2.10.1-1ubuntu1
++    arch: all
++  xml-core:
++    version: 0.13+nmu2
++    arch: all
++  xz-utils:
++    version: 5.1.1alpha+20120614-2ubuntu2
++    arch: amd64
++  zerofree:
++    version: 1.0.2-1ubuntu1
++    arch: amd64
++  zlib1g:
++    version: 1:1.2.8.dfsg-1ubuntu1
++    arch: amd64
++dmi:
++  dmidecode_version: '2.12'
++  smbios_version: '2.4'
++  structures:
++    count: '16'
++    size: '550'
++  bios:
++    all_records:
++    - record_id: '0x0000'
++      size: '0'
++      application_identifier: BIOS Information
++      Vendor: Google
++      Version: Google
++      Release Date: 01/01/2011
++      Address: '0xE8000'
++      Runtime Size: 96 kB
++      ROM Size: 64 kB
++      Characteristics:
++        BIOS characteristics not supported: 
++        Targeted content distribution is supported: 
++      BIOS Revision: '1.0'
++    vendor: Google
++    version: Google
++    release_date: 01/01/2011
++    address: '0xE8000'
++    runtime_size: 96 kB
++    rom_size: 64 kB
++    bios_revision: '1.0'
++  system:
++    all_records:
++    - record_id: '0x0100'
++      size: '1'
++      application_identifier: System Information
++      Manufacturer: Google
++      Product Name: Google Compute Engine
++      Version: Not Specified
++      Serial Number: GoogleCloud-26CD3D4FF5E3CA14CA6A6B9833C4FF82
++      UUID: 26CD3D4F-F5E3-CA14-CA6A-6B9833C4FF82
++      Wake-up Type: Power Switch
++      SKU Number: Not Specified
++      Family: Not Specified
++    manufacturer: Google
++    product_name: Google Compute Engine
++    version: Not Specified
++    serial_number: GoogleCloud-26CD3D4FF5E3CA14CA6A6B9833C4FF82
++    uuid: 26CD3D4F-F5E3-CA14-CA6A-6B9833C4FF82
++    wake_up_type: Power Switch
++    sku_number: Not Specified
++    family: Not Specified
++  base_board:
++    all_records:
++    - record_id: '0x0200'
++      size: '2'
++      application_identifier: Base Board Information
++      Manufacturer: Google
++      Product Name: Google Compute Engine
++      Version: Not Specified
++      Serial Number: Not Specified
++      Asset Tag: Not Specified
++      Features:
++        Board is a hosting board: 
++      Location In Chassis: Not Specified
++      Chassis Handle: '0x0300'
++      Type: Motherboard
++      Contained Object Handles: '0'
++    manufacturer: Google
++    product_name: Google Compute Engine
++    version: Not Specified
++    serial_number: Not Specified
++    asset_tag: Not Specified
++    location_in_chassis: Not Specified
++    chassis_handle: '0x0300'
++    type: Motherboard
++    contained_object_handles: '0'
++  chassis:
++    all_records:
++    - record_id: '0x0300'
++      size: '3'
++      application_identifier: Chassis Information
++      Manufacturer: Google
++      Type: Other
++      Lock: Not Present
++      Version: Not Specified
++      Serial Number: Not Specified
++      Asset Tag: Not Specified
++      Boot-up State: Safe
++      Power Supply State: Safe
++      Thermal State: Safe
++      Security Status: Unknown
++      OEM Information: '0x00000000'
++      Height: Unspecified
++      Number Of Power Cords: Unspecified
++    manufacturer: Google
++    type: Other
++    lock: Not Present
++    version: Not Specified
++    serial_number: Not Specified
++    asset_tag: Not Specified
++    boot_up_state: Safe
++    power_supply_state: Safe
++    thermal_state: Safe
++    security_status: Unknown
++    oem_information: '0x00000000'
++    height: Unspecified
++    number_of_power_cords: Unspecified
++  processor:
++    all_records:
++    - record_id: '0x0401'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 1
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0402'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 2
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0403'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 3
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    - record_id: '0x0404'
++      size: '4'
++      application_identifier: Processor Information
++      Socket Designation: CPU 4
++      Type: Central Processor
++      Family: Other
++      Manufacturer: Google
++      ID: D7 06 02 00 FF FB 8B 1F
++      Version: Not Specified
++      Voltage: Unknown
++      External Clock: Unknown
++      Max Speed: 2000 MHz
++      Current Speed: 2000 MHz
++      Status: Populated, Enabled
++      Upgrade: Other
++      L1 Cache Handle: Not Provided
++      L2 Cache Handle: Not Provided
++      L3 Cache Handle: Not Provided
++    type: Central Processor
++    family: Other
++    manufacturer: Google
++    id: D7 06 02 00 FF FB 8B 1F
++    version: Not Specified
++    voltage: Unknown
++    external_clock: Unknown
++    max_speed: 2000 MHz
++    current_speed: 2000 MHz
++    status: Populated, Enabled
++    upgrade: Other
++    l1_cache_handle: Not Provided
++    l2_cache_handle: Not Provided
++    l3_cache_handle: Not Provided
++etc:
++  passwd:
++    root:
++      dir: "/root"
++      gid: 0
++      uid: 0
++      shell: "/bin/bash"
++      gecos: root
++    daemon:
++      dir: "/usr/sbin"
++      gid: 1
++      uid: 1
++      shell: "/usr/sbin/nologin"
++      gecos: daemon
++    bin:
++      dir: "/bin"
++      gid: 2
++      uid: 2
++      shell: "/usr/sbin/nologin"
++      gecos: bin
++    sys:
++      dir: "/dev"
++      gid: 3
++      uid: 3
++      shell: "/usr/sbin/nologin"
++      gecos: sys
++    sync:
++      dir: "/bin"
++      gid: 65534
++      uid: 4
++      shell: "/bin/sync"
++      gecos: sync
++    games:
++      dir: "/usr/games"
++      gid: 60
++      uid: 5
++      shell: "/usr/sbin/nologin"
++      gecos: games
++    man:
++      dir: "/var/cache/man"
++      gid: 12
++      uid: 6
++      shell: "/usr/sbin/nologin"
++      gecos: man
++    lp:
++      dir: "/var/spool/lpd"
++      gid: 7
++      uid: 7
++      shell: "/usr/sbin/nologin"
++      gecos: lp
++    mail:
++      dir: "/var/mail"
++      gid: 8
++      uid: 8
++      shell: "/usr/sbin/nologin"
++      gecos: mail
++    news:
++      dir: "/var/spool/news"
++      gid: 9
++      uid: 9
++      shell: "/usr/sbin/nologin"
++      gecos: news
++    uucp:
++      dir: "/var/spool/uucp"
++      gid: 10
++      uid: 10
++      shell: "/usr/sbin/nologin"
++      gecos: uucp
++    proxy:
++      dir: "/bin"
++      gid: 13
++      uid: 13
++      shell: "/usr/sbin/nologin"
++      gecos: proxy
++    www-data:
++      dir: "/var/www"
++      gid: 33
++      uid: 33
++      shell: "/usr/sbin/nologin"
++      gecos: www-data
++    backup:
++      dir: "/var/backups"
++      gid: 34
++      uid: 34
++      shell: "/usr/sbin/nologin"
++      gecos: backup
++    list:
++      dir: "/var/list"
++      gid: 38
++      uid: 38
++      shell: "/usr/sbin/nologin"
++      gecos: Mailing List Manager
++    irc:
++      dir: "/var/run/ircd"
++      gid: 39
++      uid: 39
++      shell: "/usr/sbin/nologin"
++      gecos: ircd
++    gnats:
++      dir: "/var/lib/gnats"
++      gid: 41
++      uid: 41
++      shell: "/usr/sbin/nologin"
++      gecos: Gnats Bug-Reporting System (admin)
++    nobody:
++      dir: "/nonexistent"
++      gid: 65534
++      uid: 65534
++      shell: "/usr/sbin/nologin"
++      gecos: nobody
++    libuuid:
++      dir: "/var/lib/libuuid"
++      gid: 101
++      uid: 100
++      shell: ''
++      gecos: ''
++    syslog:
++      dir: "/home/syslog"
++      gid: 104
++      uid: 101
++      shell: "/bin/false"
++      gecos: ''
++    messagebus:
++      dir: "/var/run/dbus"
++      gid: 106
++      uid: 102
++      shell: "/bin/false"
++      gecos: ''
++    landscape:
++      dir: "/var/lib/landscape"
++      gid: 109
++      uid: 103
++      shell: "/bin/false"
++      gecos: ''
++    sshd:
++      dir: "/var/run/sshd"
++      gid: 65534
++      uid: 104
++      shell: "/usr/sbin/nologin"
++      gecos: ''
++    pollinate:
++      dir: "/var/cache/pollinate"
++      gid: 1
++      uid: 105
++      shell: "/bin/false"
++      gecos: ''
++    ntp:
++      dir: "/home/ntp"
++      gid: 111
++      uid: 106
++      shell: "/bin/false"
++      gecos: ''
++    travis:
++      dir: "/home/travis"
++      gid: 1000
++      uid: 1000
++      shell: "/bin/bash"
++      gecos: ''
++  group:
++    root:
++      gid: 0
++      members: []
++    daemon:
++      gid: 1
++      members: []
++    bin:
++      gid: 2
++      members: []
++    sys:
++      gid: 3
++      members: []
++    adm:
++      gid: 4
++      members:
++      - syslog
++    tty:
++      gid: 5
++      members: []
++    disk:
++      gid: 6
++      members: []
++    lp:
++      gid: 7
++      members: []
++    mail:
++      gid: 8
++      members: []
++    news:
++      gid: 9
++      members: []
++    uucp:
++      gid: 10
++      members: []
++    man:
++      gid: 12
++      members: []
++    proxy:
++      gid: 13
++      members: []
++    kmem:
++      gid: 15
++      members: []
++    dialout:
++      gid: 20
++      members: []
++    fax:
++      gid: 21
++      members: []
++    voice:
++      gid: 22
++      members: []
++    cdrom:
++      gid: 24
++      members: []
++    floppy:
++      gid: 25
++      members: []
++    tape:
++      gid: 26
++      members: []
++    sudo:
++      gid: 27
++      members: []
++    audio:
++      gid: 29
++      members: []
++    dip:
++      gid: 30
++      members: []
++    www-data:
++      gid: 33
++      members: []
++    backup:
++      gid: 34
++      members: []
++    operator:
++      gid: 37
++      members: []
++    list:
++      gid: 38
++      members: []
++    irc:
++      gid: 39
++      members: []
++    src:
++      gid: 40
++      members: []
++    gnats:
++      gid: 41
++      members: []
++    shadow:
++      gid: 42
++      members: []
++    utmp:
++      gid: 43
++      members: []
++    video:
++      gid: 44
++      members: []
++    sasl:
++      gid: 45
++      members: []
++    plugdev:
++      gid: 46
++      members: []
++    staff:
++      gid: 50
++      members: []
++    games:
++      gid: 60
++      members: []
++    users:
++      gid: 100
++      members: []
++    nogroup:
++      gid: 65534
++      members: []
++    libuuid:
++      gid: 101
++      members: []
++    netdev:
++      gid: 102
++      members: []
++    crontab:
++      gid: 103
++      members: []
++    syslog:
++      gid: 104
++      members: []
++    fuse:
++      gid: 105
++      members: []
++    messagebus:
++      gid: 106
++      members: []
++    mlocate:
++      gid: 107
++      members: []
++    ssh:
++      gid: 108
++      members: []
++    landscape:
++      gid: 109
++      members: []
++    admin:
++      gid: 110
++      members: []
++    ntp:
++      gid: 111
++      members: []
++    travis:
++      gid: 1000
++      members: []
++current_user: root
++gce:
++  instance:
++    attributes:
++      sshKeys: 'root:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYI9R5YKIfVSE84MmT0DfYTQH4z0zpYePgPJSF4IYmw7HTL58v16Vz5u8RRY+Q9/S5KFt+a7sTDe2CsiXKlKpeW9LKpBqPmOhhZnKlfN+DwbSlMc01aXir9Nm74n8o5Hel/oEGwZlphE9F6Um4MRtLH3kgRcKk5SzMjtoiBhm6tZgCxKf5XACdXiMeLUDm2OjHYaEYW1FqXpeHj8YfSdetaZxAoOnnrDGWk1hU5ksME8TisjhUOZGvFW2Z21OPPYgq80HUnZvx33MIDoNE9gdlb0hM6jH7gf1iGDnq1xH8WnzOEHSsUMC1rIKA57Cs9Zp4dXAo5GLjSFNXRcS7yLtX
++
++'
++    cpuPlatform: Intel Sandy Bridge
++    description: New instance created by Packer
++    disks:
++    - deviceName: persistent-disk-0
++      index: 0
++      mode: READ_WRITE
++      type: PERSISTENT
++    hostname: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46.c.eco-emissary-99515.internal
++    id: 4974766698862562281
++    image: ''
++    licenses:
++    - id: '1000010'
++    machineType: projects/539774316296/machineTypes/n1-standard-4
++    maintenanceEvent: NONE
++    networkInterfaces:
++    - accessConfigs:
++      - externalIp: 35.184.82.245
++        type: ONE_TO_ONE_NAT
++      forwardedIps: []
++      ip: 10.240.0.17
++      ipAliases: []
++      mac: 42:01:0a:f0:00:11
++      network: projects/539774316296/networks/default
++    scheduling:
++      automaticRestart: 'TRUE'
++      onHostMaintenance: MIGRATE
++      preemptible: 'FALSE'
++    serviceAccounts:
++      539774316296-compute@developer.gserviceaccount.com:
++        aliases:
++        - default
++        email: 539774316296-compute@developer.gserviceaccount.com
++        scopes:
++        - https://www.googleapis.com/auth/userinfo.email
++        - https://www.googleapis.com/auth/compute
++        - https://www.googleapis.com/auth/devstorage.full_control
++      default:
++        aliases:
++        - default
++        email: 539774316296-compute@developer.gserviceaccount.com
++        scopes:
++        - https://www.googleapis.com/auth/userinfo.email
++        - https://www.googleapis.com/auth/compute
++        - https://www.googleapis.com/auth/devstorage.full_control
++    tags:
++    - ci
++    - connie
++    - travis-ci-packer-templates
++    virtualClock:
++      driftToken: '0'
++    zone: projects/539774316296/zones/us-central1-a
++  project:
++    attributes:
++      google-compute-default-region: us-central1
++      google-compute-default-zone: us-central1-f
++      sshKeys: |-
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAF4gdLdhw2gmjo+A6D1cXUkDv29+S7ozcxAC0ncwzwR2tUktzWxTk1ZF9oDiw/keH8VaZuPs2htetdU8Yd1qSeiXrNunwpNr9ZsswTuhfjIRDEFidnkCWfW/IcgP8bYRoUPlRGcSEF0vtqn/zfer9RDvHZ5gAR1vzZLLhRNIx19LfUtunYdMiNRGLPYD18XQ6d+NE+pkoeugEo4LIeZYEyI1OcjEvKUz94DDk0HC/XiioEcCAe9xfwMOoplYcHp2y7iRWsAHpO9eUYdcBzqig2L6nZ+vwTLF0LDHlFxWwGfOdrAKX2dhrhQ6a8WEw9z0LfBFkZbnOz0lK8Mp46xxAn0= google-ssh {"userName":"henrik@travis-ci.org","expireOn":"2016-12-08T21:57:52+0000"}
++        henrik:ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEji5UN56xNgKjNqWnEdJJEQKMuoB8w+wy+suTOf79vXsgMVbPkk4KjbBi0QYtszt39DrCCevrb+5voE607anmw= google-ssh {"userName":"henrik@travis-ci.org","expireOn":"2016-12-08T21:57:48+0000"}
++        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOQSqaH5vTw5+fLccsIzoZ1A+viIDdc1EsN4X37AzAAUxGpMgbFMleP4uEc99solxcgHgSqomAzPKrWwPAuo2D0/eMC1G0oBwKjW1DfSaMxgsVS4cscUuU4aUjaxSsVQgVr/27HVqwRVI9j8T8bk5YiQzZaZ9yn2aHglDMbBi/cGAM4iMF6owVWZh3ywX1YqFgA8uZ3Ap0pgrnm9sNomDTmKbgEMlRhoJmDXyBs6E/Ldx69CxCdFeNel35zEjQW7MUO+ohPaZi7WB3s2s3ZRaQGVJks0FRpN6BRhE4AIAfhnXkBIZaOujQ/busMmBbmyZ+RP03J/ymUXcIMdHwhpr9 igor@ig-pro+travis
++        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyEerYBAUgrvmwfc3602oo3WVQbnEIam4vig6ah8YXUfpp1aatedEibcdvQCd5DYHrLFPDDeULF2IsJNh+hVTh1Pxj2Z4W1H+U/tXZt2eMeTX+MgAfREecL4dNcbRgDR1SuitfbsKv8zc5a+SZUYBaIAZvBIC5MJs2DMhYr3GQksIW8C2rROpowKP1Lj38IwSkvLZRvjIpT7diSctpJbiQV6Oh3MG949KUOdsb6RhjO1P+PIS03xds8+F8CfFLdw37bfAXNVEaijQcgG19a0tRivPpXFcem6Z9/PJF7ccjY1uJ7pQNkeLGI2Kx91rA/msAakulm40CQVg+aVn3oNU1 meatballhat
++        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZlA6FbXCWI2Fo34RsbbHgqzt7Me0mmLEVr4VInaQHbDt6mEelKHH46J3hin/WQTEhZ/sSuLZb0YML+ebHL390wHRkzqCIJvh1vORlbxlmDivvALF61NsAJuDo38GbLi2Zri/4NrCFmajwr9ofwrDNIar7xixEjX0/adqSFl7eqDl+kj+YB/qKMmpv52rSekcBwUBC1kLwNaRAGQNUkML4WpzM3P2/5NARkFel+hawYCDazWKo38ew4NITo39NYyrOefZ5eyo/3RLKGyrYh8Wl+XDxRmjvCWo6Fh1JFmyz9OovuzEj+bMaYYDCLIR280P7HYnLVuSLWyLClZhe+ISt me@failb0wl.local
++        solarce:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyNDg0uxFwrQ3NF64oFKKZfXvEOnVxmU0RMdYPI3FjEEyOinAUoe8cfSbo71vf8oFa0H7ECcBuZjiJbqctctGjiNHV/29P3Smo0niReeqEXK4Hy4LZumCx9jV2hceKyyS3zFDfTwcQ4M3gv6n71IKAtRw7T136mLcb2YsT001Mvho2XqL7C+1+Gsi24sTvKOeKPvcx/bD7tH5EJAJAgKggtcLe35S9efd3ZLhYNOl1fD0uEd2FFBfQ/7z0SlMPcg58FP5iJDEyDrlXKRJ+flVJr0OCuQrGqJ+DWBCkIluIr0dliW//FuGWNyyOLQjdOPAmWslCe/oIq7gKbBUaPk2d solarce@dirge.local
++        solarce:ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEAxWuTBCVNg8OOTibpUpxIQsmO8ZWfhEbo3gTXSzg91rL3hp8U8BYJtdtaDxPIb4uqVntnTm38jylEHf3SAdnxTXoDhceSBBe5bDmtOQCNLu1HlBlauQd0temV92gA1LnjGLcrz23l/RBJj+jcAYhErqwjy+ffDIip1ltGB9mJoHe9yuICCwaq3BXv8jZ0yOEFM16kWrZXOuqOIU83LdgnPj1tj1DbXg++ax/Yb7ENgOjH/DlHJ1vDy/i2C29ZSa+PptPkXLOKeGa20zCJeMQ4wYwrK4t1Jiyaui4XHe8j4B0FfyM+z2lAjdqn1iuGT4AYx+tFq5/88OM66rclWRZkYmUSX3C7w4U7Rgyj/hIkl0UTHfPiSFiiJ9L0jwvHq6erbdLKX/aD/yCvhv4VJ9bBFgVVhSXciNJgQOAzGd+gUBJVZqr/DZby51U4JuR8dy11KtoH0S3nzBggYbekWNFKcEzSdmuVaZgC9Q+B59Gu850+gv8YH/9ysOmbRHbOiRmTdUnY3slqu+QRgIpun2xqvV9Fc1YWvV2ioEWCfpH0z0ImasZh55TCuDpicRtUiR3I8uwn46EoxqNkQqX5mm+k/ers03q3rRar2PzpEF6G3F+4bJKv+mbfx+BtKS6K6ZjSQzsc2E+RUNeyuaJEeytjYvrDpxkwGAF1vr5wHiQInFE= brandon@inatree.org
++        maria:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJ+JCZtFI4yEFMznf2hGUV31FNRjJpi700PPNJPLeOXgWk/apUKp4aCUrsWQ0zbdGMqa91GsFwDhd8CZ/DmplxogRmFCWeCfZW2Vb4k8FUoit9C9dUi16y0OdZpU4j8qXAF92v33xocR9JQtdhx3BUlzp6vVzXJAie0Ymk5GPYdy5lgrEaPdOiGNEGIsn9Y8X4kJqT7Ao1nSDYEIvQEi6DuyfDWwI2cEEaawF7/mJHp8SlFkDFpbUZics0HuEzeRovYFa/GoA1Rb5j82RgdRfPV+vv/+sEGNauhqJoahfbbxalsN/1xH4DpdBja3pckCnd9LwDZHHG91d7fwariQTr2pSXVaYVOA4PIynH3sp88So7gY9Em8/53mJewC7meK81qjpXz1XWGyBdMAjURz5GpZpUKzNtQ9TD7TXabMAd8s1ma+zGN7vJyk1O5mgqHn3jbp9WwzQgJP1j6CmQ8Uk6UNXpMy2sIOOWsu5HyEUkqkgnUrIGhl9YNGVV4AUQCV5W92NPGyFEdRCgboNM46jfT+q8p6Lp8ym4VHCgDJDhLREWUV8Sd09bljJRz3Uef6wFt2NalZwFezjNNyNNmQL/OmscZEvQeSmY05c9IelG2tZ21u4ZnIkFxm13zAgYKXDQMWgymkroy57S7WxS20+/KIc2aSLBHhva4dHywquPfw== mariadeanton@gmail.com
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDn2pIwN+i5c7y7LFNoV51U48sPUD6LlhXTC+1/Sl1M0cYwhusWx8SRq13F4nXguYyBFpJHDVDhQHCn2zRMhlR1I6mmibvNQPKevYfvNsMMUCYEFhDbf0cE0euMStmPIrrJsutZJOqW+Iz7C3Enhy3V4ERfq/109Xy5/ZdbzdSSzJ2Kb1xFZnTh3g1L/0A1/MG8yIiBP27aaiijIm+PTfepOChmJsPtqdhIqREVcIZ6GC1lN7K8o9owHEqPXazvcyXp/mM+W2F96bCH9yHFI+I570rqFx8lvZI8Ud2f+IqnolfDd572Pb5GTovBDnfVAnqf5+mRa+fDgsx1IQxBbDp9 henrik@donna
++        me:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClTWvnY2EhuAC8pEdZr6SQo6PII4biOv6PUeXJWnVFVrzA2HdL50MOYxub+1DOTr5RnqRh1BlArghMte9icfHuqWKMSXUJeVrzDny8xz3qccCDOzegRfK+NIHi3rpblE2BtF+gqVgLN9YDxtIqGrlF1JkVc3TgeRVvMWUUAVh8B0HzUyPpClSZN4cMX6Z06dp8OUyWCMxVhUGFUX2y9CLMfAtugI7I9VFefS1VtSQ7KA5ZiHhjVv7JubFfF6YV1BaikHh2pP/LXVpv6uRWINnuKdpchgmEur590A7X9ZriTf58I1W/yzdE8iZ8EF8tqOil/TeD4W84nDnCTrCfI921 me@rp-yul-l0970.rp.corp
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD2vV2unA5zIbMKYrolRSdKPNEfl1PiNjRfb8KDug0OsY4XZK++HELOhVx1WCMDhqY832TvfifRUiNa50attERq88pdI4wNtqwvURRMNJagVvok15vBV/Fdr2hCi7mDGbIM4uAhp73ocX1ABmBSOtx6GBje0kZXgOw3T+L6yWZ3PstcmeQxMRYWz8OPjmODh/1O0v4OpOaZLniwcplutbK2SZxJt1cybvw8b9o+a+ZHFCsoQB9/bwTPcK/6EogJiwNSP9uIYW7nmnA9FpjD3H2UeGtuGhULNyj5TiUu2k6f6Q9YS31HvmLC51awj0tWdC1En4HHXIo1FQAkC4wIXs/ henrik@skyhawk
++        emma:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpNWK4WB3OvByfNwy49JdIYR1MG7TeLi9aZdFX6cMtHpFJqNzBK1Ba06/pMqOfESm7K223i+ExaIPDqfwcwkecIVSBcJyFtr5rlvp1xi9n1MMuTK/TDbuCM2Ou/OuRQL0yNs/zwRbrrfZagvf2SSQ2Kr8LZodqVAYLyd/UGXXwHbr/7K5prZkWsVN2UeUYGaN3AyHT3qHOVzy47zDVO0rZbgyE6IBBOp6uuOPCv5Ric9yTuITEY7S0j9JFOTbbaEyAsE3Ffu+DsMHbyoeFEWXDnCEvkdNbcIQWQp8ughBJ+8yIQXdhVJL6p0aSqkeIWjuEzVXpfmJ7DoxC/C029gKr emma@aqualung
++        carmen:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGODoXKQ3+dEvzGoNCmG6Mw9tfkT4/UZhI5PdXpJpSkSQAFVk8LaIDBk9cT/+E3qaATuhMABvaCyeRUGDqL/pRkVzAOVbLrbu8vT3laES8RaPugQ3zem7+/b31OyxZ7nPrUndJmY4D1STBrCZ14fGrGN7RC++q9b8UavxTS3ex/ZvYgdkMxVa5Uwf1BVbK6wMIkSfie5xzcChYC1DhDDAv4r9WKtcmYFnN5+Uh58b3ceVeWg414PhyMeHdcfNr0PctBRALgaDdyR/Qqn4Kap08pWX/kJWfVUqSACRRwOwmeaoWJSHu/QDD90C5bV9mHlMJ5+tEdwP9P3uPATieDEx carmen@elita1
++        konstantinhaase:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
++        konstantin:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCYZmgmTWivceKgWFjQLG8GCZJ5p4NhP+UDwM1iOZoVRhoYZvG2FQu11VgKBMM58IFsx9J2fRO1LLEX8hlPzbN3wgAs9DW+7Gd79V31RtlxfH1pA0Mgn8sLI8pVtw1cVWYtaqwzEieYIVxx/mwor9rjEEXyZlCLuV3IiQVmwEXKmeTqWW/pLfWAeDsydyRIEGS9QUTLJvkz/a2f/zoBqWd+eHhbRp12cl/D/f7MAl47WNAkNLyzZ0Q4mJeQzbHbfiDSoTLQ1Sd0Ox9694A4A4jGQDl9FxTRcTBAP40RlzTQ+maGvYPlYNGvGkad21p+x82P+7TbuPL6HCbljOjacg6d konstantinhaase@Konstantins-MacBook-Pro.local
++        carmen:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWqCBMHatDQtvGS/YO5d+531vbwZxZgtV57sU3Vy8nRWz7s2ckPgRAUhi+61ExVGGmfO3jZgEc6C10K1fdbRnbgGnOeHvHSPT0mcB9oJLSSHTzqcdyhKPFdZBeI6raGw+qHjltGX+MP5yzbUG82gPY5D+Xp61KcXyzjhlclzU/td99wnYsmagBkJzt1PBpKulboyTli6IPQ1UDBY09jz+mfQJZyAXfdmmI1m7m5r26C2DdrSS7fu/UEJmDkJ8GKTW44XWm90mH5JyXgOV8WkZTElcvAJVthqVV+gdh4ASj34UPIQ3qtdKtvbB+mqBtmm0sko8ipuO5r50MNKM2TbF/ carmen@cs-6365-devshell-vm-992b4627-0c92-40c6-8d7b-0d08fadd6a53-247
++        henrik:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDsUwOMyf1Tux1iwbLGTCqdRkKZhpfNq5M7f7C/PtfMZJ0qJvvFrHcGCO0QbsgyacOBnYZ+SaU3rMqHL4GWp+etv3VdNOMc0l8j8vp0vE7yicyYtHOUJgZeWy9b5VSFxS7XmWa6dZDdD3lXayQ5ysXbfVKgLlUHHg9VCizbFKcDr+vZmTLhTt//SNxwrxfrAzg4BtXI7Topxf9TZNe+CvWOyhMMHpsFARgh/eyJtU5RvuPxja/Fkj/m2uf8a9oAJGjICr/O8hjXoEKiEo0fIrrWT9u2Ee6c3o+5rBDLjMu2vnAhtrDjuh13nk3zoq6++PVBe71RHTcVZRz/HuQMj1Fl henrik@citation
++        igor:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD2wcUE4bi1Y5VUnXL/z2j1CjmK6RK1zh3s0OFijTzy7Q9dgveumKOvbV/6taj1YJOg+YcH+tGS7Y9Mh6/a3CIgT2gALFGS+ZcQ9cdqMGak4ntCZtyGyFT3fDYiuzv8Oyyn3gjNDBcOqsCQbvNK9vn35ecVe3HRglF/Qf5Ir8nbhFhPq3LXfAzkOFu3KqaQur6E51tqAGPl32hqQUhxJeh/XaM+EhkXS8SXj2CJZTKa5awUWALgf6IctX7ncNAi+cFbQ+osMuH4obVjPFJBPlnXP3AaAH4hDXpLvzMC4ytLZYQx0qe6aa6FupPXRe+RPEqTzjGonL0I2I3eTitLgrzJ igor@ig-pro.local
++    numericProjectId: 539774316296
++    projectId: eco-emissary-99515
++cloud:
++  public_ips:
++  - 35.184.82.245
++  private_ips:
++  - 10.240.0.17
++  public_ipv4:
++  - 35.184.82.245
++  local_ipv4:
++  - 10.240.0.17
++  public_hostname: 
++  local_hostname: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46.c.eco-emissary-99515.internal
++  provider: gce
++time:
++  timezone: UTC
++cloud_v2:
++  public_ipv4_addrs:
++  - 35.184.82.245
++  local_ipv4_addrs:
++  - 10.240.0.17
++  provider: gce
++  local_hostname: packer-5888f504-8ce5-3899-005a-e6f0d4be2f46.c.eco-emissary-99515.internal
++  public_ipv4: 35.184.82.245
++  local_ipv4: 10.240.0.17
++shard_seed: 142490633
+ init_package: init
+-hostnamectl:
+-  static_hostname: packer-58459f9f-0c7a-6809-06af-4c993524ebb6
+-  icon_name: computer-vm
+-  chassis: vm
+-  boot_id: 14e01a11907446c39c20dcab4fa52cbf
+-  virtualization: kvm
+-  operating_system: Ubuntu 14.04.5 LTS
+-  kernel: Linux 4.4.0-51-generic
+-  architecture: x86_64
+-block_device:
+-  sda:
+-    size: '31457280'
+-    removable: '0'
+-    model: PersistentDisk
+-    rev: '1'
+-    state: running
+-    timeout: '30'
+-    vendor: Google
+-    queue_depth: '256'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram0:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram1:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram2:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram3:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram4:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram5:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram6:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram7:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram8:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram9:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  loop0:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop1:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop2:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop3:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop4:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop5:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop6:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  loop7:
+-    size: '0'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '512'
+-    logical_block_size: '512'
+-  ram10:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram11:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram12:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram13:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram14:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-  ram15:
+-    size: '131072'
+-    removable: '0'
+-    rotational: '1'
+-    physical_block_size: '4096'
+-    logical_block_size: '512'
+-sessions:
+-  by_session: {}
+-  by_user: {}
++shells:
++- "/bin/sh"
++- "/bin/dash"
++- "/bin/bash"
++- "/bin/rbash"
++- "/usr/bin/tmux"
++- "/usr/bin/screen"
++root_group: root
++chef_packages:
++  ohai:
++    version: 8.22.1
++    ohai_root: "/opt/chef/embedded/lib/ruby/gems/2.3.0/gems/ohai-8.22.1/lib/ohai"
++  chef:
++    version: 12.18.31
++    chef_root: "/opt/chef/embedded/lib/ruby/gems/2.3.0/gems/chef-12.18.31/lib"
+ recipes:
+ - travis_ci_connie
+ - travis_ci_connie::default
+@@ -3926,6 +4364,9 @@
+ - travis_build_environment::packer
+ - travis_build_environment::heroku_toolbelt
+ - travis_build_environment::yarn
++- travis_build_environment::shellcheck
++- travis_build_environment::shfmt
++- travis_build_environment::mercurial
+ - travis_build_environment::locale
+ - travis_build_environment::hostname
+ - travis_build_environment::sysctl
+@@ -3940,13 +4381,13 @@
+ - travis_docker::compose
+ - travis_java::default
+ - travis_java::jdk_switcher
+-- nodejs::multi
+ - travis_perlbrew::multi
+ - travis_perlbrew::default
+-- postgresql::pgdg
++- travis_postgresql::pgdg
+ - travis_python::pyenv
+ - travis_python::virtualenv
+ - travis_python::pip
++- travis_packer_templates::systemd_purge
+ - travis_system_info::default
+ expanded_run_list:
+ - travis_ci_connie::default
+@@ -3954,10 +4395,6 @@
+ cookbooks:
+   travis_ci_connie:
+     version: 0.1.0
+-  nodejs:
+-    version: 0.0.0
+-  postgresql:
+-    version: 2.1.1
+   travis_build_environment:
+     version: 1.1.0
+   travis_docker:
+@@ -3968,12 +4405,12 @@
+     version: 0.1.0
+   travis_perlbrew:
+     version: 1.0.0
++  travis_postgresql:
++    version: 3.0.0
+   travis_python:
+     version: 2.0.0
+   travis_system_info:
+     version: 0.1.0
+-  build-essential:
+-    version: 2.2.4
+   apt:
+     version: 2.9.2
+   ark:
+@@ -3984,10 +4421,12 @@
+     version: 0.1.1
+   rvm:
+     version: 0.10.1
++  travis_groovy:
++    version: 0.0.0
+   travis_phpenv:
+     version: 1.0.0
+-  pypy:
+-    version: 0.0.0
++  build-essential:
++    version: 2.2.4
+   windows:
+     version: 1.38.1
+   7-zip:
+@@ -4004,4 +4443,4 @@
+     version: 0.6.5
+   yum:
+     version: 3.8.2
+-__timestamp: 2016-12-05 17:12:29 UTC
++__timestamp: 2017-01-25 18:58:29 UTC
